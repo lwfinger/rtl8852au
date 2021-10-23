@@ -1,0 +1,13 @@
+#ifdef RTK_1319_PLATFORM
+
+#ifndef CONFIG_PHL_USE_KMEM_ALLOC
+#define CONFIG_PHL_USE_KMEM_ALLOC
+#endif
+
+#ifdef CONFIG_DYNAMIC_RX_BUF
+#undef CONFIG_DYNAMIC_RX_BUF
+#endif
+
+#define CONFIG_RXBUF_NUM_1024
+
+#endif
