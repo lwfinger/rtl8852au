@@ -26,16 +26,7 @@
 #define DBG_RX_SIGNAL_DISPLAY_SSID_MONITORED "rtw_ap"
 #endif
 
-
-#ifndef DBG_MEM_ALLOC
-#define DBG_MEM_ALLOC
-
-#define DBG_PHL_MEM_ALLOC
-#define DBG_HAL_MAC_MEM_MOINTOR
-#define DBG_HAL_MEM_MOINTOR
-#endif
 /*#define CONFIG_PHL_USE_KMEM_ALLOC*/
-
 
 #define CONFIG_DBCC_SUPPORT
 
