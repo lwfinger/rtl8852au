@@ -1429,10 +1429,10 @@ void rtw_set_phl_packet_tx(_adapter *padapter, u8 bStart)
 		if (pmp_priv->rtw_mp_tx_method == RTW_MP_PMACT_TX ||
 				pmp_priv->rtw_mp_tx_method == RTW_MP_FW_PMACT_TX) {
 				RTW_INFO("%s: PLCP_USER_INFO & PLCP_COMMON_INFO!!\n", __func__);
-				if (rtw_phl_mp_tx_cmd(padapter, RTW_MP_TX_CONFIG_PLCP_USER_INFO, pmp_priv->rtw_mp_tx_method, _TRUE) == true);
+				if (rtw_phl_mp_tx_cmd(padapter, RTW_MP_TX_CONFIG_PLCP_USER_INFO, pmp_priv->rtw_mp_tx_method, _TRUE) == true)
 					RTW_INFO("%s: PLCP_USER_INFO done!!\n", __func__);
 				rtw_msleep_os(100);
-				if (rtw_phl_mp_tx_cmd(padapter, RTW_MP_TX_CONFIG_PLCP_COMMON_INFO, pmp_priv->rtw_mp_tx_method, _TRUE) == true);
+				if (rtw_phl_mp_tx_cmd(padapter, RTW_MP_TX_CONFIG_PLCP_COMMON_INFO, pmp_priv->rtw_mp_tx_method, _TRUE) == true)
 					RTW_INFO("%s: RTW_MP_TX_CONFIG_PLCP_COMMON_INFO done!!\n", __func__);
 				rtw_msleep_os(100);
 		}
