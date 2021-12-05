@@ -17,13 +17,13 @@
 
 /* driver log level*/
 enum {
-	_DRV_NONE_ = 0,
-	_DRV_ALWAYS_ = 1,
-	_DRV_ERR_ = 2,
-	_DRV_WARNING_ = 3,
-	_DRV_INFO_ = 4,
-	_DRV_DEBUG_ = 5,
-	_DRV_MAX_ = 6
+	_DRV_NONE_,
+	_DRV_ERR_,
+	_DRV_WARNING_,
+	_DRV_INFO_,
+	_DRV_DEBUG_,
+	_DRV_ALWAYS_,
+	_DRV_MAX_
 };
 
 #define DRIVER_PREFIX "RTW: "
@@ -81,7 +81,6 @@ extern uint rtw_drv_log_level;
 
 #if defined(_dbgdump)
 
-#ifdef PLATFORM_LINUX
 #ifdef DBG_THREAD_PID
 #define T_PID_FMT	"(%5u) "
 #define T_PID_ARG	current->pid
@@ -104,7 +103,6 @@ extern uint rtw_drv_log_level;
 #else /* !PLATFORM_LINUX */
 #define EX_INFO_FMT	"%s"
 #define EX_INFO_ARG	""
-#endif /* !PLATFORM_LINUX */
 
 #define DBG_PREFIX	EX_INFO_FMT DRIVER_PREFIX
 #define DBG_PREFIX_ARG	EX_INFO_ARG

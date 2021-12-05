@@ -25,7 +25,6 @@ u32 phl_log_components = COMP_PHL_DBG |
 			 COMP_PHL_MAC |
 			 /*COMP_PHL_PS |*/
 			 0;
-u8 phl_log_level = _PHL_INFO_;
 struct dbg_mem_ctx debug_memory_ctx;
 
 void debug_dump_mac_address(u8 *mac_addr)

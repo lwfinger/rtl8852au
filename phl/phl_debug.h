@@ -17,13 +17,13 @@
 
 /* phl log level */
 enum {
-	_PHL_NONE_ = 0,
-	_PHL_ALWAYS_ = 1,
-	_PHL_ERR_ = 2,
-	_PHL_WARNING_ = 3,
-	_PHL_INFO_ = 4,
-	_PHL_DEBUG_ = 5,
-	_PHL_MAX_ = 6
+	_PHL_NONE_,
+	_PHL_ERR_,
+	_PHL_WARNING_,
+	_PHL_INFO_,
+	_PHL_DEBUG_,
+	_PHL_ALWAYS_,
+	_PHL_MAX_
 };
 
 #define PHL_PREFIX "PHL: "
@@ -61,7 +61,7 @@ enum {
 #define COMP_PHL_TWT BIT19
 
 extern u32 phl_log_components;
-extern u8 phl_log_level;
+extern uint rtw_drv_log_level;
 #define DEBUG_MAX_NAME_LEN 50
 
 struct dbg_alloc_buf {
@@ -81,17 +81,22 @@ struct dbg_mem_ctx {
 
 
 #undef PHL_TRACE
+#if 0
 #define PHL_TRACE(comp, level, fmt, ...)     \
 	do {\
-		if(((comp) & phl_log_components) && (level <= phl_log_level)) {\
+		if (((comp) & phl_log_components) && (level <= rtw_drv_log_level)) {\
 			_os_dbgdump(PHL_PREFIX fmt, ##__VA_ARGS__);\
 		} \
 	} while (0)
+#else
+#define PHL_TRACE(comp, level, fmt, ...)     \
+	do {} while (0)
+#endif
 
 #undef PHL_DATA
 #define PHL_DATA(comp, level, fmt, ...)     \
 	do {\
-		if(((comp) & phl_log_components) && (level <= phl_log_level)) {\
+		if (((comp) & phl_log_components) && (level <= rtw_drv_log_level)) {\
 			_os_dbgdump(KERN_CONT fmt, ##__VA_ARGS__);\
 		} \
 	} while (0)
@@ -107,31 +112,41 @@ struct dbg_mem_ctx {
 #undef PHL_PRINT
 #define PHL_PRINT(fmt, ...)     \
 	do {\
+		if (_PHL_ALWAYS_ <= rtw_drv_log_level) {\
 			PHL_TRACE(COMP_PHL_DBG, _PHL_ALWAYS_, fmt, ##__VA_ARGS__);\
+		} \
 	} while (0)
 
 #undef PHL_ERR
 #define PHL_ERR(fmt, ...)     \
 	do {\
+		if (_PHL_ERR_ <= rtw_drv_log_level) {\
 			PHL_TRACE(COMP_PHL_DBG, _PHL_ERR_, "ERROR " fmt, ##__VA_ARGS__);\
+		} \
 	} while (0)
 
 #undef PHL_WARN
 #define PHL_WARN(fmt, ...)     \
 	do {\
+		if (_PHL_WARNING_ <= rtw_drv_log_level) {\
 			PHL_TRACE(COMP_PHL_DBG, _PHL_WARNING_, "WARN " fmt, ##__VA_ARGS__);\
+		} \
 	} while (0)
 
 #undef PHL_INFO
 #define PHL_INFO(fmt, ...)     \
 	do {\
+		if (_PHL_INFO_ <= rtw_drv_log_level) {\
 			PHL_TRACE(COMP_PHL_DBG, _PHL_INFO_, fmt, ##__VA_ARGS__);\
+		} \
 	} while (0)
 
 #undef PHL_DBG
 #define PHL_DBG(fmt, ...)     \
 	do {\
+		if (_PHL_DEBUG_ <= rtw_drv_log_level) {\
 			PHL_TRACE(COMP_PHL_DBG, _PHL_DEBUG_, fmt, ##__VA_ARGS__);\
+		} \
 	} while (0)
 
 #define FUNCIN() PHL_TRACE(COMP_PHL_DBG, _PHL_DEBUG_, "Enter %s\n", __FUNCTION__)
