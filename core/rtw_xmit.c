@@ -495,7 +495,7 @@ s32 _rtw_init_xmit_priv(struct xmit_priv *pxmitpriv, _adapter *padapter)
 	rtw_intf_init_xmit_priv(padapter);
 
 #ifdef RTW_PHL_TX //alloc xmit resource
-	printk("eric-tx CALL alloc_txring !!!!\n");
+	RTW_INFO("eric-tx CALL alloc_txring !!!!\n");
 	if (alloc_txring(padapter) == _FAIL) {
 		RTW_ERR("[core] alloc_txring fail !!!\n");
 		res = _FAIL;

@@ -47,7 +47,7 @@ struct sk_buff *rtw_alloc_skb_premem(u16 in_size)
 	struct sk_buff *skb = NULL;
 
 	if (in_size > MAX_RTKM_RECVBUF_SZ) {
-		pr_info("warning %s: driver buffer size(%d) > rtkm buffer size(%d)\n", __func__, in_size, MAX_RTKM_RECVBUF_SZ);
+		RTW_INFO("warning %s: driver buffer size(%d) > rtkm buffer size(%d)\n", __func__, in_size, MAX_RTKM_RECVBUF_SZ);
 		WARN_ON(1);
 		return skb;
 	}
@@ -83,9 +83,8 @@ static int __init rtw_mem_init(void)
 	SIZE_PTR alignment = 0;
 	struct sk_buff *pskb = NULL;
 
-	printk("%s\n", __func__);
-	pr_info("MAX_RTKM_NR_PREALLOC_RECV_SKB: %d\n", MAX_RTKM_NR_PREALLOC_RECV_SKB);
-	pr_info("MAX_RTKM_RECVBUF_SZ: %d\n", MAX_RTKM_RECVBUF_SZ);
+	RTW_INFO("MAX_RTKM_NR_PREALLOC_RECV_SKB: %d\n", MAX_RTKM_NR_PREALLOC_RECV_SKB);
+	RTW_INFO("MAX_RTKM_RECVBUF_SZ: %d\n", MAX_RTKM_RECVBUF_SZ);
 
 #ifdef CONFIG_USE_USB_BUFFER_ALLOC_RX
 	for (i = 0; i < NR_RECVBUFF; i++)
@@ -103,12 +102,12 @@ static int __init rtw_mem_init(void)
 
 			skb_queue_tail(&rtk_skb_mem_q, pskb);
 		} else
-			printk("%s, alloc skb memory fail!\n", __func__);
+			RTW_ERR("%s, alloc skb memory fail!\n", __func__);
 
 		pskb = NULL;
 	}
 
-	printk("%s, rtk_skb_mem_q len : %d\n", __func__, skb_queue_len(&rtk_skb_mem_q));
+	RTW_INFO("%s, rtk_skb_mem_q len : %d\n", __func__, skb_queue_len(&rtk_skb_mem_q));
 
 	return 0;
 
@@ -117,7 +116,7 @@ static int __init rtw_mem_init(void)
 static void __exit rtw_mem_exit(void)
 {
 	if (skb_queue_len(&rtk_skb_mem_q))
-		printk("%s, rtk_skb_mem_q len : %d\n", __func__, skb_queue_len(&rtk_skb_mem_q));
+		RTW_INFO("%s, rtk_skb_mem_q len : %d\n", __func__, skb_queue_len(&rtk_skb_mem_q));
 
 	skb_queue_purge(&rtk_skb_mem_q);
 
