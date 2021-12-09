@@ -11,6 +11,7 @@ but that is a matter for another time.
 This driver currently handles the following devices:
 
 ASUS USB-AX56 with USB ID 0b05:1997
+BUFFALO WI-U3-1200AX2(/N) with USB ID 0411:0312
 D-Link DWA-X1850 with USB IF 2001:3321
 Realtek Demo Board with USB ID 0bda:8832
 Realtek Demo Board with USB ID 0bda:885a
