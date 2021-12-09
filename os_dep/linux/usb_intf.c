@@ -138,8 +138,8 @@ static void rtw_dev_shutdown(struct device *dev)
 
 #define USB_VENDER_ID_REALTEK		0x0BDA
 #define USB_VENDER_ID_ASUS  		0x0B05
+#define USB_VENDOR_ID_BUFFALO		0x0411
 #define USB_VENDER_ID_DLINK 		0x2001
-
 
 /* DID_USB_v916_20130116 */
 static struct usb_device_id rtw_usb_id_tbl[] = {
@@ -150,10 +150,13 @@ static struct usb_device_id rtw_usb_id_tbl[] = {
 	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_REALTEK, 0x885C, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
 
 	/*=== ASUS USB-AX56 =======*/
-	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_ASUS,    0x1997, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_ASUS, 0x1997, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
 
+	/*=== BUFFALO WI-U3-1200AX2(/N) =======*/
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_BUFFALO, 0x0312, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
+	
 	/*=== D-Link DWA-X1850 ====*/
-	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_DLINK,   0x3321, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_DLINK, 0x3321, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
 #endif /* CONFIG_RTL8852A */
 
 #ifdef CONFIG_RTL8852B
