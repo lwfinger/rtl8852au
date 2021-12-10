@@ -136,35 +136,35 @@ static void rtw_dev_shutdown(struct device *dev)
 #endif
 
 
-#define USB_VENDER_ID_REALTEK		0x0BDA
-#define USB_VENDER_ID_ASUS  		0x0B05
+#define USB_VENDOR_ID_REALTEK		0x0BDA
+#define USB_VENDOR_ID_ASUS  		0x0B05
 #define USB_VENDOR_ID_BUFFALO		0x0411
-#define USB_VENDER_ID_DLINK 		0x2001
+#define USB_VENDOR_ID_DLINK 		0x2001
 
 /* DID_USB_v916_20130116 */
 static struct usb_device_id rtw_usb_id_tbl[] = {
 #ifdef CONFIG_RTL8852A
 	/*=== Realtek demoboard ===*/
-	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_REALTEK, 0x8832, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
-	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_REALTEK, 0x885A, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
-	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_REALTEK, 0x885C, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_REALTEK, 0x8832, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_REALTEK, 0x885A, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_REALTEK, 0x885C, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
 
 	/*=== ASUS USB-AX56 =======*/
-	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_ASUS, 0x1997, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_ASUS, 0x1997, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
 
 	/*=== BUFFALO WI-U3-1200AX2(/N) =======*/
-	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_BUFFALO, 0x0312, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_BUFFALO, 0x0312, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
 	
 	/*=== D-Link DWA-X1850 ====*/
-	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_DLINK, 0x3321, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_DLINK, 0x3321, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
 #endif /* CONFIG_RTL8852A */
 
 #ifdef CONFIG_RTL8852B
 	/*=== Realtek demoboard ===*/
-	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_REALTEK, 0xB832, 0xff, 0xff, 0xff), .driver_info = RTL8852B},
-	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_REALTEK, 0xB83A, 0xff, 0xff, 0xff), .driver_info = RTL8852B},
-	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_REALTEK, 0xB852, 0xff, 0xff, 0xff), .driver_info = RTL8852B},
-	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDER_ID_REALTEK, 0xB85A, 0xff, 0xff, 0xff), .driver_info = RTL8852B},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_REALTEK, 0xB832, 0xff, 0xff, 0xff), .driver_info = RTL8852B},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_REALTEK, 0xB83A, 0xff, 0xff, 0xff), .driver_info = RTL8852B},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_REALTEK, 0xB852, 0xff, 0xff, 0xff), .driver_info = RTL8852B},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_REALTEK, 0xB85A, 0xff, 0xff, 0xff), .driver_info = RTL8852B},
 #endif /* CONFIG_RTL8852B */
 
 	{}	/* Terminating entry */
@@ -175,13 +175,13 @@ MODULE_DEVICE_TABLE(usb, rtw_usb_id_tbl);
 int const rtw_usb_id_len = sizeof(rtw_usb_id_tbl) / sizeof(struct usb_device_id);
 
 static struct specific_device_id specific_device_id_tbl[] = {
-	{.idVendor = USB_VENDER_ID_REALTEK, .idProduct = 0x8177, .flags = SPEC_DEV_ID_DISABLE_HT}, /* 8188cu 1*1 dongole, (b/g mode only) */
-	{.idVendor = USB_VENDER_ID_REALTEK, .idProduct = 0x817E, .flags = SPEC_DEV_ID_DISABLE_HT}, /* 8188CE-VAU USB minCard (b/g mode only) */
+	{.idVendor = USB_VENDOR_ID_REALTEK, .idProduct = 0x8177, .flags = SPEC_DEV_ID_DISABLE_HT}, /* 8188cu 1*1 dongole, (b/g mode only) */
+	{.idVendor = USB_VENDOR_ID_REALTEK, .idProduct = 0x817E, .flags = SPEC_DEV_ID_DISABLE_HT}, /* 8188CE-VAU USB minCard (b/g mode only) */
 	{.idVendor = 0x0b05, .idProduct = 0x1791, .flags = SPEC_DEV_ID_DISABLE_HT},
 	{.idVendor = 0x13D3, .idProduct = 0x3311, .flags = SPEC_DEV_ID_DISABLE_HT},
 	{.idVendor = 0x13D3, .idProduct = 0x3359, .flags = SPEC_DEV_ID_DISABLE_HT}, /* Russian customer -Azwave (8188CE-VAU  g mode) */
 #ifdef RTK_DMP_PLATFORM
-	{.idVendor = USB_VENDER_ID_REALTEK, .idProduct = 0x8111, .flags = SPEC_DEV_ID_ASSIGN_IFNAME}, /* Realtek 5G dongle for WiFi Display */
+	{.idVendor = USB_VENDOR_ID_REALTEK, .idProduct = 0x8111, .flags = SPEC_DEV_ID_ASSIGN_IFNAME}, /* Realtek 5G dongle for WiFi Display */
 	{.idVendor = 0x2019, .idProduct = 0xAB2D, .flags = SPEC_DEV_ID_ASSIGN_IFNAME}, /* PCI-Abocom 5G dongle for WiFi Display */
 #endif /* RTK_DMP_PLATFORM */
 	{}
