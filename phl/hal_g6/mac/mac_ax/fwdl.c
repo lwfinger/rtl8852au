@@ -967,30 +967,30 @@ u32 mac_enable_fw(struct mac_ax_adapter *adapter, enum rtw_fw_type cat)
 			case RTW_FW_AP:
 				fw_len = array_length_8852a_u2_ap;
 				fw = array_8852a_u2_ap;
-				pr_info("Loading array_8852a_u2_ap\n");
+				RTW_INFO("Loading array_8852a_u2_ap\n");
 				break;
 			case RTW_FW_AP_MP:
 				fw_len = array_length_8852a_u2_ap_mp;
 				fw = array_8852a_u2_ap_mp;
-				pr_info("Loading array_8852a_u2_ap_mp\n");
+				RTW_INFO("Loading array_8852a_u2_ap_mp\n");
 				break;
 #endif /*PHL_FEATURE_AP*/
 #ifdef PHL_FEATURE_NIC
 			case RTW_FW_NIC:
 				fw_len = array_length_8852a_u2_nic;
 				fw = array_8852a_u2_nic;
-				pr_info("Loading array_8852a_u2_nic\n");
+				RTW_INFO("Loading array_8852a_u2_nic\n");
 				break;
 			case RTW_FW_NIC_MP:
 				fw_len = array_length_8852a_u2_nic_mp;
 				fw = array_8852a_u2_nic_mp;
-				pr_info("Loading array_8852a_u2_nic_mp\n");
+				RTW_INFO("Loading array_8852a_u2_nic_mp\n");
 				break;
 #ifdef CONFIG_WOWLAN
 			case RTW_FW_WOWLAN:
 				fw_len = array_length_8852a_u2_wowlan;
 				fw = array_8852a_u2_wowlan;
-				pr_info("Loading array_8852a_u2_wowlan\n");
+				RTW_INFO("Loading array_8852a_u2_wowlan\n");
 				break;
 #endif /*CONFIG_WOWLAN*/
 #endif /*PHL_FEATURE_NIC*/
@@ -1009,30 +1009,30 @@ u32 mac_enable_fw(struct mac_ax_adapter *adapter, enum rtw_fw_type cat)
 			case RTW_FW_AP:
 				fw_len = array_length_8852a_u3_ap;
 				fw = array_8852a_u3_ap;
-				pr_info("Loading array_8852a_u3_ap\n");
+				RTW_INFO("Loading array_8852a_u3_ap\n");
 				break;
 			case RTW_FW_AP_MP:
 				fw_len = array_length_8852a_u3_ap_mp;
 				fw = array_8852a_u3_ap_mp;
-				pr_info("Loading array_8852a_u3_ap_mp\n");
+				RTW_INFO("Loading array_8852a_u3_ap_mp\n");
 				break;
 #endif /*PHL_FEATURE_AP*/
 #ifdef PHL_FEATURE_NIC
 			case RTW_FW_NIC:
 				fw_len = array_length_8852a_u3_nic;
 				fw = array_8852a_u3_nic;
-				pr_info("Loading array_8852a_u3_nic\n");
+				RTW_INFO("Loading array_8852a_u3_nic\n");
 				break;
 			case RTW_FW_NIC_MP:
 				fw_len = array_length_8852a_u3_nic_mp;
 				fw = array_8852a_u3_nic_mp;
-				pr_info("Loading array_8852a_u3_nic_mp\n");
+				RTW_INFO("Loading array_8852a_u3_nic_mp\n");
 				break;
 #ifdef CONFIG_WOWLAN
 			case RTW_FW_WOWLAN:
 				fw_len = array_length_8852a_u3_wowlan;
 				fw = array_8852a_u3_wowlan;
-				pr_info("Loading array_8852a_u3_wowlan\n");
+				RTW_INFO("Loading array_8852a_u3_wowlan\n");
 				break;
 #endif /*CONFIG_WOWLAN*/
 #endif /*PHL_FEATURE_NIC*/
@@ -1062,30 +1062,30 @@ u32 mac_enable_fw(struct mac_ax_adapter *adapter, enum rtw_fw_type cat)
 			case RTW_FW_AP:
 				fw_len = array_length_8852b_u1_ap;
 				fw = array_8852b_u1_ap;
-				pr_info("Loading array_8852b_u1_ap\n");
+				RTW_INFO("Loading array_8852b_u1_ap\n");
 				break;
 			case RTW_FW_AP_MP:
 				fw_len = array_length_8852b_u1_ap_mp;
 				fw = array_8852b_u1_ap_mp;
-				pr_info("Loading array_8852b_u1_ap_mp\n");
+				RTW_INFO("Loading array_8852b_u1_ap_mp\n");
 				break;
 #endif /*PHL_FEATURE_AP*/
 #ifdef PHL_FEATURE_NIC
 			case RTW_FW_NIC:
 				fw_len = array_length_8852b_u1_nic;
 				fw = array_8852b_u1_nic;
-				pr_info("Loading array_8852b_u1_nic\n");
+				RTW_INFO("Loading array_8852b_u1_nic\n");
 				break;
 			case RTW_FW_NIC_MP:
 				fw_len = array_length_8852b_u1_nic_mp;
 				fw = array_8852b_u1_nic_mp;
-				pr_info("Loading array_8852b_u1_nic_mp\n");
+				RTW_INFO("Loading array_8852b_u1_nic_mp\n");
 				break;
 #ifdef CONFIG_WOWLAN
 			case RTW_FW_WOWLAN:
 				fw_len = array_length_8852b_u1_wowlan;
 				fw = array_8852b_u1_wowlan;
-				pr_info("Loading array_8852b_u1_wowlan\n");
+				RTW_INFO("Loading array_8852b_u1_wowlan\n");
 				break;
 #endif /*CONFIG_WOWLAN*/
 #endif /*PHL_FEATURE_NIC*/
@@ -1104,23 +1104,23 @@ u32 mac_enable_fw(struct mac_ax_adapter *adapter, enum rtw_fw_type cat)
 			case RTW_FW_NIC:
 				fw_len = array_length_8852b_u2_nic;
 				fw = array_8852b_u2_nic;
-				pr_info("Loading array_8852b_u2_nic\n");
+				RTW_INFO("Loading array_8852b_u2_nic\n");
 				break;
 			case RTW_FW_NIC_MP:
 				fw_len = array_length_8852b_u2_nic_mp;
 				fw = array_8852b_u2_nic_mp;
-				pr_info("Loading array_8852b_u2_nic_mp\n");
+				RTW_INFO("Loading array_8852b_u2_nic_mp\n");
 				break;
 			case RTW_FW_PLE:
 				fw = array_8852b_u2_nic_ple;
 				fw_len = array_length_8852b_u2_nic_ple;
-				pr_info("Loading array_8852b_u2_nic_ple\n");
+				RTW_INFO("Loading array_8852b_u2_nic_ple\n");
 				break;
 #ifdef CONFIG_WOWLAN
 			case RTW_FW_WOWLAN:
 				fw_len = array_length_8852b_u1_wowlan;
 				fw = array_8852b_u1_wowlan;
-				pr_info("Loading array_8852b_u1_wowlan\n");
+				RTW_INFO("Loading array_8852b_u1_wowlan\n");
 				break;
 #endif /*CONFIG_WOWLAN*/
 #endif /*PHL_FEATURE_NIC*/
