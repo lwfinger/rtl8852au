@@ -76,8 +76,11 @@ static int rtw_net_set_mac_address(struct net_device *pnetdev, void *addr)
 	}
 
 	_rtw_memcpy(adapter_mac_addr(padapter), sa->sa_data, ETH_ALEN); /* set mac addr to adapter */
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0)
 	_rtw_memcpy(pnetdev->dev_addr, sa->sa_data, ETH_ALEN); /* set mac addr to net_device */
-
+#else
+	dev_addr_set(pnetdev, sa->sa_data);
+#endif
 	/* Since the net_device is in down state, there is no wrole at this moment.
 	 * The new mac address will be set to hw when changing the net_device to up state.
 	 */
@@ -612,8 +615,11 @@ int rtw_os_ndev_register(_adapter *adapter, const char *name)
 	/* alloc netdev name */
 	rtw_init_netdev_name(ndev, name);
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0)
 	_rtw_memcpy(ndev->dev_addr, adapter_mac_addr(adapter), ETH_ALEN);
-
+#else
+	dev_addr_set(ndev, adapter_mac_addr(adapter));
+#endif
 	/* Tell the network stack we exist */
 
 	if (rtnl_lock_needed)
