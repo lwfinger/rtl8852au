@@ -31,8 +31,6 @@ enum _CMD_SCAN_STATE {
 
 static void _cmd_scan_timer(void* role);
 
-#define DBG_SCAN_CHAN_DUMP
-
 #ifdef DBG_SCAN_CHAN_DUMP
 static void
 _cmd_estimated_swch_seq(struct rtw_phl_scan_param *param, u8 op_num)
