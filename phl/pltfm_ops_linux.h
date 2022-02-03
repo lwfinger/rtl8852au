@@ -578,7 +578,7 @@ static inline u8 _os_tasklet_init(void *drv_priv, _os_tasklet *task,
 	void (*call_back_func)(void* context), void *context)
 {
 	rtw_tasklet_init(task,
-			 (void(*)(unsigned long))call_back_func,
+			 (void *)call_back_func,
 			 (unsigned long)task);
 	return 0;
 }

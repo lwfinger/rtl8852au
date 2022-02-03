@@ -1483,11 +1483,7 @@ u32 process_assoc_req_p2p_ie(struct wifidirect_info *pwdinfo, u8 *pframe, uint l
 
 				rtw_get_p2p_attr_content(p2p_ie, p2p_ielen, P2P_ATTR_DEVICE_INFO , pattr_content, (uint *)&attr_contentlen);
 
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0)
 				_rtw_memcpy(psta->dev_addr, 	pattr_content, ETH_ALEN);/* P2P Device Address */
-#else
-				dev_addr_set(psta, pattr_content);
-#endif
 				pattr_content += ETH_ALEN;
 
 				_rtw_memcpy(&psta->config_methods, pattr_content, 2);/* Config Methods */
