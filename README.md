@@ -27,7 +27,7 @@ then this disk is mounted. The way to avoid this is to edit either file
 /lib/udev/rules.d/40-usb_modeswitch.rules, whichever is on your system, and add
 the following lines:
 
-# D-Link DWA-X1850 Wifi Dongle
+\# D-Link DWA-X1850 Wifi Dongle  
 ATTR{idVendor}=="0bda", ATTR{idProduct}=="1a2b", RUN+="usb_modeswitch '/%k'"
 
 When a USB device is plugged in, or detected at boot, this rule causes the utulity
@@ -36,9 +36,9 @@ device with different ID, change the rule accordingly.
 
 The build this driver, do the following:
 
-git clone http://github.com/lwfinger/rtl8852au.git
-cd rtw8852au
-make
+git clone http://github.com/lwfinger/rtl8852au.git  
+cd rtw8852au  
+make  
 sudo make install
 
 When your kernel is updated, then do a 'git pull' and redo the make commands.
