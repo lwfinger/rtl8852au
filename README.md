@@ -43,8 +43,31 @@ sudo make install
 
 When your kernel is updated, then do a 'git pull' and redo the make commands.
 
-If you are running a system with secure boot, the driver will not load.
-Fixing that problem is beyond the scope of the README.
+##### Installation with module signing for SecureBoot
+For all distros:
+```bash
+git clone git://github.com/lwfinger/rtl8814au.git
+cd rtl8814au
+make
+sudo make sign-install
+```
+You will be promted for a password, please keep it in mind and use it in next steps.
+
+Reboot to activate the new installed module.
+In the MOK managerment screen:
+1. Select "Enroll key" and enroll the key created by above sign-install step
+2. When promted, enter the password you entered when create sign key. 
+
+If you enter wrong password, your computer won't not rebootable. In this case,
+   use the BOOT menu from your BIOS, to boot into your OS then do below steps:
+
+```bash
+sudo mokutil --reset
+```
+Restart your computer
+Use BOOT menu from BIOS to boot into your OS
+In the MOK managerment screen, select reset MOK list
+Reboot then retry from the step make sign-install
 
 Larry Finger
 

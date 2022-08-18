@@ -26,6 +26,10 @@ EXTRA_LDFLAGS += --strip-debug
 
 CONFIG_AUTOCFG_CP = n
 
+ifeq ("","$(wildcard MOK.der)")
+NO_SKIP_SIGN := y
+endif
+
 ########################## WIFI IC ############################
 CONFIG_RTL8852A = y
 CONFIG_RTL8852B = n
@@ -684,7 +688,14 @@ config_r:
 	/bin/bash script/Configure script/config.in
 
 
-.PHONY: modules clean
+.PHONY: modules clean sign
+
+sign:
+	@openssl req -new -x509 -newkey rsa:2048 -keyout MOK.priv -outform DER -out MOK.der -nodes -days 36500 -subj "/CN=Custom MOK/"
+	@mokutil --import MOK.der
+	@$(KSRC)/scripts/sign-file sha256 MOK.priv MOK.der 8812au.ko
+
+sign-install: all sign install
 
 clean:
 	#$(MAKE) -C $(KSRC) M=$(shell pwd) clean
