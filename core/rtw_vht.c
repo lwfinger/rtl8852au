@@ -1410,17 +1410,15 @@ void rtw_reattach_vht_ies(_adapter *padapter, WLAN_BSSID_EX *pnetwork)
 
 	RTW_INFO(FUNC_ADPT_FMT"\n", FUNC_ADPT_ARG(padapter));
 
-	if (pnetwork->IEs != NULL) {
-		vht_op_ie = rtw_set_ie(vht_cap_ie, EID_VHTCapability, VHT_CAP_IE_LEN,
-			pvhtpriv->vht_cap_ie_backup, &(pnetwork->IELength));
+	vht_op_ie = rtw_set_ie(vht_cap_ie, EID_VHTCapability, VHT_CAP_IE_LEN,
+		pvhtpriv->vht_cap_ie_backup, &(pnetwork->IELength));
 
-		rtw_set_ie(vht_op_ie, EID_VHTOperation, VHT_OP_IE_LEN,
-			pvhtpriv->vht_op_ie_backup, &(pnetwork->IELength));
+	rtw_set_ie(vht_op_ie, EID_VHTOperation, VHT_OP_IE_LEN,
+		pvhtpriv->vht_op_ie_backup, &(pnetwork->IELength));
 
-		rtw_add_ext_cap_info(pmlmepriv->ext_capab_ie_data, &(pmlmepriv->ext_capab_ie_len), OP_MODE_NOTIFICATION);
-		rtw_update_ext_cap_ie(pmlmepriv->ext_capab_ie_data, pmlmepriv->ext_capab_ie_len, pnetwork->IEs \
-		, &(pnetwork->IELength), _BEACON_IE_OFFSET_);
-	}
+	rtw_add_ext_cap_info(pmlmepriv->ext_capab_ie_data, &(pmlmepriv->ext_capab_ie_len), OP_MODE_NOTIFICATION);
+	rtw_update_ext_cap_ie(pmlmepriv->ext_capab_ie_data, pmlmepriv->ext_capab_ie_len, pnetwork->IEs \
+	, &(pnetwork->IELength), _BEACON_IE_OFFSET_);
 
 	pmlmepriv->vhtpriv.vht_option = _TRUE;
 }

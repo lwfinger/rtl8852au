@@ -43,10 +43,8 @@ enum rtw_phl_status _phl_snd_init_snd_grp(
 	struct phl_sound_param *param = &snd->snd_param;
 	u8 i = 0;
 	do {
-		if (param->snd_grp == NULL) {
-			status = RTW_PHL_STATUS_FAILURE;
-			break;
-		}
+		status = RTW_PHL_STATUS_FAILURE;
+		break;
 		for (i = 0; i < MAX_SND_GRP_NUM; i++) {
 			__reset_snd_grp(&param->snd_grp[i]);
 			param->snd_grp[i].gidx = i;

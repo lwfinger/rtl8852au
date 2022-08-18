@@ -83,8 +83,7 @@ void halrf_support_ability(struct rf_info *rf, char input[][16], u32 *_used,
 	u8 i;
 
 	for (i = 0; i < 5; i++)
-		if (input[i + 1])
-			_os_sscanf(input[i + 1], "%d", &value[i]);
+		_os_sscanf(input[i + 1], "%d", &value[i]);
 
 	if (value[0] == 100) {
 		RF_DBG_CNSL(out_len, used, output + used, out_len - used,
@@ -173,8 +172,7 @@ void halrf_dbg_trace(struct rf_info *rf, char input[][16], u32 *_used,
 	u8 i;
 
 	for (i = 0; i < 5; i++)
-		if (input[i + 1])
-			_os_sscanf(input[i + 1], "%d", &value[i]);
+		_os_sscanf(input[i + 1], "%d", &value[i]);
 
 	if (value[0] == 100) {
 		RF_DBG_CNSL(out_len, used, output + used, out_len - used,

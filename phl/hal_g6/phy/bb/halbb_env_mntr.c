@@ -719,10 +719,8 @@ void halbb_nhm_dbg(struct bb_info *bb, char input[][16], u32 *_used,
 	} else { /*NMH trigger*/
 		env->ccx_manual_ctrl = true;
 
-		for (i = 1; i < 9; i++) {
-			if (input[i + 1])
-				HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &var[i]);
-		}
+		for (i = 1; i < 9; i++)
+			HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &var[i]);
 
 		if (var[0] == 1) {
 			para.nhm_app = NHM_DBG_11K;
@@ -888,10 +886,8 @@ void halbb_clm_dbg(struct bb_info *bb, char input[][16], u32 *_used,
 	u32 out_len = *_out_len;
 	u8 i = 0;
 
-	for (i = 0; i < 5; i++) {
-		if (input[i + 1])
-			HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &var[i]);
-	}
+	for (i = 0; i < 5; i++)
+		HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &var[i]);
 
 	if ((_os_strcmp(input[1], help) == 0)) {
 		BB_DBG_CNSL(out_len, used, output + used, out_len - used,
@@ -1275,10 +1271,8 @@ void halbb_ifs_clm_dbg(struct bb_info *bb, char input[][16], u32 *_used,
 	u32 out_len = *_out_len;
 	u8 i = 0;
 
-	for (i = 0; i < 5; i++) {
-		if (input[i + 1])
-			HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &var[i]);
-	}
+	for (i = 0; i < 5; i++)
+		HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &var[i]);
 
 	if ((_os_strcmp(input[1], help) == 0)) {
 		BB_DBG_CNSL(out_len, used, output + used, out_len - used,
@@ -1809,10 +1803,8 @@ void halbb_fahm_dbg(struct bb_info *bb, char input[][16], u32 *_used,
 	} else { /*FAMH trigger*/
 		env->ccx_manual_ctrl = true;
 
-		for (i = 1; i < 9; i++) {
-			if (input[i + 1])
-				HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &var[i]);
-		}
+		for (i = 1; i < 9; i++)
+			HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &var[i]);
 
 		if (var[0] == 1) {
 			para.fahm_app = FAHM_DBG_11K;
@@ -1966,10 +1958,8 @@ void halbb_edcca_clm_dbg(struct bb_info *bb, char input[][16], u32 *_used,
 	struct ccx_para_info para = {0};
 	u8 i = 0;
 
-	for (i = 0; i < 5; i++) {
-		if (input[i + 1])
-			HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &var[i]);
-	}
+	for (i = 0; i < 5; i++)
+		HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &var[i]);
 
 	if ((_os_strcmp(input[1], help) == 0)) {
 		BB_DBG_CNSL(out_len, used, output + used, out_len - used,
@@ -2557,10 +2547,8 @@ void halbb_env_mntr_dbg(struct bb_info *bb, char input[][16], u32 *_used,
 	u8 set_result = CCX_FAIL;
 	u8 i = 0;
 
-	for (i = 0; i < 2; i++) {
-		if (input[i + 1])
-			HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &var[i]);
-	}
+	for (i = 0; i < 2; i++)
+		HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &var[i]);
 
 	if ((_os_strcmp(input[1], help) == 0)) {
 		BB_DBG_CNSL(out_len, used, output + used, out_len - used,

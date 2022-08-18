@@ -263,8 +263,7 @@ static enum rtw_phl_status phl_mp_efuse_file_map_load(
 {
 	enum rtw_hal_status hal_status = RTW_HAL_STATUS_FAILURE;
 
-	if (arg->pfile_path)
-		hal_status = rtw_hal_mp_efuse_file_map_load(mp, (char*)arg->pfile_path);
+	hal_status = rtw_hal_mp_efuse_file_map_load(mp, (char*)arg->pfile_path);
 
 	/* Record the result */
 	arg->cmd_ok = true;
@@ -284,8 +283,7 @@ static enum rtw_phl_status phl_mp_efuse_file_mask_load(
 {
 	enum rtw_hal_status hal_status = RTW_HAL_STATUS_FAILURE;
 
-	if (arg->pfile_path)
-		hal_status = rtw_hal_mp_efuse_file_mask_load(mp, (char*)arg->pfile_path);
+	hal_status = rtw_hal_mp_efuse_file_mask_load(mp, (char*)arg->pfile_path);
 
 	/* Record the result */
 	arg->cmd_ok = true;
@@ -526,8 +524,7 @@ static enum rtw_phl_status phl_mp_efuse_bt_file_map_load(
 {
 	enum rtw_hal_status hal_status = RTW_HAL_STATUS_FAILURE;
 
-	if (arg->pfile_path)
-		hal_status = rtw_hal_mp_efuse_bt_file_map_load(mp, (char*)arg->pfile_path);
+	hal_status = rtw_hal_mp_efuse_bt_file_map_load(mp, (char*)arg->pfile_path);
 
 	/* Record the result */
 	arg->cmd_ok = true;
@@ -547,8 +544,7 @@ static enum rtw_phl_status phl_mp_efuse_bt_file_mask_load(
 {
 	enum rtw_hal_status hal_status = RTW_HAL_STATUS_FAILURE;
 
-	if (arg->pfile_path)
-		hal_status = rtw_hal_mp_efuse_bt_file_mask_load(mp, (char*)arg->pfile_path);
+	hal_status = rtw_hal_mp_efuse_bt_file_mask_load(mp, (char*)arg->pfile_path);
 
 	/* Record the result */
 	arg->cmd_ok = true;

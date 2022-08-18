@@ -1479,10 +1479,8 @@ void halbb_rua_tbl_dbg(struct bb_info *bb, char input[][16], u32 *_used,
 			 "{rua (8 1:hw,0:sw ent grp_pwr [dlru_fixtbl with grp_pwr change])}\n");
 		goto out;
 	}
-	for (i = 0; i < 5; i++) {
-		if (input[i + 1])
+	for (i = 0; i < 5; i++)
 			HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &val[i]);
-	}
 	if (val[0] < 6)
 		halbb_set_rua_tbl(bb, (u8)val[0]);
 	else if(val[0] == 6 )

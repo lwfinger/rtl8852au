@@ -50,7 +50,7 @@ s32 usb_init_xmit_priv(_adapter *adapter)
 	struct dvobj_priv *dvobj = adapter_to_dvobj(adapter);
 
 	rtw_tasklet_init(&pxmitpriv->xmit_tasklet,
-		     (void(*)(unsigned long))usb_xmit_tasklet,
+		     (void(*))usb_xmit_tasklet,
 		     (unsigned long)adapter);
 
 	return _SUCCESS;

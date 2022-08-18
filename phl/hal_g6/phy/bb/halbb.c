@@ -34,10 +34,8 @@ void halbb_supportability_dbg(struct bb_info *bb, char input[][16], u32 *_used,
 	u32 out_len = *_out_len;
 	u8 i;
 
-	for (i = 0; i < 5; i++) {
-		if (input[i + 1])
-			HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &val[i]);
-	}
+	for (i = 0; i < 5; i++)
+		HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &val[i]);
 
 	pre_support_ability = bb->support_ability;
 	comp = bb->support_ability;

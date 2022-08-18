@@ -238,8 +238,7 @@ void halrf_cmd_parser(struct rf_info *rf, char input[][RF_MAX_ARGV],
 			u8 i;
 
 			for (i = 0; i < 4; i++)
-				if (input[i + 1])
-					_os_sscanf(input[i + 1], "%d", &value[i]);
+				_os_sscanf(input[i + 1], "%d", &value[i]);
 
 			if (_os_strcmp(input[1], "-h") == 0) {
 				RF_DBG_CNSL(out_len, used, output + used, out_len - used,

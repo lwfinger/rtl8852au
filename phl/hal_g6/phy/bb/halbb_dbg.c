@@ -1160,8 +1160,7 @@ void halbb_dump_reg_dbg(struct bb_info *bb, char input[][16], u32 *_used, char *
 	u32 val[10] = {0};
 	u32 addr = 0;
 
-	if (input[1])
-		HALBB_SCAN(input[1], DCMD_DECIMAL, &val[0]);
+	HALBB_SCAN(input[1], DCMD_DECIMAL, &val[0]);
 
 	if (_os_strcmp(input[1], help) == 0) {
 		BB_DBG_CNSL(*_out_len, *_used, output + *_used, *_out_len - *_used,

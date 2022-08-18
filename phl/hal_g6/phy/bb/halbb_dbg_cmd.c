@@ -232,10 +232,8 @@ void halbb_trace_dbg(struct bb_info *bb, char input[][16], u32 *_used,
 	u32 val[10] = {0};
 	u8 i = 0;
 
-	for (i = 0; i < 5; i++) {
-		if (input[i + 1])
-			HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &val[i]);
-	}
+	for (i = 0; i < 5; i++)
+		HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &val[i]);
 	comp = bb->dbg_component;
 	pre_debug_components = bb->dbg_component;
 
@@ -811,10 +809,8 @@ void halbb_fw_dbg(struct bb_info *bb, char input[][16], u32 *_used,
 			 "{fw_dbg (dbg_trace=> 1:enable, 2:disable) (dbg_comp)}\n");
 		goto out;
 	}
-	for (i = 0; i < 5; i++) {
-		if (input[i + 1])
+	for (i = 0; i < 5; i++)
 			HALBB_SCAN(input[i + 1], DCMD_DECIMAL, &val[i]);
-	}
 	if (val[0] == 1) {
 		BB_DBG_CNSL(out_len, used, output + used, out_len - used,
 			 "[fw_dbg] Enable : dbg_comp = %x\n", val[1]);
