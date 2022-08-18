@@ -573,6 +573,9 @@ else ifeq ($(CONFIG_SEC_AMSDU_MODE), disable)
 EXTRA_CFLAGS += -DRTW_AMSDU_MODE=2
 endif
 
+SUBARCH := $(shell uname -m | sed -e "s/i.86/i386/; s/ppc.*/powerpc/; s/armv.l/arm/; s/aarch64/arm64/;")
+ARCH ?= $(SUBARCH)
+
 ########### PLATFORM OPS  ##########################
 # Import platform assigned KSRC and CROSS_COMPILE
 include $(wildcard $(DRV_PATH)/platform/*.mk)
