@@ -1164,7 +1164,7 @@ check_bss:
 		#endif
 
 		#if defined(CPTCFG_VERSION) || LINUX_VERSION_CODE >= KERNEL_VERSION(4, 12, 0)
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 19, 2)
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 0, 0)
 		roam_info.bssid = cur_network->network.MacAddress;
 #else
 		roam_info.links[0].bssid = cur_network->network.MacAddress;
