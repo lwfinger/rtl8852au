@@ -40,13 +40,13 @@ CONFIG_PCI_HCI = n
 CONFIG_SDIO_HCI = n
 CONFIG_GSPI_HCI = n
 ########################## Features ###########################
-CONFIG_MP_INCLUDED = y
+CONFIG_MP_INCLUDED = n
 CONFIG_CONCURRENT_MODE = n
 CONFIG_POWER_SAVING = n
 CONFIG_POWER_SAVE = n
 CONFIG_IPS_MODE = default
 CONFIG_LPS_MODE = default
-CONFIG_BTC = y
+CONFIG_BTC = n
 CONFIG_WAPI_SUPPORT = n
 CONFIG_EFUSE_CONFIG_FILE = y
 CONFIG_EXT_CLK = n
@@ -95,7 +95,7 @@ DIRTY_FOR_WORK = y
 
 CONFIG_DRV_FAKE_AP = n
 
-CONFIG_DBG_AX_CAM = y
+CONFIG_DBG_AX_CAM = n
 
 USE_TRUE_PHY = y
 CONFIG_I386_BUILD_VERIFY = n
@@ -111,13 +111,13 @@ EXTRA_CFLAGS += -DCONFIG_RTW_ANDROID=$(CONFIG_RTW_ANDROID)
 endif
 
 ########################## Debug ###########################
-CONFIG_RTW_DEBUG = y
+CONFIG_RTW_DEBUG = 0
 # default log level is _DRV_WARNING_ = 3,
 # please refer to "How_to_set_driver_debug_log_level.doc" to set the available level.
 CONFIG_RTW_LOG_LEVEL = 3
 
 # enable /proc/net/rtlxxxx/ debug interfaces
-CONFIG_PROC_DEBUG = y
+CONFIG_PROC_DEBUG = n
 
 ######################## Wake On Lan ##########################
 CONFIG_WOWLAN = n
@@ -642,50 +642,13 @@ strip:
 	$(CROSS_COMPILE)strip $(MODULE_NAME).ko --strip-unneeded
 
 install:
-	install -p -m 644 $(MODULE_NAME).ko  $(MODDESTDIR)
+	@mkdir -p $(MODDESTDIR)realtek/rtw89/
+	install -p -m 644 $(MODULE_NAME).ko  $(MODDESTDIR)realtek/rtw89/
 	/sbin/depmod -a ${KVER}
 
 uninstall:
-	rm -f $(MODDESTDIR)/$(MODULE_NAME).ko
+	rm -f $(MODDESTDIR)realtek/rtw89/$(MODULE_NAME).ko
 	/sbin/depmod -a ${KVER}
-
-backup_rtlwifi:
-	@echo "Making backup rtlwifi drivers"
-ifneq (,$(wildcard $(STAGINGMODDIR)/rtl*))
-	@tar cPf $(wildcard $(STAGINGMODDIR))/backup_rtlwifi_driver.tar $(wildcard $(STAGINGMODDIR)/rtl*)
-	@rm -rf $(wildcard $(STAGINGMODDIR)/rtl*)
-endif
-ifneq (,$(wildcard $(MODDESTDIR)realtek))
-	@tar cPf $(MODDESTDIR)backup_rtlwifi_driver.tar $(MODDESTDIR)realtek
-	@rm -fr $(MODDESTDIR)realtek
-endif
-ifneq (,$(wildcard $(MODDESTDIR)rtl*))
-	@tar cPf $(MODDESTDIR)../backup_rtlwifi_driver.tar $(wildcard $(MODDESTDIR)rtl*)
-	@rm -fr $(wildcard $(MODDESTDIR)rtl*)
-endif
-	@/sbin/depmod -a ${KVER}
-	@echo "Please reboot your system"
-
-restore_rtlwifi:
-	@echo "Restoring backups"
-ifneq (,$(wildcard $(STAGINGMODDIR)/backup_rtlwifi_driver.tar))
-	@tar xPf $(STAGINGMODDIR)/backup_rtlwifi_driver.tar
-	@rm $(STAGINGMODDIR)/backup_rtlwifi_driver.tar
-endif
-ifneq (,$(wildcard $(MODDESTDIR)backup_rtlwifi_driver.tar))
-	@tar xPf $(MODDESTDIR)backup_rtlwifi_driver.tar
-	@rm $(MODDESTDIR)backup_rtlwifi_driver.tar
-endif
-ifneq (,$(wildcard $(MODDESTDIR)../backup_rtlwifi_driver.tar))
-	@tar xPf $(MODDESTDIR)../backup_rtlwifi_driver.tar
-	@rm $(MODDESTDIR)../backup_rtlwifi_driver.tar
-endif
-	@/sbin/depmod -a ${KVER}
-	@echo "Please reboot your system"
-
-config_r:
-	@echo "make config"
-	/bin/bash script/Configure script/config.in
 
 
 .PHONY: modules clean sign

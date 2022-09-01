@@ -70,4 +70,3 @@ In the MOK managerment screen, select reset MOK list
 Reboot then retry from the step make sign-install
 
 Larry Finger
-
