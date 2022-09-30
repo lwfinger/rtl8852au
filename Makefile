@@ -26,6 +26,9 @@ EXTRA_LDFLAGS += --strip-debug
 
 CONFIG_AUTOCFG_CP = n
 
+SUBARCH := $(shell uname -m | sed -e "s/i.86/i386/; s/ppc.*/powerpc/; s/armv.l/arm/; s/aarch64/arm64/;")
+ARCH ?= $(SUBARCH)
+
 ifeq ("","$(wildcard MOK.der)")
 NO_SKIP_SIGN := y
 endif
