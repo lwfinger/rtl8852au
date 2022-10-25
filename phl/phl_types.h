@@ -125,7 +125,7 @@ enum lock_type {
 	#endif
 	#define FW_FILE_CONFIG_PATH	CONFIG_FIRMWARE_PATH
 
-	#ifdef CONFIG_LITTLE_ENDIAN
+	#ifdef __LITTLE_ENDIAN
 	#define PLATFOM_IS_LITTLE_ENDIAN 1
 	#else
 	#define PLATFOM_IS_LITTLE_ENDIAN 0
@@ -196,7 +196,7 @@ struct _os_handler {
 
 /* 1: the platform is Little Endian. */
 /* 0: the platform is Big Endian. */
-#if PLATFOM_IS_LITTLE_ENDIAN
+#ifdef __LITTLE_ENDIAN
 #define cpu_to_le32(x)              ((u32)(x))
 #define le32_to_cpu(x)              ((u32)(x))
 #define cpu_to_le16(x)              ((u16)(x))

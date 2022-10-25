@@ -35,7 +35,7 @@
 #include "halbb_ic_sw_info.h"
 #include "halbb_interface.h"
 
-#if (PLATFOM_IS_LITTLE_ENDIAN)
+#ifdef (__LITTLE_ENDIAN)
 	#include "halbb_physts_ie_l_endian.h"
 	#include "halbb_ra_l_endian.h"
 	#include "halbb_rua_tbl_l_endian.h"

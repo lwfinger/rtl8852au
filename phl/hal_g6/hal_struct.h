@@ -287,7 +287,7 @@ struct chinfo_bbcr_cfg {
 
 struct ch_rpt_hdr_info {
 	u16 total_len_l; /*header(16byte) + Raw data length(Unit: byte)*/
-	#if (PLATFOM_IS_LITTLE_ENDIAN)
+	#ifdef (__LITTLE_ENDIAN)
 	u8 total_len_m:1;
 	u8 total_seg_num:7;
 	#else
@@ -295,7 +295,7 @@ struct ch_rpt_hdr_info {
 	u8 total_len_m:1;
 	#endif
 	u8 avg_noise_pow;
-	#if (PLATFOM_IS_LITTLE_ENDIAN)
+	#ifdef (__LITTLE_ENDIAN)
 	u8 is_pkt_end:1;
 	u8 set_valid:1;
 	u8 n_rx:3;
@@ -314,7 +314,7 @@ struct phy_info_rpt {
 	u8	rssi[2];
 	u16	rsvd_0;
 	u8	rssi_avg;
-	#if (PLATFOM_IS_LITTLE_ENDIAN)
+	#ifdef (__LITTLE_ENDIAN)
 	u8	rxsc:4;
 	u8	rsvd_1:4;
 	#else
