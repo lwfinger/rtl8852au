@@ -63,7 +63,7 @@ struct bb_ch_info_buf_cfg_info {
 
 struct bb_ch_rpt_hdr_info {
 	u16 total_len_l; /*header(16byte) + Raw data length(Unit: byte)*/
-	#ifdef (__LITTLE_ENDIAN)
+	#ifdef __LITTLE_ENDIAN
 	u8 total_len_m:1;
 	u8 total_seg_num:7;
 	#else
@@ -72,7 +72,7 @@ struct bb_ch_rpt_hdr_info {
 	#endif
 	
 	u8 avg_noise_pow;
-	#ifdef (__LITTLE_ENDIAN)
+	#ifdef __LITTLE_ENDIAN
 	u8 is_pkt_end:1;
 	u8 set_valid:1;
 	u8 n_rx:3;
@@ -92,7 +92,7 @@ struct bb_phy_info_rpt {
 	u8	rssi[2];
 	u16	rsvd_0;
 	u8	rssi_avg;
-	#ifdef (__LITTLE_ENDIAN)
+	#ifdef __LITTLE_ENDIAN
 	u8	rxsc:4;
 	u8	sts1_evm_l:4;
 	u8	sts1_evm_m:4;

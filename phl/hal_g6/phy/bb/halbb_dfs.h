@@ -97,7 +97,7 @@ struct bb_dfs_rpt {
 	u8 phy_idx; /*phy0,phy1*/
 };
 
-#ifdef (__LITTLE_ENDIAN)
+#ifdef __LITTLE_ENDIAN
 struct bb_rdr_info {
 	u8 rdr_info_sg0_chirp_flag:1;	/*[18:9],[8:1],[0]*/
 	u8 rdr_info_sg0_pri_l:7;
