@@ -105,4 +105,30 @@ Use BOOT menu from BIOS to boot into your OS
 In the MOK managerment screen, select reset MOK list
 Reboot then retry from the step make sign-install
 
+## Adding modules to DKMS for Debian/Ubuntu
+
+DKMS automatically rebuilds the driver module for each kernel update. (So that you don't have to `make; make install` at every update)
+
+Build and Installation (For currently active kernel)
+
+```bash
+# Add module to dkms tree
+sudo dkms add .
+
+# Build 
+sudo dkms build rtl8852au -v 1.15.0.1
+
+# Install 
+sudo dkms install rtl8852au -v 1.15.0.1
+
+# Check installation
+modinfo 8852au
+
+# Load driver 
+modprobe 8852au
+```
+
+
+
+
 Larry Finger
