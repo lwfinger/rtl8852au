@@ -19,6 +19,7 @@ Fenvi FU-AX1800P with USB ID 0bda:885c
 Realtek Demo Board with USB ID 0bda:8832   
 Realtek Demo Board with USB ID 0bda:885a  
 Realtek Demo Board with USB ID 0bda:885c  
+TP-Link AX1800 with USB ID 2357:013f  
 
 The D-Link DWA-X1850 comes with a configuration that appears to be a USB disk,
 which contains a Windows driver. If a 'lsusb' command shows the ID 0bda:1a2b,
