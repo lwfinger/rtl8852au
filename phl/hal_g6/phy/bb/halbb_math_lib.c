@@ -290,6 +290,8 @@ u32 halbb_cal_bit_shift(u32 bit_mask)
 {
 	u32 i;
 
+	if (bit_mask == 0)
+		return 0;
 	for (i = 0; i <= 31; i++) {
 		if ((bit_mask >> i) & BIT0)
 			break;
