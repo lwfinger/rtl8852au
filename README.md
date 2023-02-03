@@ -12,14 +12,15 @@ The driver supports rtl8832au/rtl8852au chipsets.
 
 This driver currently handles the following devices:
 
-* ASUS USB-AX56 with USB ID 0b05:1997
 * BUFFALO WI-U3-1200AX2(/N) with USB ID 0411:0312
-* D-Link DWA-X1850 with USB IF 2001:3321
+* ASUS USB-AX56 with USB ID 0b05:1997
+* ASUS USB-AX56 with USB ID 0b05:1a62
 * EDUP EP-AX1696GS with USB ID 0bda:8832
 * Fenvi FU-AX1800P with USB ID 0bda:885c
 * Realtek Demo Board with USB ID 0bda:8832
 * Realtek Demo Board with USB ID 0bda:885a
 * Realtek Demo Board with USB ID 0bda:885c
+* D-Link DWA-X1850 with USB ID 2001:3321
 * TP-Link AX1800 with USB ID 2357:013f
 
 The D-Link DWA-X1850 comes with a configuration that appears to be a USB disk,
