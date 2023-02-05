@@ -247,6 +247,8 @@ rtw_phl_start_rx_ba_session(void *phl, struct rtw_phl_stainfo_t *sta,
 	}
 
 	/* apply */
+	if (tid >= ARRAY_SIZE(sta->tid_rx))
+		return RTW_PHL_STATUS_FAILURE;
 	_os_spinlock(drv_priv, &sta->tid_rx_lock, _bh, NULL);
 	if (sta->tid_rx[tid])
 		phl_tid_ampdu_rx_free(sta->tid_rx[tid]);
