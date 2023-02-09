@@ -68,13 +68,13 @@ The build this driver, do the following:
 
 For all distros:
 ```bash
-git clone http://github.com/lwfinger/rtl8852au.git
-cd rtw8852au
+git clone https://github.com/lwfinger/rtl8852au.git
+cd rtl8852au
 make
 sudo make install
 
 When you get a new kernel, you will need to rebuild the driver. Do the following:
-cd rtw8852au
+cd rtl8852au
 git pull
 make
 sudo make install
