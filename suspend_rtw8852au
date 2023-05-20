@@ -1,0 +1,12 @@
+#!/bin/sh
+#
+# Script to unload 8852au before suspend or hibernate, and restore on resume
+# Save in /usr/lib/systemd/system-sleep/
+#
+if [ "${1}" == "pre" ]; then
+# Shutdown
+  modprobe -rv 8852au
+elif [ "${1}" == "post" ]; then
+# Resume
+  modprobe -v 8852au
+fi

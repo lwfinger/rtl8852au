@@ -645,6 +645,7 @@ install:
 	@mkdir -p $(MODDESTDIR)realtek/rtw89/
 	install -p -m 644 $(MODULE_NAME).ko  $(MODDESTDIR)realtek/rtw89/
 	/sbin/depmod -a ${KVER}
+	@cp suspend_rtw8852au /usr/lib/systemd/system-sleep/.
 
 uninstall:
 	rm -f $(MODDESTDIR)realtek/rtw89/$(MODULE_NAME).ko
