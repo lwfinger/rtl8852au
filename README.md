@@ -22,6 +22,7 @@ This driver currently handles the following devices:
 * Realtek Demo Board with USB ID 0bda:885c
 * D-Link DWA-X1850 with USB ID 2001:3321
 * TP-Link AX1800 with USB ID 2357:013f
+* ipTIME AX2000U with USB ID 0bda:8832
 
 The D-Link DWA-X1850 comes with a configuration that appears to be a USB disk,
 which contains a Windows driver. If a 'lsusb' command shows the ID 0bda:1a2b,
