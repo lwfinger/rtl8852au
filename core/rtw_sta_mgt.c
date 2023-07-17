@@ -1082,7 +1082,6 @@ struct sta_info *rtw_get_stainfo(struct sta_priv *pstapriv, const u8 *hwaddr)
 
 	if (pstapriv->padapter->phl_role == NULL) {
 		RTW_ERR(FUNC_ADPT_FMT" phl_role == NULL\n", FUNC_ADPT_ARG(pstapriv->padapter));
-		rtw_warn_on(1);
 		return NULL;
 	}
 	phl_role = pstapriv->padapter->phl_role;
