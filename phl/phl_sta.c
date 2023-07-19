@@ -1788,7 +1788,7 @@ rtw_phl_get_stainfo_by_macid(void *phl, u16 macid)
 		/* and trigger call tracing */
 		/* _os_warn_on(1); */
 		#else
-		_os_warn_on(1);
+//		_os_warn_on(1);
 		#endif /* CONFIG_PHL_USB_RELEASE_RPT_ENABLE */
 	}
 	_os_spinunlock(phl_to_drvpriv(phl_info), &macid_ctl->lock, _bh, NULL);
