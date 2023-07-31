@@ -389,6 +389,8 @@ static int openFile(struct file **fpp, const char *path, int flag, int mode)
 {
 	struct file *fp;
 
+	MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);
+
 	fp = filp_open(path, flag, mode);
 	if (IS_ERR(fp)) {
 		*fpp = NULL;
@@ -502,6 +504,8 @@ static int isFileReadable(const char *path, u32 *sz)
 	mm_segment_t oldfs;
 	#endif
 	char buf;
+
+	MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);
 
 	fp = filp_open(path, O_RDONLY, 0);
 	if (IS_ERR(fp))
