@@ -629,6 +629,9 @@ else
 
 export CONFIG_RTL8852AU = m
 
+SUBARCH := $(shell uname -m | sed -e "s/i.86/i386/; s/ppc.*/powerpc/; s/armv.l/arm/; s/aarch64/arm64/;")
+ARCH ?= $(SUBARCH)
+
 all: modules
 
 modules:
