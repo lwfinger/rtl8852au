@@ -1003,12 +1003,10 @@ void rtw_phl_wifi_role_free(void *phl, u8 role_idx)
 
 	if (phl_wifi_role_stop(phl_info, wrole) != RTW_PHL_STATUS_SUCCESS) {
 		PHL_ERR("%s role_stop failed :%d", __func__, role_idx);
-		_os_warn_on(1);
 	}
 
 	if (phl_wifi_role_free_stainfo_sw(phl_info, wrole) != RTW_PHL_STATUS_SUCCESS) {
 		PHL_ERR("%s wr free stainfo_sw failed\n", __func__);
-		_os_warn_on(1);
 	}
 	_phl_wifi_role_free_sw(phl_info, wrole);
 	PHL_DUMP_MR_EX(phl_info);
