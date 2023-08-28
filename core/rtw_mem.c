@@ -123,7 +123,9 @@ static void __exit rtw_mem_exit(void)
 	printk("%s\n", __func__);
 }
 
+#if defined(MODULE_IMPORT_NS)
 MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);
+#endif
 
 module_init(rtw_mem_init);
 module_exit(rtw_mem_exit);
