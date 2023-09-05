@@ -246,7 +246,7 @@ struct regd_exc_ent {
 	_list list;
 	char country[2];
 	u8 domain;
-	char regd_name[0];
+	char regd_name[];
 };
 
 void dump_regd_exc_list(void *sel, struct rf_ctl_t *rfctl);
@@ -327,7 +327,7 @@ struct txpwr_lmt_ent {
 		[MAX_TX_COUNT];
 #endif
 
-	char regd_name[0];
+	char regd_name[];
 };
 #endif /* CONFIG_TXPWR_LIMIT */
 

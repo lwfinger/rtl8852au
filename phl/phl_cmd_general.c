@@ -129,7 +129,7 @@ static bool _phl_cmd_chk_wating_status(enum phl_cmd_sts status)
 {
 	switch (status) {
 	case PHL_CMD_SUBMITTED:
-		/* fall through */
+		fallthrough; /* fall through */
 	case PHL_CMD_DONE_UNKNOWN:
 		return true;
 	default:
@@ -180,7 +180,7 @@ _phl_cmd_general_pre_phase_msg_hdlr(struct phl_info_t *phl_info, void *dispr,
 		psts = RTW_PHL_STATUS_SUCCESS;
 	break;
 	case MSG_EVT_NONE:
-		/* fall through */
+		fallthrough; /* fall through */
 	default:
 		psts = RTW_PHL_STATUS_SUCCESS;
 		break;

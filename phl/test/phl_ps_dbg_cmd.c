@@ -73,7 +73,7 @@ void phl_ps_cmd_parser(struct phl_info_t *phl_info, char input[][MAX_ARGV],
 		PS_CNSL(out_len, used, output + used, out_len - used,
 			 "command not supported !!\n");
 
-		/* fall through */
+		fallthrough; /* fall through */
 	case PHL_PS_HELP:
 		PS_CNSL(out_len, used, output + used, out_len - used,
 			 "PS cmd ==>\n");

@@ -708,7 +708,7 @@ static int scan_req_pwr_st_hdl(void *obj, u16 event, void *param)
 			phl_fsm_state_goto(pscan->fsm_obj, SCAN_ST_IDLE);
 			break;
 		}
-		/* fall through */
+		fallthrough; /* fall through */
 
 	case SCAN_EV_REQ_PWR_OK:
 
@@ -725,7 +725,7 @@ static int scan_req_pwr_st_hdl(void *obj, u16 event, void *param)
 
 		FSM_ERR(pscan->fsm, "%s power on fail\n",
 			phl_fsm_obj_name(pscan->fsm_obj));
-		/* fall through */
+		fallthrough; /* fall through */
 
 	case FSM_EV_CANCEL:
 		phl_fsm_state_goto(pscan->fsm_obj, SCAN_ST_IDLE);
@@ -787,7 +787,7 @@ static int scan_off_ch_st_hdl(void *obj, u16 event, void *param)
 			break;
 		}
 
-	/* fall through */
+		fallthrough; /* fall through */
 	case SCAN_EV_PS_ANN_DONE:
 		scan_flush_tx_queue(pscan);
 		scan_pause_tx(pscan);
@@ -813,7 +813,7 @@ static int scan_off_ch_st_hdl(void *obj, u16 event, void *param)
 					ALM_NEXT_CH);
 		}
 
-	/* fall through */
+		fallthrough; /* fall through */
 	case SCAN_EV_NEXT_CH:
 
 		phl_fsm_cancel_alarm_ext(pscan->fsm_obj, ALM_PROBE_REQ);
@@ -847,7 +847,7 @@ static int scan_off_ch_st_hdl(void *obj, u16 event, void *param)
 				SCAN_EV_NEXT_CH, ALM_NEXT_CH, NULL);
 		}
 
-	/* fall through */
+		fallthrough; /* fall through */
 	case SCAN_EV_NEXT_PROBE_REQ:
 
 		if (pscan->probe_cnts-- == 0)
@@ -1257,7 +1257,6 @@ enum rtw_phl_status rtw_phl_scan_request(void *phl,
 		pq_push(d, &pscan->req_q, (_os_list *)msg, _first, _bh);
 		/* Cancel running scan process */
 		phl_fsm_gen_msg(phl, pscan->fsm_obj, NULL, 0, FSM_EV_CANCEL);
-		/* fall through */
 		break;
 	case TO_HEAD:
 		pq_push(d, &pscan->req_q, (_os_list *)msg, _first, _bh);

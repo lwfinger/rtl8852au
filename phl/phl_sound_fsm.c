@@ -194,7 +194,7 @@ static int snd_fsm_func_ready_st_hdl(void *obj, u16 event, void *param)
 			snd_set_timer(snd, 10, SND_EV_TERMINATE);
 			break;
 		}
-		/* fall through */
+		fallthrough; /* fall through */
 	/*go through*/
 	case SND_FUNC_EV_START_SND_PROC:
 		pstatus = phl_snd_func_pre_config(snd->phl_info);
@@ -278,7 +278,7 @@ static int snd_fsm_proc_idle_st_hdl(void *obj, u16 event, void *param)
 				phl_snd_proc_chk_prev_grp(snd->phl_info, grp);
 			}
 		}
-		/* fall through */
+		fallthrough; /* fall through */
 	/* go through */
 	case SND_PROC_EV_IDLE_GET_SND_GRP :
 		if(MAX_SND_GRP_NUM == snd_param->cur_proc_grp_idx) {
@@ -352,7 +352,7 @@ static int snd_fsm_proc_busy_st_hdl(void *obj, u16 event, void *param)
 		PHL_TRACE(COMP_PHL_SOUND, _PHL_INFO_,
 			  "SND_PROC_BUSY : grp sta-3 macid = 0x%x \n",
 			  grp->sta[3].macid);
-		/* fall through */
+		fallthrough; /* fall through */
 	case SND_PROC_EV_BUSY_GET_BF_RES:
 		pstatus = phl_snd_proc_get_res(snd->phl_info, grp, &sta_num);
 		if ((sta_num == 0) || (RTW_PHL_STATUS_SUCCESS != pstatus)) {
@@ -361,11 +361,11 @@ static int snd_fsm_proc_busy_st_hdl(void *obj, u16 event, void *param)
 			snd_set_timer(snd, 0, SND_PROC_EV_BUSY_SND_DOWN);
 			break;
 		}
-		/* fall through */
+		fallthrough; /* fall through */
 	/* go through */
 	case SND_PROC_EV_BUSY_PRE_CFG:
 		pstatus = phl_snd_proc_precfg(snd->phl_info, grp);
-		/* fall through */
+		fallthrough; /* fall through */
 	/* go through */
 	case SND_PROC_EV_BUSY_TRIG_SND:
 		PHL_TRACE(COMP_PHL_SOUND, _PHL_INFO_,
@@ -447,7 +447,7 @@ static int snd_fsm_proc_down_st_hdl(void *obj, u16 event, void *param)
 			snd_set_timer(snd, snd_param->snd_proc_period,
 				      SND_PROC_EV_DOWN_SND_END);
 		}
-		/* fall through */
+		fallthrough; /* fall through */
 	/* go through */
 	case SND_PROC_EV_DOWN_POST_CFG:
 		pstatus = phl_snd_proc_postcfg(snd->phl_info, grp);
@@ -455,7 +455,7 @@ static int snd_fsm_proc_down_st_hdl(void *obj, u16 event, void *param)
 			PHL_TRACE(COMP_PHL_SOUND, _PHL_INFO_,
 				  "POST CONFIG SUCCESS!!!!\n");
 		}
-		/* fall through */
+		fallthrough; /* fall through */
 	/* go through */
 	case SND_PROC_EV_DOWN_SND_END:
 		/* Check Test Mode */

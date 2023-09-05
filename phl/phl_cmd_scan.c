@@ -413,9 +413,9 @@ enum phl_mdl_ret_code _cmd_scan_fail_ev_hdlr(
 	nextmsg.band_idx = idx;
 	switch(MSG_EVT_ID_FIELD(msg->msg_id)) {
 		case MSG_EVT_SCAN_START:
-			/* fall through */
+			fallthrough; /* fall through */
 		case MSG_EVT_SWCH_START:
-			/* fall through */
+			fallthrough; /* fall through */
 		case MSG_EVT_SWCH_DONE:
 			PHL_INFO("SCAN_START/SWCH_START/SWCH_DONE:: failed/timeout handler \n");
 

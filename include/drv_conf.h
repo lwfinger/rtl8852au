@@ -50,6 +50,10 @@
 
 #endif
 
+#if !defined(fallthrough)
+#define fallthrough (do {} while(0))
+#endif
+
 #ifdef CONFIG_RTW_ANDROID
 
 	#include <linux/version.h>

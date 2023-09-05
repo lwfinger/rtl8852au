@@ -860,7 +860,7 @@ void _handle_token_op_info(struct cmd_dispatcher *obj, struct phl_token_op_info 
 
 	switch (op_info->type) {
 		case TOKEN_OP_RENEW_CMD_REQ:
-			/* fall through*/
+			fallthrough; /* fall through*/
 		case TOKEN_OP_ADD_CMD_REQ:
 			dispr_process_token_req(obj);
 			break;

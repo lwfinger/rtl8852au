@@ -6042,7 +6042,7 @@ static enum phl_mdl_ret_code _disconnect_msg_hdlr(void* dispr, void* priv,
 		status = _disconnect_done_notify(a);
 		if (status == RTW_PHL_STATUS_SUCCESS)
 			break;
-		/* fall through */
+		fallthrough; /* fall through */
 
 	case MSG_EVT_DISCONNECT:
 		RTW_DBG(FUNC_ADPT_FMT ": MSG_EVT_DISCONNECT\n",

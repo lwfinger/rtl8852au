@@ -2072,7 +2072,7 @@ void halbtc_cmd_parser(struct btc_t *btc, char input[][MAX_ARGV],
 		BTC_CNSL(out_len, used, output + used, out_len - used,
 			 "command not supported !!\n");
 
-		/* fall through */
+		fallthrough; /* fall through */
 
 	case HALBTC_HELP:
 		BTC_CNSL(out_len, used, output + used, out_len - used,

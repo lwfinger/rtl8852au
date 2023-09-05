@@ -184,7 +184,7 @@ static int cmd_idle_st_hdl(void *obj, u16 event, void *param)
 		/* We need to request power */
 		cmd_add_wdog_event(pcmd);
 
-		/* fall through */
+		fallthrough; /* fall through */
 
 	case CMD_EV_REQ_PWR:
 		phl_fsm_state_goto(pcmd->fsm_obj, CMD_ST_REQ_PWR);
@@ -246,7 +246,7 @@ static int cmd_req_pwr_st_hdl(void *obj, u16 event, void *param)
 		}
 
 		/* RTW_PHL_STATUS_SUCCESS */
-		/* fall through */
+		fallthrough; /* fall through */
 
 	case CMD_EV_PWR_ON_OK:
 		pcmd->has_power = true;
@@ -328,7 +328,7 @@ static int cmd_service_st_hdl(void *obj, u16 event, void *param)
 			break;
 
 		/* no more commands */
-		/* fall through */
+		fallthrough; /* fall through */
 
 	case FSM_EV_CANCEL:
 		phl_fsm_state_goto(pcmd->fsm_obj, CMD_ST_IDLE);

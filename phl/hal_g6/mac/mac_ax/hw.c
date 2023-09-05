@@ -1586,12 +1586,12 @@ u32 cfg_mac_bw(struct mac_ax_adapter *adapter, struct mac_ax_cfg_bw *cfg)
 		txsc80 = rtw_hal_bb_get_txsc(hal_com, cfg->pri_ch,
 					     cfg->central_ch, cfg->cbw,
 					     CHANNEL_WIDTH_80);
-		/* fall through */
+		fallthrough; /* fall through */
 	case CHANNEL_WIDTH_80:
 		txsc40 = rtw_hal_bb_get_txsc(hal_com, cfg->pri_ch,
 					     cfg->central_ch, cfg->cbw,
 					     CHANNEL_WIDTH_40);
-		/* fall through */
+		fallthrough; /* fall through */
 	case CHANNEL_WIDTH_40:
 		txsc20 = rtw_hal_bb_get_txsc(hal_com, cfg->pri_ch,
 					     cfg->central_ch, cfg->cbw,
