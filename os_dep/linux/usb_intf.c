@@ -141,6 +141,7 @@ static void rtw_dev_shutdown(struct device *dev)
 #define USB_VENDOR_ID_BUFFALO		0x0411
 #define USB_VENDOR_ID_DLINK 		0x2001
 #define USB_VENDOR_ID_TPLINK 		0x2357
+#define USB_VENDOR_ID_ELECOM		0x056e
 
 /* DID_USB_v916_20130116 */
 static struct usb_device_id rtw_usb_id_tbl[] = {
@@ -166,6 +167,9 @@ static struct usb_device_id rtw_usb_id_tbl[] = {
 
 	/*=== TP-Link Archer TX20UH ===*/
 	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_TPLINK, 0x0141, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
+
+	/*=== ELECOMWDC-X1201DU3 ===*/
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_ELECOM, 0x4020, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
 
 #endif /* CONFIG_RTL8852A */
 
