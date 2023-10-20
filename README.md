@@ -23,6 +23,7 @@ This driver currently handles the following devices:
 * D-Link DWA-X1850 with USB ID 2001:3321
 * TP-Link AX1800 with USB ID 2357:013f
 * ipTIME AX2000U with USB ID 0bda:8832
+* ELECOM WDC-X1201DU3 with USB ID 056e:4020
 
 The D-Link DWA-X1850 comes with a configuration that appears to be a USB disk,
 which contains a Windows driver. If a 'lsusb' command shows the ID 0bda:1a2b,
