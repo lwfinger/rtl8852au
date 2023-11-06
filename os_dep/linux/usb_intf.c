@@ -153,6 +153,7 @@ static struct usb_device_id rtw_usb_id_tbl[] = {
 
 	/*=== ASUS USB-AX56 =======*/
 	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_ASUS, 0x1997, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_ASUS, 0x1a62, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
 
 	/*=== BUFFALO WI-U3-1200AX2(/N) =======*/
 	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_BUFFALO, 0x0312, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
