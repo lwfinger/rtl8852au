@@ -23,7 +23,7 @@ EXTRA_LDFLAGS += --strip-debug
 
 CONFIG_AUTOCFG_CP = n
 
-SUBARCH := $(shell uname -m | sed -e "s/i.86/i386/; s/ppc.*/powerpc/; s/armv.l/arm/; s/aarch64/arm64/;")
+SUBARCH := $(shell uname -m | sed -e "s/i.86/i386/; s/ppc.*/powerpc/; s/armv.l/arm/; s/aarch64/arm64/; s/loong.*64/loongarch/;")
 ARCH ?= $(SUBARCH)
 
 ifeq ("","$(wildcard MOK.der)")
@@ -577,7 +577,7 @@ else ifeq ($(CONFIG_SEC_AMSDU_MODE), disable)
 EXTRA_CFLAGS += -DRTW_AMSDU_MODE=2
 endif
 
-SUBARCH := $(shell uname -m | sed -e "s/i.86/i386/; s/ppc.*/powerpc/; s/armv.l/arm/; s/aarch64/arm64/;")
+SUBARCH := $(shell uname -m | sed -e "s/i.86/i386/; s/ppc.*/powerpc/; s/armv.l/arm/; s/aarch64/arm64/; s/loong.*64/loongarch/;")
 ARCH ?= $(SUBARCH)
 
 ########### PLATFORM OPS  ##########################
@@ -629,7 +629,7 @@ else
 
 export CONFIG_RTL8852AU = m
 
-SUBARCH := $(shell uname -m | sed -e "s/i.86/i386/; s/ppc.*/powerpc/; s/armv.l/arm/; s/aarch64/arm64/;")
+SUBARCH := $(shell uname -m | sed -e "s/i.86/i386/; s/ppc.*/powerpc/; s/armv.l/arm/; s/aarch64/arm64/; s/loong.*64/loongarch/;")
 ARCH ?= $(SUBARCH)
 
 all: modules
