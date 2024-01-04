@@ -87,8 +87,8 @@ When your kernel is updated, then do a 'git pull' and redo the make commands.
 ##### Installation with module signing for SecureBoot
 For all distros:
 ```bash
-git clone git://github.com/lwfinger/rtl8814au.git
-cd rtl8814au
+git clone git://github.com/lwfinger/rtl8852au.git
+cd rtl8852au
 make
 sudo make sign-install
 ```
