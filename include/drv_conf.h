@@ -637,4 +637,9 @@ power down etc.) in last time, we can unmark this flag to avoid some unpredictab
 #ifndef RTW_AMSDU_MODE
 #define RTW_AMSDU_MODE 0 /* 0:non-SPP, 1:spp mode, 2:All drop */
 #endif
+
+#if !defined(strlcpy)
+#define strlcpy(a, b, c) strscpy(a, b, c)
+#endif
+
 #endif /* __DRV_CONF_H__ */
