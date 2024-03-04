@@ -548,7 +548,7 @@ int rtw_xmit_entry(struct sk_buff *pkt, _nic_hdl pnetdev)
 
 
 #ifdef RTW_PHL_TX
-int rtw_os_is_adapter_ready(_adapter *padapter, struct sk_buff *pkt)
+static int rtw_os_is_adapter_ready(_adapter *padapter, struct sk_buff *pkt)
 {
 
 	if (padapter->registrypriv.mp_mode) {

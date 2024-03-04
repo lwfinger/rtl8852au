@@ -1268,7 +1268,7 @@ static int rtw_wx_get_freq(struct net_device *dev,
 	return 0;
 }
 
-u32 wext_mode_to_rtw_mlme_state(union iwreq_data *wrqu)
+static u32 wext_mode_to_rtw_mlme_state(union iwreq_data *wrqu)
 {
 	switch (wrqu->mode) {
 	#ifdef CONFIG_WIFI_MONITOR
@@ -6240,7 +6240,7 @@ _clear_path:
 #endif
 
 #if defined(RTW_PHL_TX) || defined(RTW_PHL_RX) || defined(CONFIG_PHL_TEST_SUITE)
-int rtw_phl_test_set(struct net_device *dev,
+static int rtw_phl_test_set(struct net_device *dev,
 	struct iw_request_info *info, union iwreq_data *wrqu, char *extra)
 {
 	_adapter *padapter = (_adapter *)rtw_netdev_priv(dev);

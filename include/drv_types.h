@@ -1854,5 +1854,10 @@ __inline static void RTW_ENABLE_FUNC(struct dvobj_priv *dvobj, int func_bit)
 #endif
 #include <rtw_trx_ops.h>
 
+int rtw_change_ifname(_adapter *padapter, const char *ifname);
+void rtw_indicate_wx_disassoc_event(_adapter *padapter);
+void indicate_wx_scan_complete_event(_adapter *padapter);
+void netdev_br_init(struct net_device *netdev);
+void rtw_indicate_wx_assoc_event(_adapter *padapter);
 
 #endif /* __DRV_TYPES_H__ */

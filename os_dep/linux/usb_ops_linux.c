@@ -218,7 +218,7 @@ void rtw_os_urb_resource_free(struct data_urb *dataurb)
 	}
 }
 
-struct data_urb *rtw_alloc_dataurb(struct trx_urb_buf_q *urb_q)
+static struct data_urb *rtw_alloc_dataurb(struct trx_urb_buf_q *urb_q)
 {
 	struct data_urb *urb =  NULL;
 	_list *urb_list, *urb_head;
@@ -253,7 +253,7 @@ struct data_urb *rtw_alloc_dataurb(struct trx_urb_buf_q *urb_q)
 	return urb;
 }
 
-s32 rtw_free_dataurb(struct trx_urb_buf_q *urb_q,
+static s32 rtw_free_dataurb(struct trx_urb_buf_q *urb_q,
 	struct data_urb *urb)
 {
 	_queue *free_urb_q = &urb_q->free_urb_buf_queue;
