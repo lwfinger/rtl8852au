@@ -16,7 +16,7 @@
 
 #ifdef RF_8852A_SUPPORT
 
-s8 _halrf_efuse_exchange_8852a(struct rf_info *rf, u8 value, u8 mask)
+static s8 _halrf_efuse_exchange_8852a(struct rf_info *rf, u8 value, u8 mask)
 {
 	s8 tmp = 0;
 
@@ -35,7 +35,7 @@ s8 _halrf_efuse_exchange_8852a(struct rf_info *rf, u8 value, u8 mask)
 	return tmp;
 }
 
-void _halrf_get_normal_efuse_rx_gain_k_8852a(struct rf_info *rf,
+static void _halrf_get_normal_efuse_rx_gain_k_8852a(struct rf_info *rf,
 					enum phl_phy_idx phy)
 {
 	struct halrf_rx_gain_k_info *rx = &rf->rx_gain_k;
@@ -80,7 +80,7 @@ void _halrf_get_normal_efuse_rx_gain_k_8852a(struct rf_info *rf,
 		rx->efuse_chenk = true;
 }
 
-void _halrf_get_hide_efuse_rx_gain_k_8852a(struct rf_info *rf,
+static void _halrf_get_hide_efuse_rx_gain_k_8852a(struct rf_info *rf,
 					enum phl_phy_idx phy)
 {
 	struct halrf_rx_gain_k_info *rx = &rf->rx_gain_k;
@@ -138,7 +138,7 @@ void _halrf_get_hide_efuse_rx_gain_k_8852a(struct rf_info *rf,
 		rx->hide_efuse_chenk = true;
 }
 
-void _halrf_get_lna_error_frontend_loss_8852a(struct rf_info *rf,
+static void _halrf_get_lna_error_frontend_loss_8852a(struct rf_info *rf,
 					enum phl_phy_idx phy)
 {
 	struct halrf_rx_gain_k_info *rx = &rf->rx_gain_k;
@@ -234,7 +234,7 @@ void _halrf_get_lna_error_frontend_loss_8852a(struct rf_info *rf,
 }
 
 
-void _halrf_set_rx_gain_k_normal_efuse(struct rf_info *rf,
+static void _halrf_set_rx_gain_k_normal_efuse(struct rf_info *rf,
 					enum phl_phy_idx phy)
 {
 	struct halrf_rx_gain_k_info *rx = &rf->rx_gain_k;
@@ -313,7 +313,7 @@ void _halrf_set_rx_gain_k_normal_efuse(struct rf_info *rf,
 	}
 }
 
-void _halrf_set_rx_gain_k_hide_efuse(struct rf_info *rf,
+static void _halrf_set_rx_gain_k_hide_efuse(struct rf_info *rf,
 					enum phl_phy_idx phy)
 {
 	struct halrf_rx_gain_k_info *rx = &rf->rx_gain_k;
@@ -410,7 +410,7 @@ void _halrf_set_rx_gain_k_hide_efuse(struct rf_info *rf,
 	}
 }
 
-void _halrf_set_thermal_trim_8852a(struct rf_info *rf,
+static void _halrf_set_thermal_trim_8852a(struct rf_info *rf,
 					enum phl_phy_idx phy)
 {
 	u8 thermal_a, thermal_b;
@@ -448,7 +448,7 @@ void _halrf_set_thermal_trim_8852a(struct rf_info *rf,
 	halrf_wrf(rf, RF_PATH_B, 0x43, 0x000f0000, thermal_b);
 }
 
-void _halrf_set_pa_bias_trim_8852a(struct rf_info *rf,
+static void _halrf_set_pa_bias_trim_8852a(struct rf_info *rf,
 					enum phl_phy_idx phy)
 {
 	u8 pa_bias_a, pa_bias_b;
@@ -493,7 +493,7 @@ void _halrf_set_pa_bias_trim_8852a(struct rf_info *rf,
 	halrf_wrf(rf, RF_PATH_B, 0x60, 0x000f0000, pa_bias_b_5g);
 }
 
-void _halrf_get_tssi_trim_8852a(struct rf_info *rf,
+static void _halrf_get_tssi_trim_8852a(struct rf_info *rf,
 					enum phl_phy_idx phy)
 {
 	struct halrf_tssi_info *tssi = &rf->tssi;
