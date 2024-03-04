@@ -18,6 +18,7 @@
 #include <aes_wrap.h>
 #include <sha256.h>
 #include <wlancrypto_wrap.h>
+#include <rtw_swcrypto.h>
 
 #if 0 //RTW_PHL_TX: mark un-finished codes for reading
 int _rtw_core_ccmp_encrypt(u8 *key, u32 key_len, uint hdrlen, u8 *phdr, uint datalen, u8 *pdata)

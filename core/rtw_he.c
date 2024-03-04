@@ -1248,7 +1248,7 @@ static int rtw_build_6g_oper_info(_adapter *padapter, u8 *pbuf)
 	return info_len;
 }
 
-u32	rtw_build_he_operation_ie(_adapter *padapter, u8 *pbuf)
+static u32	rtw_build_he_operation_ie(_adapter *padapter, u8 *pbuf)
 {
 	struct mlme_priv		*pmlmepriv = &padapter->mlmepriv;
 	struct he_priv		*phepriv = &pmlmepriv->hepriv;

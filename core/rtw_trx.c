@@ -17,7 +17,7 @@
 
 
 #ifdef RTW_PHL_TX
-s32 rtw_core_tx_mgmt(_adapter *padapter, struct xmit_frame *pxframe)
+static s32 rtw_core_tx_mgmt(_adapter *padapter, struct xmit_frame *pxframe)
 {
 
 	pxframe->xftype = RTW_TX_DRV_MGMT;

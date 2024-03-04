@@ -1154,7 +1154,7 @@ static int rtw_scan_ch_decision(_adapter *padapter, struct rtw_ieee80211_channel
 	return j;
 }
 #ifdef CONFIG_SCAN_BACKOP
-u8 rtw_scan_backop_decision(_adapter *adapter)
+static u8 rtw_scan_backop_decision(_adapter *adapter)
 {
 	struct mlme_ext_priv *mlmeext = &adapter->mlmeextpriv;
 	struct mi_state mstate;
@@ -2605,7 +2605,7 @@ u8 rtw_sitesurvey_cmd(_adapter *padapter, struct sitesurvey_parm *pparm)
 
 	set_fwstate(pmlmepriv, WIFI_UNDER_SURVEY);
 
-	if(rtw_phl_cmd_scan_request(dvobj->phl, phl_param, true) != RTW_PHL_STATUS_SUCCESS) {
+	if(rtw_phl_cmd_scan_request(dvobj->phl, phl_param, (enum PRECEDE)true) != RTW_PHL_STATUS_SUCCESS) {
 		RTW_ERR("%s request scam_cmd failed\n", __func__);
 		_clr_fwstate_(pmlmepriv, WIFI_UNDER_SURVEY);
 		goto _err_req_param;
@@ -3165,7 +3165,7 @@ u8 rtw_phl_remain_on_ch_cmd(_adapter *padapter,
 #endif
 		phl_param->ops = &remain_ops_cb;
 
-	if(rtw_phl_cmd_scan_request(dvobj->phl, phl_param, true) == RTW_PHL_STATUS_FAILURE) {
+	if(rtw_phl_cmd_scan_request(dvobj->phl, phl_param, (enum PRECEDE)true) == RTW_PHL_STATUS_FAILURE) {
 		RTW_ERR("%s request scam_cmd failed\n", __func__);
 		goto _err_req_param;
 	}

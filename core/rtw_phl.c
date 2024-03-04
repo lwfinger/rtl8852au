@@ -387,7 +387,7 @@ static u8 rtw_hw_trx_ops_check(struct hal_com_t *hal_com)
 }
 #endif
 
-u8 rtw_core_deregister_phl_msg(struct dvobj_priv *dvobj)
+static u8 rtw_core_deregister_phl_msg(struct dvobj_priv *dvobj)
 {
 	enum rtw_phl_status psts = RTW_PHL_STATUS_FAILURE;
 
@@ -554,7 +554,7 @@ static void core_hdl_phl_evt(struct dvobj_priv *dvobj, u16 evt_id)
 	}
 }
 
-void core_handler_phl_msg(void *drv_priv, struct phl_msg *msg)
+static void core_handler_phl_msg(void *drv_priv, struct phl_msg *msg)
 {
 	struct dvobj_priv *dvobj = (struct dvobj_priv *)drv_priv;
 	u8 mdl_id = MSG_MDL_ID_FIELD(msg->msg_id);
@@ -572,7 +572,7 @@ void core_handler_phl_msg(void *drv_priv, struct phl_msg *msg)
 	}
 }
 
-u8 rtw_core_register_phl_msg(struct dvobj_priv *dvobj)
+static u8 rtw_core_register_phl_msg(struct dvobj_priv *dvobj)
 {
 	struct phl_msg_receiver ctx = {0};
 	u8 imr[] = {PHL_MDL_RX, PHL_MDL_SER, PHL_MDL_WOW};
@@ -705,7 +705,7 @@ struct rtw_phl_mr_ops rtw_mr_ops = {
 #endif
 };
 
-void rtw_core_register_mr_config(struct dvobj_priv *dvobj)
+static void rtw_core_register_mr_config(struct dvobj_priv *dvobj)
 {
 #ifdef CONFIG_MCC_MODE
 	rtw_mr_ops.mcc_ops->priv = (void *)dvobj;

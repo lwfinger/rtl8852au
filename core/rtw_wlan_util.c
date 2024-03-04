@@ -195,7 +195,7 @@ s8 rtw_get_sta_tx_nss(_adapter *adapter, struct sta_info *psta)
 	return nss;
 }
 
-unsigned char ratetbl_val_2wifirate(unsigned char rate)
+static unsigned char ratetbl_val_2wifirate(unsigned char rate)
 {
 	unsigned char val = 0;
 
@@ -254,7 +254,7 @@ unsigned char ratetbl_val_2wifirate(unsigned char rate)
 
 }
 
-int is_basicrate(_adapter *padapter, unsigned char rate)
+static int is_basicrate(_adapter *padapter, unsigned char rate)
 {
 	int i;
 	unsigned char val;
@@ -272,7 +272,7 @@ int is_basicrate(_adapter *padapter, unsigned char rate)
 	return _FALSE;
 }
 
-unsigned int ratetbl2rateset(_adapter *padapter, unsigned char *rateset)
+static unsigned int ratetbl2rateset(_adapter *padapter, unsigned char *rateset)
 {
 	int i;
 	unsigned char rate;
@@ -1319,7 +1319,7 @@ void	update_ldpc_stbc_cap(struct sta_info *psta)
 #endif /* CONFIG_80211N_HT */
 }
 
-int check_ielen(u8 *start, uint len)
+static int check_ielen(u8 *start, uint len)
 {
 	int left = len;
 	u8 *pos = start;

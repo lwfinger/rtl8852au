@@ -1529,7 +1529,7 @@ s16 mb_of_ntx(u8 ntx)
 }
 
 #if CONFIG_TXPWR_LIMIT
-void _dump_regd_exc_list(void *sel, struct rf_ctl_t *rfctl)
+static void _dump_regd_exc_list(void *sel, struct rf_ctl_t *rfctl)
 {
 	struct regd_exc_ent *ent;
 	_list *cur, *head;

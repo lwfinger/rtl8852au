@@ -18,7 +18,7 @@
 
 #ifdef CONFIG_P2P
 
-int is_any_client_associated(_adapter *padapter)
+static int is_any_client_associated(_adapter *padapter)
 {
 	return padapter->stapriv.asoc_list_cnt ? _TRUE : _FALSE;
 }
@@ -1753,7 +1753,7 @@ static void rtw_cfg80211_adjust_p2pie_channel(_adapter *padapter, const u8 *fram
 #endif
 
 #ifdef CONFIG_WFD
-u32 rtw_xframe_build_wfd_ie(struct xmit_frame *xframe)
+static u32 rtw_xframe_build_wfd_ie(struct xmit_frame *xframe)
 {
 	_adapter *adapter = xframe->padapter;
 	struct wifidirect_info *wdinfo = &adapter->wdinfo;
@@ -1831,7 +1831,7 @@ u32 rtw_xframe_build_wfd_ie(struct xmit_frame *xframe)
 }
 #endif /* CONFIG_WFD */
 
-bool rtw_xframe_del_wfd_ie(struct xmit_frame *xframe)
+static bool rtw_xframe_del_wfd_ie(struct xmit_frame *xframe)
 {
 #define DBG_XFRAME_DEL_WFD_IE 0
 	u8 *frame = xframe->buf_addr + TXDESC_OFFSET;
@@ -1903,7 +1903,7 @@ void rtw_xframe_chk_wfd_ie(struct xmit_frame *xframe)
 #endif
 }
 
-u8 *dump_p2p_attr_ch_list(u8 *p2p_ie, uint p2p_ielen, u8 *buf, u32 buf_len)
+static u8 *dump_p2p_attr_ch_list(u8 *p2p_ie, uint p2p_ielen, u8 *buf, u32 buf_len)
 {
 	uint attr_contentlen = 0;
 	u8 *pattr = NULL;
@@ -1955,7 +1955,7 @@ u8 *dump_p2p_attr_ch_list(u8 *p2p_ie, uint p2p_ielen, u8 *buf, u32 buf_len)
 /*
  * return _TRUE if requester is GO, _FALSE if responder is GO
  */
-bool rtw_p2p_nego_intent_compare(u8 req, u8 resp)
+static bool rtw_p2p_nego_intent_compare(u8 req, u8 resp)
 {
 	if (req >> 1 == resp >> 1)
 		return  req & 0x01 ? _TRUE : _FALSE;

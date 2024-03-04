@@ -43,7 +43,7 @@ static void usb_xmit_tasklet(_adapter *padapter)
 #endif
 }
 
-s32 usb_init_xmit_priv(_adapter *adapter)
+static s32 usb_init_xmit_priv(_adapter *adapter)
 {
 	s32 ret = _SUCCESS;
 	struct xmit_priv *pxmitpriv = &adapter->xmitpriv;
@@ -56,7 +56,7 @@ s32 usb_init_xmit_priv(_adapter *adapter)
 	return _SUCCESS;
 }
 
-void usb_free_xmit_priv(_adapter *adapter)
+static void usb_free_xmit_priv(_adapter *adapter)
 {
 }
 
@@ -75,20 +75,20 @@ s32 usb_xmit_buf_handler(_adapter *adapter)
 }
 #endif /* CONFIG_XMIT_THREAD_MODE */
 
-s32 usb_xmitframe_enqueue(_adapter *adapter, struct xmit_frame *pxmitframe)
+static s32 usb_xmitframe_enqueue(_adapter *adapter, struct xmit_frame *pxmitframe)
 {
 	return _SUCCESS;
 }
 
 /******************************** recv section*******************************/
-int usb_init_recv_priv(struct dvobj_priv *dvobj)
+static int usb_init_recv_priv(struct dvobj_priv *dvobj)
 {
 	int res = _SUCCESS;
 
 	return res;
 }
 
-void usb_free_recv_priv(struct dvobj_priv *dvobj)
+static void usb_free_recv_priv(struct dvobj_priv *dvobj)
 {
 
 }

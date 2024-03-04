@@ -836,7 +836,7 @@ void rtw_mi_buddy_beacon_update(_adapter *padapter)
 	_rtw_mi_process(padapter, _TRUE, NULL, _rtw_mi_beacon_update);
 }
 
-u8 _rtw_mi_busy_traffic_check(_adapter *padapter, void *data)
+static u8 _rtw_mi_busy_traffic_check(_adapter *padapter, void *data)
 {
 	return padapter->mlmepriv.LinkDetectInfo.bBusyTraffic;
 }
@@ -1276,7 +1276,7 @@ _adapter *rtw_get_iface_by_hwport(_adapter *padapter, u8 hw_port)
 /*#define CONFIG_SKB_ALLOCATED*/
 #define DBG_SKB_PROCESS
 #ifdef DBG_SKB_PROCESS
-void rtw_dbg_skb_process(_adapter *padapter, union recv_frame *precvframe, union recv_frame *pcloneframe)
+static void rtw_dbg_skb_process(_adapter *padapter, union recv_frame *precvframe, union recv_frame *pcloneframe)
 {
 	struct sk_buff *pkt_copy, *pkt_org;
 

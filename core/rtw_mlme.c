@@ -16,10 +16,7 @@
 #include <drv_types.h>
 
 
-extern u8 rtw_do_join(_adapter *padapter);
-
-
-void rtw_init_mlme_timer(_adapter *padapter)
+static void rtw_init_mlme_timer(_adapter *padapter)
 {
 	struct	mlme_priv *pmlmepriv = &padapter->mlmepriv;
 
@@ -36,7 +33,7 @@ void rtw_init_mlme_timer(_adapter *padapter)
 #endif
 }
 
-sint	_rtw_init_mlme_priv(_adapter *padapter)
+static sint	_rtw_init_mlme_priv(_adapter *padapter)
 {
 	sint	i;
 	u8	*pbuf;
@@ -176,7 +173,7 @@ exit:
 	return res;
 }
 
-void rtw_mfree_mlme_priv_lock(struct mlme_priv *pmlmepriv)
+static void rtw_mfree_mlme_priv_lock(struct mlme_priv *pmlmepriv)
 {
 	_rtw_spinlock_free(&pmlmepriv->lock);
 	_rtw_spinlock_free(&(pmlmepriv->free_bss_pool.lock));
@@ -330,7 +327,7 @@ exit:
 }
 #endif /* defined(CONFIG_WFD) && defined(CONFIG_IOCTL_CFG80211) */
 
-void _rtw_free_mlme_priv(struct mlme_priv *pmlmepriv)
+static void _rtw_free_mlme_priv(struct mlme_priv *pmlmepriv)
 {
 	_adapter *adapter = mlme_to_adapter(pmlmepriv);
 	if (NULL == pmlmepriv) {
@@ -356,7 +353,7 @@ exit:
 	return;
 }
 
-sint	_rtw_enqueue_network(_queue *queue, struct wlan_network *pnetwork)
+static sint	_rtw_enqueue_network(_queue *queue, struct wlan_network *pnetwork)
 {
 
 	if (pnetwork == NULL)
@@ -600,19 +597,19 @@ void rtw_free_mlme_priv(struct mlme_priv *pmlmepriv)
 	_rtw_free_mlme_priv(pmlmepriv);
 }
 
-int rtw_enqueue_network(_queue *queue, struct wlan_network *pnetwork)
+static int rtw_enqueue_network(_queue *queue, struct wlan_network *pnetwork)
 {
 	int	res;
 	res = _rtw_enqueue_network(queue, pnetwork);
 	return res;
 }
 
-void rtw_free_network(struct mlme_priv *pmlmepriv, struct	wlan_network *pnetwork, u8 is_freeall)/* (struct	wlan_network *pnetwork, _queue	*free_queue) */
+static void rtw_free_network(struct mlme_priv *pmlmepriv, struct	wlan_network *pnetwork, u8 is_freeall)/* (struct	wlan_network *pnetwork, _queue	*free_queue) */
 {
 	_rtw_free_network(pmlmepriv, pnetwork, is_freeall);
 }
 
-void rtw_free_network_nolock(_adapter *padapter, struct wlan_network *pnetwork)
+static void rtw_free_network_nolock(_adapter *padapter, struct wlan_network *pnetwork)
 {
 	_rtw_free_network_nolock(&(padapter->mlmepriv), pnetwork);
 #ifdef CONFIG_IOCTL_CFG80211
@@ -1322,7 +1319,7 @@ unlock_unassoc_sta_queue:
  *			   (3) WMM
  *			   (4) HT
  * (5) others */
-int rtw_is_desired_network(_adapter *adapter, struct wlan_network *pnetwork)
+static int rtw_is_desired_network(_adapter *adapter, struct wlan_network *pnetwork)
 {
 	struct security_priv *psecuritypriv = &adapter->securitypriv;
 	struct mlme_priv *pmlmepriv = &adapter->mlmepriv;
@@ -1657,7 +1654,7 @@ static void free_scanqueue(struct	mlme_priv *pmlmepriv)
 
 }
 
-void rtw_reset_rx_info(_adapter *adapter)
+static void rtw_reset_rx_info(_adapter *adapter)
 {
 	struct recv_info *precvinfo = &adapter->recvinfo;
 
@@ -2947,7 +2944,6 @@ if (!adapter_use_wds(a)) {
 	#endif /* (LINUX_VERSION_CODE <= KERNEL_VERSION(2, 6, 35)) */
 			&& (MLME_IS_STA(a) || MLME_IS_ADHOC(a))) {
 			/* expire NAT2.5 entry */
-			void nat25_db_expire(_adapter *priv);
 			nat25_db_expire(a);
 
 			if (a->pppoe_connection_in_progress > 0)
@@ -2963,7 +2959,7 @@ if (!adapter_use_wds(a)) {
 #endif /* CONFIG_BR_EXT */
 }
 
-void rtw_iface_dynamic_check_timer_handlder(_adapter *adapter)
+static void rtw_iface_dynamic_check_timer_handlder(_adapter *adapter)
 {
 #ifdef CONFIG_AP_MODE
 	struct mlme_priv *pmlmepriv = &adapter->mlmepriv;

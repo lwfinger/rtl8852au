@@ -1596,7 +1596,7 @@ exit:
 
 }
 
-void free_assoc_resources_hdl(_adapter *padapter, u8 lock_scanned_queue)
+static void free_assoc_resources_hdl(_adapter *padapter, u8 lock_scanned_queue)
 {
 	rtw_free_assoc_resources(padapter, lock_scanned_queue);
 }
@@ -1756,7 +1756,7 @@ exit:
 	return res;
 }
 
-u8 _rtw_set_chplan_cmd(_adapter *adapter, int flags, u8 chplan, const struct country_chplan *country_ent, u8 swconfig)
+static u8 _rtw_set_chplan_cmd(_adapter *adapter, int flags, u8 chplan, const struct country_chplan *country_ent, u8 swconfig)
 {
 	struct cmd_obj *cmdobj;
 	struct	SetChannelPlan_param *parm;
@@ -2029,7 +2029,7 @@ exit:
 	return res;
 }
 
-u8 rtw_ssmps_wk_hdl(_adapter *adapter, struct ssmps_cmd_parm *ssmp_param)
+static u8 rtw_ssmps_wk_hdl(_adapter *adapter, struct ssmps_cmd_parm *ssmp_param)
 {
 	u8 res = _SUCCESS;
 	struct sta_info *sta = ssmp_param->sta;
@@ -2820,7 +2820,7 @@ static struct turbo_edca_setting ctrl_turbo_edca[TURBO_EDCA_MODE_NUM] = {
 	TURBO_EDCA_ENT(0x5e431c, 0xa42b), /* mode 7 */
 };
 
-void rtw_turbo_edca(_adapter *padapter)
+static void rtw_turbo_edca(_adapter *padapter)
 {
 	struct registry_priv *pregpriv = &padapter->registrypriv;
 	struct dvobj_priv *dvobj = adapter_to_dvobj(padapter);
@@ -2929,7 +2929,7 @@ void rtw_iface_dynamic_chk_wk_hdl(_adapter *padapter)
 
 }
 
-void rtw_dynamic_chk_wk_hdl(_adapter *padapter)
+static void rtw_dynamic_chk_wk_hdl(_adapter *padapter)
 {
 	rtw_mi_dynamic_chk_wk_hdl(padapter);
 
@@ -3291,7 +3291,7 @@ void power_saving_wk_hdl(_adapter *padapter)
 }
 #endif
 /* add for CONFIG_IEEE80211W, none 11w can use it */
-void reset_securitypriv_hdl(_adapter *padapter)
+static void reset_securitypriv_hdl(_adapter *padapter)
 {
 	rtw_reset_securitypriv(padapter);
 }
@@ -3667,7 +3667,7 @@ exit:
 }
 
 #ifdef CONFIG_DFS_MASTER
-u8 rtw_dfs_rd_hdl(_adapter *adapter)
+static u8 rtw_dfs_rd_hdl(_adapter *adapter)
 {
 	struct dvobj_priv *dvobj = adapter_to_dvobj(adapter);
 	struct rf_ctl_t *rfctl = adapter_to_rfctl(adapter);
@@ -5658,7 +5658,7 @@ inline u8 rtw_customer_str_write_cmd(_adapter *adapter, const u8 *cstr)
 }
 #endif /* CONFIG_RTW_CUSTOMER_STR */
 
-u8 rtw_c2h_wk_cmd(_adapter *padapter, u8 *pbuf, u16 length, u8 type)
+static u8 rtw_c2h_wk_cmd(_adapter *padapter, u8 *pbuf, u16 length, u8 type)
 {
 	struct cmd_obj *cmd;
 	struct drvextra_cmd_parm *pdrvextra_cmd_parm;
@@ -5765,7 +5765,7 @@ u8 rtw_run_in_thread_cmd_wait(_adapter *adapter, void (*func)(void *), void *con
 }
 
 
-u8 session_tracker_cmd(_adapter *adapter, u8 cmd, struct sta_info *sta, u8 *local_naddr, u8 *local_port, u8 *remote_naddr, u8 *remote_port)
+static u8 session_tracker_cmd(_adapter *adapter, u8 cmd, struct sta_info *sta, u8 *local_naddr, u8 *local_port, u8 *remote_naddr, u8 *remote_port)
 {
 	struct cmd_priv	*cmdpriv = &adapter_to_dvobj(adapter)->cmdpriv;
 	struct cmd_obj *cmdobj;
@@ -5832,7 +5832,7 @@ inline u8 session_tracker_del_cmd(_adapter *adapter, struct sta_info *sta, u8 *l
 	return session_tracker_cmd(adapter, ST_CMD_DEL, sta, local_naddr, local_port, remote_naddr, remote_port);
 }
 
-void session_tracker_chk_for_sta(_adapter *adapter, struct sta_info *sta)
+static void session_tracker_chk_for_sta(_adapter *adapter, struct sta_info *sta)
 {
 	struct st_ctl_t *st_ctl = &sta->st_ctl;
 	int i;
@@ -5913,7 +5913,7 @@ exit:
 	return;
 }
 
-void session_tracker_chk_for_adapter(_adapter *adapter)
+static void session_tracker_chk_for_adapter(_adapter *adapter)
 {
 	struct sta_priv *stapriv = &adapter->stapriv;
 	struct sta_info *sta;
@@ -5944,7 +5944,7 @@ void session_tracker_chk_for_adapter(_adapter *adapter)
 #endif
 }
 
-void session_tracker_cmd_hdl(_adapter *adapter, struct st_cmd_parm *parm)
+static void session_tracker_cmd_hdl(_adapter *adapter, struct st_cmd_parm *parm)
 {
 	u8 cmd = parm->cmd;
 	struct sta_info *sta = parm->sta;
@@ -6106,7 +6106,7 @@ exit:
 #endif
 
 
-void rtw_ac_parm_cmd_hdl(_adapter *padapter, u8 *_ac_parm_buf, int ac_type)
+static void rtw_ac_parm_cmd_hdl(_adapter *padapter, u8 *_ac_parm_buf, int ac_type)
 {
 
 	u32 ac_parm_buf;
@@ -6471,7 +6471,7 @@ exit:
 
 }
 
-void rtw_getrttbl_cmd_cmdrsp_callback(_adapter *padapter,  struct cmd_obj *pcmd)
+static void rtw_getrttbl_cmd_cmdrsp_callback(_adapter *padapter,  struct cmd_obj *pcmd)
 {
 
 	rtw_free_cmd_obj(pcmd);
@@ -6531,7 +6531,7 @@ exit:
 }
 
 char UNKNOWN_CID[16] = "UNKNOWN_EXTRA";
-char *rtw_extra_name(struct drvextra_cmd_parm *pdrvextra_cmd)
+static char *rtw_extra_name(struct drvextra_cmd_parm *pdrvextra_cmd)
 {
 	switch(pdrvextra_cmd->ec_id) {
 	case NONE_WK_CID:
