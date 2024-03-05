@@ -482,13 +482,26 @@ static void rtw_ethtool_get_drvinfo(struct net_device *dev, struct ethtool_drvin
 
 	wdev = dev->ieee80211_ptr;
 	if (wdev) {
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 8, 0)
 		strlcpy(info->driver, wiphy_dev(wdev->wiphy)->driver->name,
 			sizeof(info->driver));
+#else
+		strscpy(info->driver, wiphy_dev(wdev->wiphy)->driver->name,
+			sizeof(info->driver));
+#endif
 	} else {
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 8, 0)
 		strlcpy(info->driver, "N/A", sizeof(info->driver));
+#else
+		strscpy(info->driver, "N/A", sizeof(info->driver));
+#endif
 	}
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 8, 0)
 	strlcpy(info->version, DRIVERVERSION, sizeof(info->version));
+#else
+	strscpy(info->version, DRIVERVERSION, sizeof(info->version));
+#endif
 
 	padapter = (_adapter *)rtw_netdev_priv(dev);
 
@@ -505,11 +518,20 @@ static void rtw_ethtool_get_drvinfo(struct net_device *dev, struct ethtool_drvin
 	} else
 	#endif
 	{
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 8, 0)
 		strlcpy(info->fw_version, "N/A", sizeof(info->fw_version));
+#else
+		strscpy(info->fw_version, "N/A", sizeof(info->fw_version));
+#endif
 	}
 
+#if LINUX_VERSION_CODE < KERNEL_VERSION(6, 8, 0)
 	strlcpy(info->bus_info, dev_name(wiphy_dev(wdev->wiphy)),
 		sizeof(info->bus_info));
+#else
+	strscpy(info->bus_info, dev_name(wiphy_dev(wdev->wiphy)),
+		sizeof(info->bus_info));
+#endif
 }
 
 static const char rtw_ethtool_gstrings_sta_stats[][ETH_GSTRING_LEN] = {
