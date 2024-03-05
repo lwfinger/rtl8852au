@@ -64,7 +64,7 @@ _phl_pwrlmt_para_free(
 	para_info->ext_reg_codemap = NULL;
 }
 
-enum channel_width _phl_sw_cap_get_hi_bw(struct phy_cap_t *phy_cap)
+static enum channel_width _phl_sw_cap_get_hi_bw(struct phy_cap_t *phy_cap)
 {
 	enum channel_width bw = CHANNEL_WIDTH_20;
 	do {
@@ -667,7 +667,7 @@ _phl_init_role_cap(struct phl_info_t *phl_info,
 	return RTW_PHL_STATUS_SUCCESS;
 }
 
-void
+static void
 _phl_sw_role_cap_bf_ap(struct role_sw_cap_t *sw_role_cap)
 {
 	u16 def_bf_cap = (HW_CAP_BFEE_HT_SU | HW_CAP_BFER_HT_SU |
@@ -681,7 +681,7 @@ _phl_sw_role_cap_bf_ap(struct role_sw_cap_t *sw_role_cap)
 }
 
 
-void
+static void
 _phl_sw_role_cap_bf_station(struct role_sw_cap_t *sw_role_cap)
 {
 	u16 def_bf_cap = (HW_CAP_BFEE_HT_SU | HW_CAP_BFER_HT_SU |
@@ -694,7 +694,7 @@ _phl_sw_role_cap_bf_station(struct role_sw_cap_t *sw_role_cap)
 	sw_role_cap->bf_cap &= def_bf_cap;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_init_sw_role_cap(struct rtw_wifi_role_t *wifi_role,
 		      struct role_sw_cap_t *sw_role_cap)
 {

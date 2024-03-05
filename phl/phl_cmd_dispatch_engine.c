@@ -21,7 +21,7 @@ enum rtw_phl_status _disp_eng_get_dispr_by_idx(struct phl_info_t *phl,
                                                u8 band_idx,
                                                void **dispr);
 
-int share_thread_hdl(void *param)
+static int share_thread_hdl(void *param)
 {
 	struct phl_info_t *phl_info = (struct phl_info_t *)param;
 	void *d = phl_to_drvpriv(phl_info);

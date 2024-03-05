@@ -721,7 +721,7 @@ _phl_chanctx_create(struct phl_info_t *phl_info,
 _exit:
 	return phl_sts;
 }
-bool phl_chanctx_add(struct phl_info_t *phl_info, struct rtw_wifi_role_t *wifi_role,
+static bool phl_chanctx_add(struct phl_info_t *phl_info, struct rtw_wifi_role_t *wifi_role,
 		u8 *chan, enum channel_width *bw, enum chan_offset *offset)
 {
 	struct rtw_phl_com_t *phl_com = phl_info->phl_com;

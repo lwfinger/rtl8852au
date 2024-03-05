@@ -115,7 +115,7 @@ void phl_dump_t_fctrl_result(_os_list *t_fctrl_result)
 	}
 }
 
-void phl_dump_tx_stats(struct rtw_stats *stats)
+static void phl_dump_tx_stats(struct rtw_stats *stats)
 {
 	PHL_TRACE(COMP_PHL_XMIT, _PHL_DEBUG_,
 		  "Dump Tx statistics\n"
@@ -182,7 +182,7 @@ phl_tx_traffic_upd(struct rtw_stats *sts)
 	}
 }
 
-void phl_update_tx_stats(struct rtw_stats *stats, struct rtw_xmit_req *tx_req)
+static void phl_update_tx_stats(struct rtw_stats *stats, struct rtw_xmit_req *tx_req)
 {
 	u32 diff_t = 0, cur_time = _os_get_cur_time_ms();
 	u64 diff_bits = 0;
@@ -216,7 +216,7 @@ void phl_update_tx_stats(struct rtw_stats *stats, struct rtw_xmit_req *tx_req)
 	}
 }
 
-void phl_tx_statistics(struct phl_info_t *phl_info, struct rtw_xmit_req *tx_req)
+static void phl_tx_statistics(struct phl_info_t *phl_info, struct rtw_xmit_req *tx_req)
 {
 	struct rtw_phl_com_t *phl_com = phl_info->phl_com;
 	struct rtw_stats *phl_stats = &phl_com->phl_stats;
@@ -268,7 +268,7 @@ static void _phl_free_phl_tring_list(void *phl,
 }
 
 
-void _phl_init_tx_plan(struct phl_tx_plan * tx_plan)
+static void _phl_init_tx_plan(struct phl_tx_plan * tx_plan)
 {
 	INIT_LIST_HEAD(&tx_plan->list);
 	tx_plan->sleep = false;
@@ -427,7 +427,7 @@ void phl_release_ring_sts(struct phl_info_t *phl_info,
 }
 
 
-void _phl_ring_status_deinit(struct phl_info_t *phl_info)
+static void _phl_ring_status_deinit(struct phl_info_t *phl_info)
 {
 	struct phl_ring_sts_pool *ring_sts_pool = NULL;
 	u16 buf_len = 0;
@@ -445,7 +445,7 @@ void _phl_ring_status_deinit(struct phl_info_t *phl_info)
 }
 
 
-enum rtw_phl_status _phl_ring_status_init(struct phl_info_t *phl_info)
+static enum rtw_phl_status _phl_ring_status_init(struct phl_info_t *phl_info)
 {
 	enum rtw_phl_status pstatus = RTW_PHL_STATUS_FAILURE;
 	struct phl_ring_sts_pool *ring_sts_pool = NULL;
@@ -489,7 +489,7 @@ enum rtw_phl_status _phl_ring_status_init(struct phl_info_t *phl_info)
 	return pstatus;
 }
 
-struct phl_ring_status *
+static struct phl_ring_status *
 _phl_check_ring_status(struct phl_info_t *phl_info,
 					struct rtw_phl_tx_ring *ring,
 					struct rtw_phl_tring_list *tring_list)
@@ -538,7 +538,7 @@ _phl_check_ring_status(struct phl_info_t *phl_info,
 	return ring_sts;
 }
 
-void _phl_reset_tx_plan(struct phl_info_t *phl_info,
+static void _phl_reset_tx_plan(struct phl_info_t *phl_info,
 			 struct phl_tx_plan *tx_plan)
 {
 	struct phl_ring_status *ring_sts, *t;
@@ -556,7 +556,7 @@ void _phl_reset_tx_plan(struct phl_info_t *phl_info,
 }
 
 
-void _phl_sort_ring_by_tid(struct phl_ring_status *ring_sts,
+static void _phl_sort_ring_by_tid(struct phl_ring_status *ring_sts,
 			   struct phl_tx_plan *tx_plan,
 			   enum rtw_phl_ring_cat cat)
 {
@@ -592,7 +592,7 @@ void _phl_sort_ring_by_tid(struct phl_ring_status *ring_sts,
 
 }
 
-void _phl_check_tring_list(struct phl_info_t *phl_info,
+static void _phl_check_tring_list(struct phl_info_t *phl_info,
 			   struct rtw_phl_tring_list *tring_list,
 			   _os_list *sta_list)
 {
@@ -1030,7 +1030,7 @@ static void _phl_free_h2c_pkt(struct phl_info_t *phl_info,
 	}
 }
 
-struct rtw_h2c_pkt *_phl_alloc_h2c_pkt(struct phl_info_t *phl_info,
+static struct rtw_h2c_pkt *_phl_alloc_h2c_pkt(struct phl_info_t *phl_info,
 	struct phl_h2c_pkt_pool *h2c_pool)
 {
 	enum rtw_phl_status pstatus = RTW_PHL_STATUS_FAILURE;
@@ -1119,7 +1119,7 @@ static void _phl_free_h2c_pool(struct phl_info_t *phl_info)
 	FUNCOUT();
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_alloc_h2c_pool(struct phl_info_t *phl_info)
 {
 	enum rtw_phl_status pstatus = RTW_PHL_STATUS_FAILURE;
@@ -1659,7 +1659,7 @@ phl_tx_watchdog(struct phl_info_t *phl_info)
 	trx_ops->tx_watchdog(phl_info);
 }
 
-enum data_ctrl_mdl _phl_get_ctrl_mdl(enum phl_module_id id)
+static enum data_ctrl_mdl _phl_get_ctrl_mdl(enum phl_module_id id)
 {
 	enum data_ctrl_mdl ctrl_mdl = DATA_CTRL_MDL_NONE;
 
@@ -1684,7 +1684,7 @@ enum data_ctrl_mdl _phl_get_ctrl_mdl(enum phl_module_id id)
 }
 
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_poll_hw_tx_done(void)
 {
 	PHL_TRACE(COMP_PHL_XMIT, _PHL_ERR_, "[DATA_CTRL] Polling hw tx done is not supported now\n");
@@ -1692,7 +1692,7 @@ _phl_poll_hw_tx_done(void)
 	return RTW_PHL_STATUS_FAILURE;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_hw_tx_resume(void)
 {
 	PHL_TRACE(COMP_PHL_XMIT, _PHL_ERR_, "[DATA_CTRL] Resume hw tx not is supported now\n");
@@ -1700,7 +1700,7 @@ _phl_hw_tx_resume(void)
 	return RTW_PHL_STATUS_FAILURE;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_sw_tx_resume(struct phl_info_t *phl_info, struct phl_data_ctl_t *ctl)
 {
 	enum rtw_phl_status sts = RTW_PHL_STATUS_FAILURE;
@@ -1729,7 +1729,7 @@ _phl_sw_tx_resume(struct phl_info_t *phl_info, struct phl_data_ctl_t *ctl)
 	return sts;
 }
 
-void
+static void
 _phl_sw_tx_rst(struct phl_info_t *phl_info)
 {
 	struct phl_hci_trx_ops *ops = phl_info->hci_trx_ops;
@@ -1737,7 +1737,7 @@ _phl_sw_tx_rst(struct phl_info_t *phl_info)
 	ops->trx_reset(phl_info, PHL_CTRL_TX);
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_sw_tx_pause(struct phl_info_t *phl_info,
                  struct phl_data_ctl_t *ctl,
                  bool rst_sw)
@@ -1818,7 +1818,7 @@ _phl_sw_tx_pause(struct phl_info_t *phl_info,
 	return sts;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_poll_hw_rx_done(void)
 {
 	PHL_TRACE(COMP_PHL_RECV, _PHL_ERR_, "[DATA_CTRL] Polling hw rx done is not supported now\n");
@@ -1826,7 +1826,7 @@ _phl_poll_hw_rx_done(void)
 	return RTW_PHL_STATUS_FAILURE;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_hw_rx_resume(void)
 {
 	PHL_TRACE(COMP_PHL_RECV, _PHL_ERR_, "[DATA_CTRL] Resume hw rx not is supported now\n");
@@ -1834,7 +1834,7 @@ _phl_hw_rx_resume(void)
 	return RTW_PHL_STATUS_FAILURE;
 }
 
-enum rtw_phl_status
+static 	enum rtw_phl_status
 _phl_sw_rx_resume(struct phl_info_t *phl_info, struct phl_data_ctl_t *ctl)
 {
 	enum rtw_phl_status sts = RTW_PHL_STATUS_FAILURE;
@@ -1863,7 +1863,7 @@ _phl_sw_rx_resume(struct phl_info_t *phl_info, struct phl_data_ctl_t *ctl)
 	return sts;
 }
 
-void
+static void
 _phl_sw_rx_rst(struct phl_info_t *phl_info)
 {
 	struct phl_hci_trx_ops *ops = phl_info->hci_trx_ops;
@@ -1871,7 +1871,7 @@ _phl_sw_rx_rst(struct phl_info_t *phl_info)
 	ops->trx_reset(phl_info, PHL_CTRL_RX);
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_sw_rx_pause(struct phl_info_t *phl_info,
                  struct phl_data_ctl_t *ctl,
                  bool rst_sw)
@@ -1950,7 +1950,7 @@ _phl_sw_rx_pause(struct phl_info_t *phl_info,
 	return sts;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_hw_trx_rst_resume(struct phl_info_t *phl_info)
 {
 	void *drv = phl_to_drvpriv(phl_info);
@@ -1969,7 +1969,7 @@ _phl_hw_trx_rst_resume(struct phl_info_t *phl_info)
 	}
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_hw_trx_pause(struct phl_info_t *phl_info)
 {
 	void *drv = phl_to_drvpriv(phl_info);
@@ -1988,7 +1988,7 @@ _phl_hw_trx_pause(struct phl_info_t *phl_info)
 	}
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_trx_sw_pause(struct phl_info_t *phl_info, struct phl_data_ctl_t *ctl)
 {
 	enum rtw_phl_status sts = RTW_PHL_STATUS_FAILURE;
@@ -2010,7 +2010,7 @@ _phl_trx_sw_pause(struct phl_info_t *phl_info, struct phl_data_ctl_t *ctl)
 	return sts;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_trx_sw_resume(struct phl_info_t *phl_info, struct phl_data_ctl_t *ctl)
 {
 	enum rtw_phl_status sts = RTW_PHL_STATUS_FAILURE;
@@ -2032,7 +2032,7 @@ _phl_trx_sw_resume(struct phl_info_t *phl_info, struct phl_data_ctl_t *ctl)
 	return sts;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_trx_pause_w_rst(struct phl_info_t *phl_info,
                      struct phl_data_ctl_t *ctl,
                      struct phl_msg *msg)
@@ -2083,7 +2083,7 @@ _phl_trx_pause_w_rst(struct phl_info_t *phl_info,
 	return sts;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_trx_resume_w_rst(struct phl_info_t *phl_info,
                       struct phl_data_ctl_t *ctl,
                       struct phl_msg *msg)

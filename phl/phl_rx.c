@@ -58,7 +58,7 @@ u8 rtw_phl_is_phl_rx_idle(struct phl_info_t *phl_info)
 	return res;
 }
 
-void phl_dump_rx_stats(struct rtw_stats *stats)
+static void phl_dump_rx_stats(struct rtw_stats *stats)
 {
 	PHL_TRACE(COMP_PHL_XMIT, _PHL_DEBUG_,
 		  "Dump Rx statistics\n"
@@ -116,7 +116,7 @@ phl_rx_traffic_upd(struct rtw_stats *sts)
 	}
 }
 
-void phl_update_rx_stats(struct rtw_stats *stats, struct rtw_recv_pkt *rx_pkt)
+static void phl_update_rx_stats(struct rtw_stats *stats, struct rtw_recv_pkt *rx_pkt)
 {
 	u32 diff_t = 0, cur_time = _os_get_cur_time_ms();
 	u64 diff_bits = 0;
@@ -148,7 +148,7 @@ void phl_update_rx_stats(struct rtw_stats *stats, struct rtw_recv_pkt *rx_pkt)
 	}
 }
 
-void phl_rx_statistics(struct phl_info_t *phl_info, struct rtw_recv_pkt *rx_pkt)
+static void phl_rx_statistics(struct phl_info_t *phl_info, struct rtw_recv_pkt *rx_pkt)
 {
 	struct rtw_phl_com_t *phl_com = phl_info->phl_com;
 	struct rtw_stats *phl_stats = &phl_com->phl_stats;
@@ -332,7 +332,7 @@ void _phl_indic_new_rxpkt(struct phl_info_t *phl_info)
 #endif
 }
 
-void _phl_record_rx_stats(struct rtw_recv_pkt *recvpkt)
+static void _phl_record_rx_stats(struct rtw_recv_pkt *recvpkt)
 {
 	if(NULL == recvpkt)
 		return;
@@ -340,7 +340,7 @@ void _phl_record_rx_stats(struct rtw_recv_pkt *recvpkt)
 		recvpkt->tx_sta->stats.rx_rate = recvpkt->mdata.rx_rate;
 }
 
-enum rtw_phl_status _phl_add_rx_pkt(struct phl_info_t *phl_info,
+static enum rtw_phl_status _phl_add_rx_pkt(struct phl_info_t *phl_info,
 				    struct rtw_phl_rx_pkt *phl_rx)
 {
 	enum rtw_phl_status pstatus = RTW_PHL_STATUS_FAILURE;
@@ -397,7 +397,7 @@ out:
 	return pstatus;
 }
 
-void
+static void
 phl_sta_ps_enter(struct phl_info_t *phl_info, struct rtw_phl_stainfo_t *sta,
                  struct rtw_wifi_role_t *role)
 {
@@ -425,7 +425,7 @@ phl_sta_ps_enter(struct phl_info_t *phl_info, struct rtw_phl_stainfo_t *sta,
 		ops->ap_ps_sta_ps_change(d, role->id, sta->mac_addr, true);
 }
 
-void
+static void
 phl_sta_ps_exit(struct phl_info_t *phl_info, struct rtw_phl_stainfo_t *sta,
                 struct rtw_wifi_role_t *role)
 {
@@ -453,7 +453,7 @@ phl_sta_ps_exit(struct phl_info_t *phl_info, struct rtw_phl_stainfo_t *sta,
 		ops->ap_ps_sta_ps_change(d, role->id, sta->mac_addr, false);
 }
 
-void
+static void
 phl_rx_handle_sta_process(struct phl_info_t *phl_info,
                           struct rtw_phl_rx_pkt *rx)
 {
@@ -924,7 +924,7 @@ u8 phl_check_recv_ring_resource(struct phl_info_t *phl_info)
 		return true;
 }
 
-void dump_phl_rx_ring(void *phl)
+static void dump_phl_rx_ring(void *phl)
 {
 	struct phl_info_t *phl_info = (struct phl_info_t *)phl;
 	void *drv_priv = phl_to_drvpriv(phl_info);
@@ -990,7 +990,7 @@ void phl_event_indicator(void *context)
 
 }
 
-void _phl_rx_statistics_reset(struct phl_info_t *phl_info)
+static void _phl_rx_statistics_reset(struct phl_info_t *phl_info)
 {
 	struct rtw_phl_com_t *phl_com = phl_info->phl_com;
 	struct rtw_phl_stainfo_t *sta = NULL;
@@ -1198,7 +1198,7 @@ rtw_phl_leave_mon_mode(void *phl, struct rtw_wifi_role_t *wrole)
 }
 
 #ifdef CONFIG_PHL_RX_PSTS_PER_PKT
-void
+static void
 _phl_rx_proc_frame_list(struct phl_info_t *phl_info, struct phl_queue *pq)
 {
 	void *d = phl_to_drvpriv(phl_info);

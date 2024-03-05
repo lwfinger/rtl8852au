@@ -14,7 +14,7 @@
  *****************************************************************************/
 #define _PHL_ROLE_C_
 #include "phl_headers.h"
-
+#include "phl_role.h"
 
 static enum rtw_phl_status
 _phl_alloc_hw_resource(struct phl_info_t *phl,
@@ -415,7 +415,7 @@ phl_wifi_role_start_hdl(struct phl_info_t *phl_info, u8 *param)
 	return _phl_wifi_role_start(phl_info, cmd_wr->wrole, cmd_wr->sta);
 }
 
-void phl_wifi_role_start_done(void *drv_priv, u8 *cmd, u32 cmd_len,
+static void phl_wifi_role_start_done(void *drv_priv, u8 *cmd, u32 cmd_len,
 						enum rtw_phl_status status)
 {
 	if (cmd) {
@@ -425,7 +425,7 @@ void phl_wifi_role_start_done(void *drv_priv, u8 *cmd, u32 cmd_len,
 	}
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 phl_wifi_role_start(struct phl_info_t *phl_info,
 				struct rtw_wifi_role_t *wrole,
 				struct rtw_phl_stainfo_t *sta)
@@ -807,7 +807,7 @@ phl_wifi_role_chg_hdl(struct phl_info_t *phl_info, u8 *param)
 	return phl_wifi_role_change(phl_info, wr_chg->wrole, wr_chg->id, wr_chg->info);
 }
 
-void phl_wifi_role_chg_done(void *drv_priv, u8 *cmd, u32 cmd_len,
+static void phl_wifi_role_chg_done(void *drv_priv, u8 *cmd, u32 cmd_len,
 						enum rtw_phl_status status)
 {
 	struct wr_chg_param *wr_chg = NULL;
@@ -915,7 +915,7 @@ rtw_phl_cmd_wrole_change(void *phl,
 }
 #endif /*CONFIG_CMD_DISP*/
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_wifi_role_stop(struct phl_info_t *phl_info, struct rtw_wifi_role_t *wrole)
 {
 	enum rtw_phl_status psts = RTW_PHL_STATUS_FAILURE;
@@ -938,7 +938,7 @@ phl_wifi_role_stop_hdl(struct phl_info_t *phl_info, u8 *param)
 
 	return _phl_wifi_role_stop(phl_info, wrole);
 }
-void phl_wifi_role_stop_done(void *drv_priv, u8 *cmd, u32 cmd_len,
+static void phl_wifi_role_stop_done(void *drv_priv, u8 *cmd, u32 cmd_len,
 						enum rtw_phl_status status)
 {
 	if (cmd) {
@@ -954,7 +954,7 @@ void phl_wifi_role_stop_done(void *drv_priv, u8 *cmd, u32 cmd_len,
 	}
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 phl_wifi_role_stop(struct phl_info_t *phl_info, struct rtw_wifi_role_t *wrole)
 {
 	enum rtw_phl_status psts = RTW_PHL_STATUS_FAILURE;

@@ -15,7 +15,7 @@
 #define _PHL_INIT_C_
 #include "phl_headers.h"
 
-void _phl_com_init_rssi_stat(struct rtw_phl_com_t *phl_com)
+static void _phl_com_init_rssi_stat(struct rtw_phl_com_t *phl_com)
 {
 	u8 i = 0, j = 0;
 	for (i = 0; i < RTW_RSSI_TYPE_MAX; i++) {
@@ -57,7 +57,7 @@ void rtw_phl_init_ppdu_sts_para(struct rtw_phl_com_t *phl_com,
 #endif
 }
 
-void _phl_com_deinit_ppdu_sts(struct rtw_phl_com_t *phl_com)
+static void _phl_com_deinit_ppdu_sts(struct rtw_phl_com_t *phl_com)
 {
 #ifdef CONFIG_PHL_RX_PSTS_PER_PKT
 	u8 i = 0;
@@ -76,7 +76,7 @@ void _phl_com_deinit_ppdu_sts(struct rtw_phl_com_t *phl_com)
 #endif
 }
 
-void _phl_com_init_ppdu_sts(struct rtw_phl_com_t *phl_com)
+static void _phl_com_init_ppdu_sts(struct rtw_phl_com_t *phl_com)
 {
 #ifdef CONFIG_PHL_RX_PSTS_PER_PKT
 	u8 i = 0;
@@ -1197,7 +1197,7 @@ bool rtw_phl_is_init_completed(void *phl)
 
 #ifdef RTW_PHL_BCN
 
-enum rtw_phl_status
+static enum rtw_phl_status
 phl_add_beacon(struct phl_info_t *phl_info, struct rtw_bcn_info_cmn *bcn_cmn)
 {
 	struct rtw_phl_com_t *phl_com = phl_info->phl_com;
@@ -1209,7 +1209,7 @@ phl_add_beacon(struct phl_info_t *phl_info, struct rtw_bcn_info_cmn *bcn_cmn)
 		return RTW_PHL_STATUS_FAILURE;
 }
 
-enum rtw_phl_status phl_update_beacon(struct phl_info_t *phl_info, u8 bcn_id)
+static enum rtw_phl_status phl_update_beacon(struct phl_info_t *phl_info, u8 bcn_id)
 {
 	struct rtw_phl_com_t *phl_com = phl_info->phl_com;
 	void *hal = phl_info->hal;
@@ -1240,7 +1240,7 @@ enum rtw_phl_status rtw_phl_free_bcn_entry(void *phl, struct rtw_wifi_role_t *wr
 	return phl_status;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 phl_beacon_stop(struct phl_info_t *phl_info, struct rtw_wifi_role_t *wrole, u8 stop)
 {
 	enum rtw_phl_status pstatus = RTW_PHL_STATUS_SUCCESS;
@@ -1253,7 +1253,7 @@ phl_beacon_stop(struct phl_info_t *phl_info, struct rtw_wifi_role_t *wrole, u8 s
 	return pstatus;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 phl_issue_beacon(struct phl_info_t *phl_info, struct rtw_bcn_info_cmn *bcn_cmn)
 {
 	struct rtw_phl_com_t *phl_com = phl_info->phl_com;
@@ -1615,7 +1615,7 @@ void rtw_phl_stop(void *phl)
 	phl_info->phl_com->dev_state = 0;
 }
 
-enum rtw_phl_status phl_wow_start(struct phl_info_t *phl_info, struct rtw_phl_stainfo_t *sta)
+static enum rtw_phl_status phl_wow_start(struct phl_info_t *phl_info, struct rtw_phl_stainfo_t *sta)
 {
 #ifdef CONFIG_WOWLAN
 	enum rtw_phl_status pstatus = RTW_PHL_STATUS_FAILURE;
@@ -1739,7 +1739,7 @@ static void _wow_stop_reinit(struct phl_info_t *phl_info)
 
 }
 
-void phl_wow_stop(struct phl_info_t *phl_info, struct rtw_phl_stainfo_t *sta, u8 *hw_reinit)
+static void phl_wow_stop(struct phl_info_t *phl_info, struct rtw_phl_stainfo_t *sta, u8 *hw_reinit)
 {
 #ifdef CONFIG_WOWLAN
 	enum rtw_phl_status pstatus = RTW_PHL_STATUS_FAILURE;
@@ -1976,7 +1976,7 @@ enum rtw_phl_status rtw_phl_resume(void *phl, struct rtw_phl_stainfo_t *sta, u8 
 	return pstatus;
 }
 
-enum rtw_phl_status rtw_phl_reset(void *phl)
+static enum rtw_phl_status rtw_phl_reset(void *phl)
 {
 	struct phl_info_t *phl_info = (struct phl_info_t *)phl;
 	struct phl_hci_trx_ops *ops = phl_info->hci_trx_ops;
@@ -1998,7 +1998,7 @@ enum rtw_phl_status rtw_phl_reset(void *phl)
 	return phl_status;
 }
 
-enum rtw_phl_status rtw_phl_restart(void *phl)
+static enum rtw_phl_status rtw_phl_restart(void *phl)
 {
 	enum rtw_phl_status phl_status = RTW_PHL_STATUS_FAILURE;
 

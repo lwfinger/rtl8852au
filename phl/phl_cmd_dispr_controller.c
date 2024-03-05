@@ -35,7 +35,7 @@
  * phl mgnt status : stop/surprise remove/cannot io
 */
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_resume_io_ctrl(struct phl_info_t *phl_info,
                       struct phl_msg *msg)
 {
@@ -75,7 +75,7 @@ _dispr_resume_io_ctrl(struct phl_info_t *phl_info,
 }
 
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_cannot_io_ctrl(struct phl_info_t *phl_info,
                       struct phl_msg *msg)
 {
@@ -98,7 +98,7 @@ _dispr_cannot_io_ctrl(struct phl_info_t *phl_info,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_hw_trx_rst_resume_ctrl(struct phl_info_t *phl_info,
                               struct phl_msg *msg)
 {
@@ -121,7 +121,7 @@ _dispr_hw_trx_rst_resume_ctrl(struct phl_info_t *phl_info,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_hw_trx_pause_ctrl(struct phl_info_t *phl_info,
                          struct phl_msg *msg)
 {
@@ -144,7 +144,7 @@ _dispr_hw_trx_pause_ctrl(struct phl_info_t *phl_info,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_sw_tx_resume_ctrl(struct phl_info_t *phl_info,
                          struct phl_msg *msg)
 {
@@ -174,7 +174,7 @@ _dispr_sw_tx_resume_ctrl(struct phl_info_t *phl_info,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_sw_rx_resume_ctrl(struct phl_info_t *phl_info,
                          struct phl_msg *msg)
 {
@@ -204,7 +204,7 @@ _dispr_sw_rx_resume_ctrl(struct phl_info_t *phl_info,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_sw_tx_pause_ctrl(struct phl_info_t *phl_info,
                         struct phl_msg *msg)
 {
@@ -227,7 +227,7 @@ _dispr_sw_tx_pause_ctrl(struct phl_info_t *phl_info,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_sw_rx_pause_ctrl(struct phl_info_t *phl_info,
                         struct phl_msg *msg)
 {
@@ -250,7 +250,7 @@ _dispr_sw_rx_pause_ctrl(struct phl_info_t *phl_info,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_sw_tx_reset_ctrl(struct phl_info_t *phl_info,
                         struct phl_msg *msg)
 {
@@ -273,7 +273,7 @@ _dispr_sw_tx_reset_ctrl(struct phl_info_t *phl_info,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_sw_rx_reset_ctrl(struct phl_info_t *phl_info,
                         struct phl_msg *msg)
 {
@@ -296,7 +296,7 @@ _dispr_sw_rx_reset_ctrl(struct phl_info_t *phl_info,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_trx_sw_pause_ctrl(struct phl_info_t *phl_info,
                          struct phl_msg *msg)
 {
@@ -319,7 +319,7 @@ _dispr_trx_sw_pause_ctrl(struct phl_info_t *phl_info,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_trx_sw_resume_ctrl(struct phl_info_t *phl_info,
                           struct phl_msg *msg)
 {
@@ -342,7 +342,7 @@ _dispr_trx_sw_resume_ctrl(struct phl_info_t *phl_info,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_trx_pause_w_rst_ctrl(struct phl_info_t *phl_info,
                             struct phl_msg *msg)
 {
@@ -365,7 +365,7 @@ _dispr_trx_pause_w_rst_ctrl(struct phl_info_t *phl_info,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_trx_resume_w_rst_ctrl(struct phl_info_t *phl_info,
                              struct phl_msg *msg)
 {
@@ -389,7 +389,7 @@ _dispr_trx_resume_w_rst_ctrl(struct phl_info_t *phl_info,
 }
 
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_ctrl_init(void *phl,
                  void *dispr,
                  void **priv)
@@ -400,12 +400,12 @@ _dispr_ctrl_init(void *phl,
 	return MDL_RET_SUCCESS;
 }
 
-void _dispr_ctrl_deinit(void *dispr, void *priv)
+static void _dispr_ctrl_deinit(void *dispr, void *priv)
 {
 	PHL_INFO("%s(): \n", __func__);
 }
 
-enum phl_mdl_ret_code _dispr_ctrl_start(void *dispr, void *priv)
+static enum phl_mdl_ret_code _dispr_ctrl_start(void *dispr, void *priv)
 {
 	enum phl_mdl_ret_code ret = MDL_RET_SUCCESS;
 
@@ -414,7 +414,7 @@ enum phl_mdl_ret_code _dispr_ctrl_start(void *dispr, void *priv)
 	return ret;
 }
 
-enum phl_mdl_ret_code _dispr_ctrl_stop(void *dispr, void *priv)
+static enum phl_mdl_ret_code _dispr_ctrl_stop(void *dispr, void *priv)
 {
 	enum phl_mdl_ret_code ret = MDL_RET_SUCCESS;
 
@@ -557,7 +557,7 @@ _external_msg_hdlr(void *dispr,
 
 	return ret;
 }
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_ctrl_msg_hdlr(void *dispr,
                      void *priv,
                      struct phl_msg *msg)
@@ -583,7 +583,7 @@ _dispr_ctrl_msg_hdlr(void *dispr,
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_ctrl_set_info(void *dispr,
                      void *priv,
                      struct phl_module_op_info *info)
@@ -593,7 +593,7 @@ _dispr_ctrl_set_info(void *dispr,
 	return MDL_RET_IGNORE;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _dispr_ctrl_query_info(void *dispr, void *priv,
 			   struct phl_module_op_info *info)
 {

@@ -251,7 +251,7 @@ static enum rtw_phl_status _lps_leave_proto_cfg(struct phl_info_t *phl_info, str
 	return RTW_PHL_STATUS_SUCCESS;
 }
 
-enum rtw_phl_status phl_ps_lps_proto_cfg(struct phl_info_t *phl_info, struct ps_cfg *cfg, bool lps_en)
+static enum rtw_phl_status phl_ps_lps_proto_cfg(struct phl_info_t *phl_info, struct ps_cfg *cfg, bool lps_en)
 {
 	if (lps_en)
 		return _lps_enter_proto_cfg(phl_info, cfg);
@@ -259,7 +259,7 @@ enum rtw_phl_status phl_ps_lps_proto_cfg(struct phl_info_t *phl_info, struct ps_
 		return _lps_leave_proto_cfg(phl_info, cfg);
 }
 
-enum rtw_phl_status phl_ps_lps_enter(struct phl_info_t *phl_info, struct ps_cfg *cfg)
+static enum rtw_phl_status phl_ps_lps_enter(struct phl_info_t *phl_info, struct ps_cfg *cfg)
 {
 	enum rtw_phl_status status = RTW_PHL_STATUS_FAILURE;
 
@@ -282,7 +282,7 @@ enum rtw_phl_status phl_ps_lps_enter(struct phl_info_t *phl_info, struct ps_cfg 
 	return RTW_PHL_STATUS_SUCCESS;
 }
 
-enum rtw_phl_status phl_ps_lps_leave(struct phl_info_t *phl_info, struct ps_cfg *cfg)
+static enum rtw_phl_status phl_ps_lps_leave(struct phl_info_t *phl_info, struct ps_cfg *cfg)
 {
 	enum rtw_phl_status status = RTW_PHL_STATUS_FAILURE;
 
@@ -305,12 +305,12 @@ enum rtw_phl_status phl_ps_lps_leave(struct phl_info_t *phl_info, struct ps_cfg 
 	return RTW_PHL_STATUS_SUCCESS;
 }
 
-enum rtw_phl_status phl_ps_ips_enter(struct phl_info_t *phl_info, struct ps_cfg *cfg)
+static enum rtw_phl_status phl_ps_ips_enter(struct phl_info_t *phl_info, struct ps_cfg *cfg)
 {
 	return phl_ps_cfg_pwr_lvl(phl_info, cfg->cur_pwr_lvl, cfg->pwr_lvl);
 }
 
-enum rtw_phl_status phl_ps_ips_leave(struct phl_info_t *phl_info, struct ps_cfg *cfg)
+static enum rtw_phl_status phl_ps_ips_leave(struct phl_info_t *phl_info, struct ps_cfg *cfg)
 {
 
 	return phl_ps_cfg_pwr_lvl(phl_info, cfg->cur_pwr_lvl, cfg->pwr_lvl);

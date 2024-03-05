@@ -17,7 +17,7 @@
 #ifdef CONFIG_CMD_DISP
 
 /* START of sounding / beamform cmd_disp module */
-void
+static void
 _phl_snd_cmd_set_eng_busy(struct phl_info_t *phl_info, enum snd_cmd_disp_ctrl ctrl)
 {
 	struct phl_sound_obj *snd = (struct phl_sound_obj *)phl_info->snd_obj;
@@ -27,7 +27,7 @@ _phl_snd_cmd_set_eng_busy(struct phl_info_t *phl_info, enum snd_cmd_disp_ctrl ct
 	}
 }
 
-void
+static void
 _phl_snd_cmd_set_eng_idle(struct phl_info_t *phl_info, enum snd_cmd_disp_ctrl ctrl)
 {
 	struct phl_sound_obj *snd = (struct phl_sound_obj *)phl_info->snd_obj;
@@ -37,7 +37,7 @@ _phl_snd_cmd_set_eng_idle(struct phl_info_t *phl_info, enum snd_cmd_disp_ctrl ct
 	}
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_snd_cmd_get_eng_status(struct phl_info_t *phl_info, enum snd_cmd_disp_ctrl ctrl)
 {
 	struct phl_sound_obj *snd = (struct phl_sound_obj *)phl_info->snd_obj;
@@ -54,7 +54,7 @@ _phl_snd_cmd_get_eng_status(struct phl_info_t *phl_info, enum snd_cmd_disp_ctrl 
 	}
 	return pstatus;
 }
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_snd_aquire_eng(struct phl_info_t *phl_info, enum snd_cmd_disp_ctrl ctrl)
 {
 	struct phl_sound_obj *snd = (struct phl_sound_obj *)phl_info->snd_obj;
@@ -77,7 +77,7 @@ _phl_snd_aquire_eng(struct phl_info_t *phl_info, enum snd_cmd_disp_ctrl ctrl)
 	return pstatus;
 }
 
-void
+static void
 _phl_snd_free_eng(struct phl_info_t *phl_info, enum snd_cmd_disp_ctrl ctrl)
 {
 	struct phl_sound_obj *snd = (struct phl_sound_obj *)phl_info->snd_obj;
@@ -330,7 +330,7 @@ enum rtw_phl_status phl_snd_cmd_register_module(struct phl_info_t *phl_info)
  * _phl_snd_cmd_post_set_vht_gid(...)
  * 	used by rtw_phl_snd_cmd_set_vht_gid(..)
  **/
-void _phl_snd_cmd_post_set_vht_gid(void* priv, struct phl_msg* msg)
+static void _phl_snd_cmd_post_set_vht_gid(void* priv, struct phl_msg* msg)
 {
 	struct phl_info_t *phl_info = (struct phl_info_t *)priv;
 
@@ -403,7 +403,7 @@ exit:
 
 }
 
-void _phl_snd_cmd_post_set_aid(void* priv, struct phl_msg* msg)
+static void _phl_snd_cmd_post_set_aid(void* priv, struct phl_msg* msg)
 {
 	struct phl_info_t *phl_info = (struct phl_info_t *)priv;
 #ifdef RTW_WKARD_BFEE_SET_AID
@@ -483,7 +483,7 @@ exit:
 /**
  * For other module, such as LPS, direct set aid.
  **/
-enum rtw_phl_status
+static enum rtw_phl_status
 phl_snd_cmd_set_aid_info(struct phl_info_t *phl,
 			 struct rtw_wifi_role_t *wrole,
 			 struct rtw_phl_stainfo_t *sta,
@@ -537,7 +537,7 @@ _phl_cmd_snd_restore_aid(struct phl_info_t *phl,
 #endif
 
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_snd_cmd_ntfy_ps_enter(struct phl_info_t *phl,
 			   struct rtw_wifi_role_t *wrole)
 {
@@ -555,7 +555,7 @@ _phl_snd_cmd_ntfy_ps_enter(struct phl_info_t *phl,
 	return phl_status;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_snd_cmd_ntfy_ps_leave(struct phl_info_t *phl,
 			   struct rtw_wifi_role_t *wrole)
 {

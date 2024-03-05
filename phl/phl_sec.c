@@ -74,7 +74,7 @@ _phl_cmd_set_key_done(void *drv_priv,
 	}
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_cmd_set_key(void *phl,
                  struct rtw_phl_stainfo_t *sta,
                  struct phl_sec_param_h *crypt,

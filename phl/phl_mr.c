@@ -316,7 +316,7 @@ _phl_mrc_module_stop(void *dispr, void *priv)
 }
 
 /* Same behaviour as rtw_phl_connect_prepare without cmd dispr */
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_mrc_module_connect_start_hdlr(struct phl_info_t *phl_info,
 				   struct rtw_wifi_role_t *wrole)
 {
@@ -347,7 +347,7 @@ _exit:
 }
 
 /* Same behaviour as rtw_phl_connected without cmd dispr */
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_mrc_module_connect_end_hdlr(struct phl_info_t *phl_info,
 				 struct rtw_wifi_role_t *wrole)
 {
@@ -392,7 +392,7 @@ _exit:
 }
 
 /* Same behaviour as rtw_phl_disconnect without cmd dispr */
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_mrc_module_disconnect_hdlr(struct phl_info_t *phl_info,
 				struct rtw_wifi_role_t *wrole)
 {
@@ -446,7 +446,7 @@ _exit:
 }
 
 /* Same behaviour as rtw_phl_ap_started without cmd dispr */
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_mrc_module_ap_started_hdlr(struct phl_info_t *phl_info,
 				struct rtw_wifi_role_t *wrole)
 {
@@ -485,7 +485,7 @@ _exit:
 }
 
 /* Same behaviour as rtw_phl_ap_stop without cmd dispr */
-enum rtw_phl_status
+static enum rtw_phl_status
 _phl_mrc_module_ap_stop_hdlr(struct phl_info_t *phl_info,
 				struct rtw_wifi_role_t *wrole)
 {
@@ -525,7 +525,7 @@ _exit:
 	return psts;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _phl_mrc_module_swch_start_hdlr(void *dispr,
 				void *priv,
 				struct phl_msg *msg)
@@ -626,7 +626,7 @@ _exit:
 	return ret;
 }
 
-enum phl_mdl_ret_code
+static enum phl_mdl_ret_code
 _phl_mrc_module_swch_done_hdlr(void *dispr,
 			       void *priv,
 			       struct phl_msg *msg)
@@ -1347,7 +1347,7 @@ phl_mr_ctrl_deinit(struct phl_info_t *phl_info)
 	return RTW_PHL_STATUS_SUCCESS;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 phl_mr_chandef_sync(struct phl_info_t *phl_info, struct hw_band_ctl_t *band_ctrl,
 			struct rtw_chan_ctx *chanctx, struct rtw_chan_def *chandef)
 {
@@ -1453,7 +1453,7 @@ _exit:
 	return phl_sts;
 }
 
-enum rtw_phl_status
+static enum rtw_phl_status
 rtw_phl_mr_upt_chandef(void *phl, struct rtw_wifi_role_t *wifi_role)
 {
 	struct phl_info_t *phl_info = (struct phl_info_t *)phl;

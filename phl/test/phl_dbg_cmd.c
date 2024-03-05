@@ -30,7 +30,7 @@ static const struct phl_dbg_cmd_info phl_dbg_core_cmd_i[] = {
 	{"git_info", PHL_DBG_CORE_GIT_INFO}
 };
 
-void phl_dbg_git_info(struct phl_info_t *phl_info, char input[][MAX_ARGV],
+static void phl_dbg_git_info(struct phl_info_t *phl_info, char input[][MAX_ARGV],
 		      u32 input_num, char *output, u32 out_len)
 {
 /* #REMOVE BEGIN */
@@ -68,7 +68,7 @@ void phl_dbg_git_info(struct phl_info_t *phl_info, char input[][MAX_ARGV],
 /* #REMOVE END */
 }
 
-void phl_dbg_core_cmd_parser(void *phl, char input[][MAX_ARGV],
+static void phl_dbg_core_cmd_parser(void *phl, char input[][MAX_ARGV],
 		        u32 input_num, char *output, u32 out_len)
 {
 	struct phl_info_t *phl_info = (struct phl_info_t *)phl;
@@ -122,7 +122,7 @@ void phl_dbg_core_cmd_parser(void *phl, char input[][MAX_ARGV],
 	}
 }
 
-s32
+static s32
 phl_dbg_core_proc_cmd(struct phl_info_t *phl_info,
 		 char *input, char *output, u32 out_len)
 {

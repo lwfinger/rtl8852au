@@ -237,7 +237,7 @@ static void _history_log_6g(struct rtw_regulation *rg, u16 domain, u8 reason)
 		rg->history_cnt_6g = 0;
 }
 
-void regu_get_chnlplan_6g(struct rtw_regulation *rg,
+static void regu_get_chnlplan_6g(struct rtw_regulation *rg,
 				enum rtw_regulation_query type,
 				struct rtw_regulation_chplan *plan)
 {
@@ -278,7 +278,7 @@ void regu_get_chnlplan_6g(struct rtw_regulation *rg,
 	}
 }
 
-bool regu_valid_domain_6g(u16 domain)
+static bool regu_valid_domain_6g(u16 domain)
 {
 	if (domain == RSVD_DOMAIN)
 		return true;
@@ -289,7 +289,7 @@ bool regu_valid_domain_6g(u16 domain)
 	return true;
 }
 
-bool regu_set_domain_6g(void *phl, u16 domain,
+static bool regu_set_domain_6g(void *phl, u16 domain,
 				       	enum regulation_rsn reason)
 {
 	struct phl_info_t *phl_info = (struct phl_info_t *)phl;

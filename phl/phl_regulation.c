@@ -1056,7 +1056,7 @@ bool rtw_phl_query_country_chplan(char *country,
 	return false;
 }
 
-bool rtw_phl_regulation_valid(void *phl)
+static bool rtw_phl_regulation_valid(void *phl)
 {
 	return _regulation_valid(phl);
 }

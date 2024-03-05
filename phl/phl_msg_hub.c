@@ -114,7 +114,7 @@ static void push_back_wait_msg(struct phl_info_t* phl, struct phl_msg_ex* ex)
 	_os_sema_up(d, &(hub->msg_q_sema));
 }
 
-void msg_forward(struct phl_info_t* phl, struct phl_msg_ex* ex)
+static void msg_forward(struct phl_info_t* phl, struct phl_msg_ex* ex)
 {
 	void *d = phl_to_drvpriv(phl);
 	u8 i = 0;
@@ -145,7 +145,7 @@ void msg_forward(struct phl_info_t* phl, struct phl_msg_ex* ex)
 
 }
 
-int msg_thread_hdl(void* param)
+static int msg_thread_hdl(void* param)
 {
 	struct phl_info_t* phl = (struct phl_info_t *)param;
 	void *d = phl_to_drvpriv(phl);

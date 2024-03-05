@@ -14,6 +14,7 @@
  *****************************************************************************/
 #define _PHL_API_DRV_C_
 #include "phl_headers.h"
+#include "phl_api_drv.h"
 
 void *rtw_phl_get_txbd_buf(struct rtw_phl_com_t *phl_com)
 {
@@ -70,7 +71,7 @@ void rtw_phl_proc_cmd(void *phl, char proc_cmd,
 	if (RTW_PROC_CMD_PHL == proc_cmd)
 		status = rtw_phl_dbg_proc_cmd(phl_info, incmd, output, out_len);
 	else if (RTW_PROC_CMD_CORE == proc_cmd)
-		status = rtw_phl_dbg_core_cmd(phl_info, incmd, output, out_len);
+		status = (enum rtw_hal_status)rtw_phl_dbg_core_cmd(phl_info, incmd, output, out_len);
 	else
 		status = rtw_hal_proc_cmd(hal_info, proc_cmd, incmd, output, out_len);
 }
