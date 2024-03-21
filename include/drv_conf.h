@@ -51,7 +51,7 @@
 #endif
 
 #if !defined(fallthrough)
-#define fallthrough (do {} while(0))
+#define fallthrough __attribute__((fallthrough))
 #endif
 
 #ifdef CONFIG_RTW_ANDROID
