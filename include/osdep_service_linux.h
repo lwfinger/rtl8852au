@@ -484,10 +484,10 @@ static inline void rtw_thread_enter(char *name)
 
 static inline void rtw_thread_exit(_completion *comp)
 {
-#if LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0)
-	complete_and_exit(comp, 0);
-#else
+#if (LINUX_VERSION_CODE < KERNEL_VERSION(5, 17, 0) || (RHEL_RELEASE_CODE >= RHEL_RELEASE_VERSION(9, 0)))
 	kthread_complete_and_exit(comp, 0);
+#else
+	complete_and_exit(comp, 0);
 #endif
 }
 
