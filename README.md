@@ -55,8 +55,8 @@ sudo zypper install make gcc kernel-devel kernel-default-devel git libopenssl-de
 ```
 For **Arch**: After installing the necessary kernel headers and base-devel,
 ```bash
-git clone https://aur.archlinux.org/rtw89-dkms-git.git
-cd rtw89-dkms-git
+git clone https://aur.archlinux.org/rtl8852au-dkms-git.git
+cd rtl8852au-dkms-git
 makepkg -sri
 ```
 If any of the packages above are not found check if your distro installs them like that.
