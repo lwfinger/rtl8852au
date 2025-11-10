@@ -56,7 +56,7 @@ void rtw_init_xmit_block(_adapter *padapter)
 	dvobj->xmit_block = XMIT_BLOCK_NONE;
 
 }
-static void rtw_free_xmit_block(_adapter *padapter)
+void rtw_free_xmit_block(_adapter *padapter)
 {
 	struct dvobj_priv *dvobj = adapter_to_dvobj(padapter);
 
@@ -64,7 +64,7 @@ static void rtw_free_xmit_block(_adapter *padapter)
 }
 
 #ifdef RTW_PHL_TX
-static u8 alloc_txring(_adapter *padapter)
+u8 alloc_txring(_adapter *padapter)
 {
 	struct xmit_txreq_buf *ptxreq_buf = NULL;
 	u32 idx, alloc_sz = 0, alloc_sz_txreq = 0;
@@ -115,7 +115,7 @@ static u8 alloc_txring(_adapter *padapter)
 	return res;
 }
 
-static void free_txring(_adapter *padapter)
+void free_txring(_adapter *padapter)
 {
 	u32 idx, alloc_sz = 0, alloc_sz_txreq = 0;
 #ifdef CONFIG_CORE_TXSC
@@ -512,7 +512,7 @@ exit:
 	return res;
 }
 
-static void  rtw_mfree_xmit_priv_lock(struct xmit_priv *pxmitpriv)
+void  rtw_mfree_xmit_priv_lock(struct xmit_priv *pxmitpriv)
 {
 	_rtw_spinlock_free(&pxmitpriv->lock);
 	#if 0 /*def CONFIG_XMIT_THREAD_MODE*/
@@ -801,7 +801,7 @@ u8 rtw_get_tx_bw_mode(_adapter *adapter, struct sta_info *sta)
 	return bw;
 }
 
-static void rtw_get_adapter_tx_rate_bmp_by_bw(_adapter *adapter, u8 bw, u16 *r_bmp_cck_ofdm, u32 *r_bmp_ht, u64 *r_bmp_vht)
+void rtw_get_adapter_tx_rate_bmp_by_bw(_adapter *adapter, u8 bw, u16 *r_bmp_cck_ofdm, u32 *r_bmp_ht, u64 *r_bmp_vht)
 {
 /* ToDo */
 #if 0
@@ -848,7 +848,7 @@ static void rtw_get_adapter_tx_rate_bmp_by_bw(_adapter *adapter, u8 bw, u16 *r_b
 #endif
 }
 
-static void rtw_get_shared_macid_tx_rate_bmp_by_bw(struct dvobj_priv *dvobj, u8 bw, u16 *r_bmp_cck_ofdm, u32 *r_bmp_ht, u64 *r_bmp_vht)
+void rtw_get_shared_macid_tx_rate_bmp_by_bw(struct dvobj_priv *dvobj, u8 bw, u16 *r_bmp_cck_ofdm, u32 *r_bmp_ht, u64 *r_bmp_vht)
 {
 /* ToDo */
 #if 0
@@ -1604,7 +1604,7 @@ u8	qos_acm(u8 acm_mask, u8 priority)
 }
 
 /* refer to IEEE802.11-2016 Table R-3; Comply with IETF RFC4594 */
-static u8 tos_to_up(u8 tos)
+u8 tos_to_up(u8 tos)
 {
 	u8 up = 0;
 	u8 dscp;
@@ -4970,7 +4970,7 @@ s32 rtw_free_xmitbuf(struct xmit_priv *pxmitpriv, struct xmit_buf *pxmitbuf)
 }
 #endif
 
-static void rtw_init_xmitframe(struct xmit_frame *pxframe)
+void rtw_init_xmitframe(struct xmit_frame *pxframe)
 {
 	if (pxframe !=  NULL) { /* default value setting */
 		#if 0 /*CONFIG_CORE_XMITBUF*/
@@ -5022,7 +5022,7 @@ Must be very very cautious...
 */
 
 #ifdef RTW_PHL_TX
-static void core_tx_init_xmitframe(struct xmit_frame *pxframe)
+void core_tx_init_xmitframe(struct xmit_frame *pxframe)
 {
 	if (!pxframe)
 		return;
@@ -5407,7 +5407,7 @@ static struct xmit_frame *get_one_xmitframe(struct xmit_priv *pxmitpriv, struct 
 	return pxmitframe;
 }
 
-static struct xmit_frame *rtw_get_xframe(struct xmit_priv *pxmitpriv, int *num_frame)
+struct xmit_frame *rtw_get_xframe(struct xmit_priv *pxmitpriv, int *num_frame)
 {
 	_list *sta_plist, *sta_phead;
 	struct hw_xmit *phwxmit_i = pxmitpriv->hwxmits;
@@ -5785,11 +5785,12 @@ void rtw_init_hwxmits(struct hw_xmit *phwxmit, sint entry)
 }
 
 #ifdef CONFIG_BR_EXT
-static int rtw_br_client_tx(_adapter *padapter, struct sk_buff **pskb)
+int rtw_br_client_tx(_adapter *padapter, struct sk_buff **pskb)
 {
 	struct sk_buff *skb = *pskb;
 	/* if(MLME_IS_STA(adapter) */
 	{
+		void dhcp_flag_bcast(_adapter *priv, struct sk_buff *skb);
 		int res, is_vlan_tag = 0, i, do_nat25 = 1;
 		unsigned short vlan_hdr = 0;
 		void *br_port = NULL;
@@ -5833,6 +5834,8 @@ static int rtw_br_client_tx(_adapter *padapter, struct sk_buff **pskb)
 
 			if (*((unsigned short *)(skb->data + MACADDRLEN * 2)) == __constant_htons(ETH_P_IP)) {
 				if (_rtw_memcmp(padapter->scdb_mac, skb->data + MACADDRLEN, MACADDRLEN)) {
+					void *scdb_findEntry(_adapter *priv, unsigned char *macAddr, unsigned char *ipAddr);
+
 					padapter->scdb_entry = (struct nat25_network_db_entry *)scdb_findEntry(padapter,
 						skb->data + MACADDRLEN, skb->data + WLAN_ETHHDR_LEN + 12);
 					if (padapter->scdb_entry != NULL) {
@@ -5993,27 +5996,40 @@ s32 rtw_monitor_xmit_entry(struct sk_buff *skb, struct net_device *ndev)
 	int len = skb->len, rtap_len;
 
 
-	rtw_mstat_update(MSTAT_TYPE_SKB, MSTAT_ALLOC_SUCCESS, skb->truesize);
+if (likely(skb))
+rtw_mstat_update(MSTAT_TYPE_SKB, MSTAT_ALLOC_SUCCESS, skb->truesize);
 
 #ifndef CONFIG_CUSTOMER_ALIBABA_GENERAL
-	if (unlikely(skb->len < sizeof(struct ieee80211_radiotap_header)))
-		goto fail;
+if (unlikely(skb->len < sizeof(struct ieee80211_radiotap_header)))
+	goto fail;
 
-	_rtw_open_pktfile((struct sk_buff *)skb, &pktfile);
-	_rtw_pktfile_read(&pktfile, (u8 *)(&rtap_hdr), sizeof(struct ieee80211_radiotap_header));
-	rtap_len = ieee80211_get_radiotap_len((u8 *)(&rtap_hdr));
-	if (unlikely(rtap_hdr.it_version))
-		goto fail;
+_rtw_open_pktfile((struct sk_buff *)skb, &pktfile);
+_rtw_pktfile_read(&pktfile, (u8 *)(&rtap_hdr), sizeof(struct ieee80211_radiotap_header));
+rtap_len = ieee80211_get_radiotap_len((u8 *)(&rtap_hdr));
+if (unlikely(rtap_hdr.it_version))
+	goto fail;
 
-	if (unlikely(skb->len < rtap_len))
-		goto fail;
+if (unlikely(skb->len < rtap_len))
+	goto fail;
+#ifdef CONFIG_MONITOR_MODE_XMIT
+len -= sizeof(struct ieee80211_radiotap_header);
+rtap_len -= sizeof(struct ieee80211_radiotap_header);
 
-	if (rtap_len != 12) {
-		RTW_INFO("radiotap len (should be 14): %d\n", rtap_len);
-		goto fail;
-	}
-	_rtw_pktfile_read(&pktfile, dummybuf, rtap_len-sizeof(struct ieee80211_radiotap_header));
-	len = len - rtap_len;
+while(rtap_len) {
+	int consume = rtap_len > sizeof(dummybuf) ? sizeof(dummybuf) : rtap_len;
+	_rtw_pktfile_read(&pktfile, dummybuf, consume);
+	rtap_len -= consume;
+	len -= consume;
+}
+#else /* CONFIG_MONITOR_MODE_XMIT */
+if (rtap_len != 12) {
+RTW_INFO("radiotap len (should be 14): %d\n", rtap_len);
+goto fail;
+}
+
+_rtw_pktfile_read(&pktfile, dummybuf, rtap_len-sizeof(struct ieee80211_radiotap_header));
+len = len - rtap_len;
+#endif
 #endif
 	pmgntframe = alloc_mgtxmitframe(pxmitpriv);
 	if (pmgntframe == NULL) {
@@ -6349,17 +6365,17 @@ s32 rtw_xmit(_adapter *padapter, struct sk_buff **ppkt, u16 os_qid)
 u32 test_seq;
 #endif
 
-static u8 *get_head_from_txreq(_adapter *padapter, struct xmit_frame *pxframe, u8 frag_idx)
+u8 *get_head_from_txreq(_adapter *padapter, struct xmit_frame *pxframe, u8 frag_idx)
 {
 	return 0;
 }
 
-static u8 *get_tail_from_txreq(_adapter *padapter, struct xmit_frame *pxframe, u8 frag_idx)
+u8 *get_tail_from_txreq(_adapter *padapter, struct xmit_frame *pxframe, u8 frag_idx)
 {
 	return 0;
 }
 
-static void dump_pkt(u8 *start, u32 len)
+void dump_pkt(u8 *start, u32 len)
 {
 	u32 idx = 0;
 	for (idx = 0; idx < len; idx++) {
@@ -6371,7 +6387,7 @@ static void dump_pkt(u8 *start, u32 len)
 }
 
 /* TXREQ_QMGT */
-static u8 *get_txreq_buffer(_adapter *padapter, u8 **txreq, u8 **pkt_list, u8 **head, u8 **tail)
+u8 *get_txreq_buffer(_adapter *padapter, u8 **txreq, u8 **pkt_list, u8 **head, u8 **tail)
 {
 	struct xmit_txreq_buf *ptxreq_buf = NULL;
 	_list *plist, *phead;
@@ -6417,7 +6433,7 @@ static u8 *get_txreq_buffer(_adapter *padapter, u8 **txreq, u8 **pkt_list, u8 **
 	return (u8 *)ptxreq_buf;
 }
 
-static void get_txreq_resources(_adapter *padapter, struct xmit_frame *pxframe,
+void get_txreq_resources(_adapter *padapter, struct xmit_frame *pxframe,
 	u8 **txreq, u8 **pkt_list, u8 **head, u8 **tail)
 {
 	u32 offset_head = (sizeof(struct rtw_xmit_req) * RTW_MAX_FRAG_NUM);
@@ -6447,7 +6463,7 @@ static void get_txreq_resources(_adapter *padapter, struct xmit_frame *pxframe,
 		*pkt_list = pbuf + offset_list;
 }
 
-static void dump_xmitframe_txreq(_adapter *padapter, struct xmit_frame *pxframe)
+void dump_xmitframe_txreq(_adapter *padapter, struct xmit_frame *pxframe)
 {
 	struct rtw_xmit_req *txreq = pxframe->phl_txreq;
 	u32 idx, idx1 = 0;
@@ -6635,7 +6651,7 @@ static void fill_txreq_list_skb(_adapter *padapter,
 		RTW_WARN("remain req_sz=%d should be zero\n", req_sz);
 }
 
-static s32 rtw_core_replace_skb(struct sk_buff **pskb, u32 need_head, u32 need_tail)
+s32 rtw_core_replace_skb(struct sk_buff **pskb, u32 need_head, u32 need_tail)
 {
 	struct sk_buff *newskb;
 	struct sk_buff *skb = *pskb;
@@ -6652,7 +6668,7 @@ static s32 rtw_core_replace_skb(struct sk_buff **pskb, u32 need_head, u32 need_t
 }
 
 #ifdef CONFIG_BR_EXT
-static s32 core_br_client_tx(_adapter *padapter, struct xmit_frame *pxframe, struct sk_buff **pskb)
+s32 core_br_client_tx(_adapter *padapter, struct xmit_frame *pxframe, struct sk_buff **pskb)
 {
 	struct xmit_priv *pxmitpriv = &padapter->xmitpriv;
 
@@ -6679,7 +6695,7 @@ static s32 core_br_client_tx(_adapter *padapter, struct xmit_frame *pxframe, str
 }
 #endif
 
-static s32 core_tx_update_pkt(_adapter *padapter, struct xmit_frame *pxframe, struct sk_buff **pskb)
+s32 core_tx_update_pkt(_adapter *padapter, struct xmit_frame *pxframe, struct sk_buff **pskb)
 {
 	struct xmit_priv *pxmitpriv = &padapter->xmitpriv;
 	struct sk_buff *skb_orig = *pskb;
@@ -6693,7 +6709,7 @@ static s32 core_tx_update_pkt(_adapter *padapter, struct xmit_frame *pxframe, st
 	return SUCCESS;
 }
 
-static s32 core_tx_update_xmitframe(_adapter *padapter,
+s32 core_tx_update_xmitframe(_adapter *padapter,
 	struct xmit_frame *pxframe, struct sk_buff **pskb, struct sta_info *psta, u8 type)
 {
 	pxframe->xftype = type;
@@ -6744,7 +6760,7 @@ static s32 core_tx_update_xmitframe(_adapter *padapter,
 
 
 
-static void get_wl_frag_paras(_adapter *padapter, struct xmit_frame *pxframe,
+void get_wl_frag_paras(_adapter *padapter, struct xmit_frame *pxframe,
 	u32 *frag_perfr, u32 *wl_frags)
 {
 	u32 wl_head, wl_tail, payload_totalsz, payload_fragsz, wl_frag_num;
@@ -6781,7 +6797,7 @@ static void get_wl_frag_paras(_adapter *padapter, struct xmit_frame *pxframe,
 #endif
 }
 
-static u8 fill_txreq_pkt_perfrag_txos(struct _ADAPTER *padapter,
+u8 fill_txreq_pkt_perfrag_txos(struct _ADAPTER *padapter,
 			       struct xmit_frame *pxframe,
 			       u32 frag_perfr, u32 wl_frags)
 {
@@ -6925,7 +6941,7 @@ fail:
 }
 
 /* TXREQ_QMGT, MGT_TXREQ_QMGT */
-static u8 fill_txreq_pkt_mgmt(_adapter *padapter, struct xmit_frame *pxframe)
+u8 fill_txreq_pkt_mgmt(_adapter *padapter, struct xmit_frame *pxframe)
 {
 	struct rtw_xmit_req *xf_txreq = NULL;
 	struct rtw_pkt_buf_list *pkt_list = NULL;
@@ -7246,7 +7262,7 @@ static enum rtw_data_rate _rate_drv2phl(struct sta_info *sta, u8 rate)
 	return phl;
 }
 
-static void fill_txreq_mdata(_adapter *padapter, struct xmit_frame *pxframe)
+void fill_txreq_mdata(_adapter *padapter, struct xmit_frame *pxframe)
 {
 	struct rtw_xmit_req *txreq = pxframe->phl_txreq;
 	struct sta_info *psta = pxframe->attrib.psta;
@@ -7462,7 +7478,7 @@ static void fill_txreq_mdata(_adapter *padapter, struct xmit_frame *pxframe)
 }
 
 
-static void fill_txreq_others(_adapter *padapter, struct xmit_frame *pxframe)
+void fill_txreq_others(_adapter *padapter, struct xmit_frame *pxframe)
 {
 	struct rtw_xmit_req *txreq = pxframe->phl_txreq;
 	u32 idx = 0;
@@ -7475,7 +7491,7 @@ static void fill_txreq_others(_adapter *padapter, struct xmit_frame *pxframe)
 	}
 }
 
-static u8 core_wlan_fill_txreq_pre(_adapter *padapter, struct xmit_frame *pxframe)
+u8 core_wlan_fill_txreq_pre(_adapter *padapter, struct xmit_frame *pxframe)
 {
 	u32 frag_perfr, wl_frags = 0;
 
@@ -7491,7 +7507,7 @@ static u8 core_wlan_fill_txreq_pre(_adapter *padapter, struct xmit_frame *pxfram
 	return _SUCCESS;
 }
 
-static void core_wlan_fill_txreq_post(_adapter *padapter, struct xmit_frame *pxframe)
+void core_wlan_fill_txreq_post(_adapter *padapter, struct xmit_frame *pxframe)
 {
 	fill_txreq_mdata(padapter, pxframe);
 	fill_txreq_others(padapter, pxframe);
@@ -7503,7 +7519,7 @@ static void core_wlan_fill_txreq_post(_adapter *padapter, struct xmit_frame *pxf
 
 }
 
-static void core_wlan_fill_head(_adapter *padapter, struct xmit_frame *pxframe)
+void core_wlan_fill_head(_adapter *padapter, struct xmit_frame *pxframe)
 {
 	u32 idx = 0;
 	if (pxframe->xftype == RTW_TX_OS) {
@@ -7551,14 +7567,14 @@ static void core_wlan_fill_head(_adapter *padapter, struct xmit_frame *pxframe)
 }
 
 
-static void core_wlan_fill_tail(_adapter *padapter, struct xmit_frame *pxframe)
+void core_wlan_fill_tail(_adapter *padapter, struct xmit_frame *pxframe)
 {
 	;
 
 }
 
 
-static u8 core_wlan_fill_tkip_mic(_adapter *padapter, struct xmit_frame *pxframe)
+u8 core_wlan_fill_tkip_mic(_adapter *padapter, struct xmit_frame *pxframe)
 {
 	u8 *llc = NULL;
 	u8 *payload = NULL;
@@ -9351,7 +9367,7 @@ int rtw_sctx_wait(struct submit_ctx *sctx, const char *msg)
 	return ret;
 }
 
-static bool rtw_sctx_chk_waring_status(int status)
+bool rtw_sctx_chk_waring_status(int status)
 {
 	switch (status) {
 	case RTW_SCTX_DONE_UNKNOWN:
