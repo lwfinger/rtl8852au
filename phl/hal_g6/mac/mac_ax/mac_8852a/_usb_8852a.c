@@ -311,7 +311,7 @@ u32 write_usb2phy_para_8852a(struct mac_ax_adapter *adapter, u16 offset, u8 val)
 	return MACSUCCESS;
 }
 
-u32 static polling_usb_sie_ready(struct mac_ax_adapter *adapter)
+static u32 polling_usb_sie_ready(struct mac_ax_adapter *adapter)
 {
 #define MAC_AX_POLL_SIE_CNT 1000
 #define MAC_AX_POLL_SIE_WAIT_US 50
