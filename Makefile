@@ -620,6 +620,7 @@ endif
 
 include $(src)/phl/phl.mk
 
+ccflags-y += $(EXTRA_CFLAGS)
 
 obj-$(CONFIG_RTL8852AU) := $(MODULE_NAME).o
 obj-$(CPTCFG_RTL8852AE) := $(MODULE_NAME).o

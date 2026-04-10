@@ -390,7 +390,9 @@ static int openFile(struct file **fpp, const char *path, int flag, int mode)
 	struct file *fp;
 
 #if defined(MODULE_IMPORT_NS)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0) && LINUX_VERSION_CODE < KERNEL_VERSION(6, 13, 0))
 	MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);
+#endif
 #endif
 
 	fp = filp_open(path, flag, mode);
@@ -508,7 +510,9 @@ static int isFileReadable(const char *path, u32 *sz)
 	char buf;
 
 #if defined(MODULE_IMPORT_NS)
+#if (LINUX_VERSION_CODE >= KERNEL_VERSION(5, 10, 0) && LINUX_VERSION_CODE < KERNEL_VERSION(6, 13, 0))
 	MODULE_IMPORT_NS(VFS_internal_I_am_really_a_filesystem_and_am_NOT_a_driver);
+#endif
 #endif
 
 	fp = filp_open(path, O_RDONLY, 0);
