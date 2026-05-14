@@ -142,6 +142,7 @@ static void rtw_dev_shutdown(struct device *dev)
 #define USB_VENDOR_ID_DLINK 		0x2001
 #define USB_VENDOR_ID_TPLINK 		0x2357
 #define USB_VENDOR_ID_ELECOM		0x056e
+#define USB_VENDOR_ID_MERCUSYS		0x2c4e
 
 /* DID_USB_v916_20130116 */
 static struct usb_device_id rtw_usb_id_tbl[] = {
@@ -171,6 +172,9 @@ static struct usb_device_id rtw_usb_id_tbl[] = {
 
 	/*=== ELECOMWDC-X1201DU3 ===*/
 	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_ELECOM, 0x4020, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
+
+	/*=== MERCUSYS MA72HX ===*/
+	{USB_DEVICE_AND_INTERFACE_INFO(USB_VENDOR_ID_MERCUSYS, 0x0124, 0xff, 0xff, 0xff), .driver_info = RTL8852A},
 
 	{}	/* Terminating entry */
 };
