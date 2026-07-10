@@ -720,7 +720,7 @@ u32 rtw_alloc_stainfo_hw(struct	sta_priv *stapriv, struct sta_info *psta)
 }
 
 /* using pstapriv->sta_hash_lock to protect */
-u32 static _rtw_free_core_stainfo(_adapter *padapter , struct sta_info *psta)
+static u32 _rtw_free_core_stainfo(_adapter *padapter , struct sta_info *psta)
 {
 	int i;
 	_queue *pfree_sta_queue;

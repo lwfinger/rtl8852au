@@ -1,23 +1,24 @@
-EXTRA_CFLAGS += $(USER_EXTRA_CFLAGS)
-EXTRA_CFLAGS += -O1
-#EXTRA_CFLAGS += -O3
-#EXTRA_CFLAGS += -Wall
-#EXTRA_CFLAGS += -Wextra
-#EXTRA_CFLAGS += -Werror
-#EXTRA_CFLAGS += -pedantic
-#EXTRA_CFLAGS += -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wmissing-prototypes
+ccflags-y += $(USER_EXTRA_CFLAGS)
+ccflags-y += -O1
+#ccflags-y += -O3
+#ccflags-y += -Wall
+#ccflags-y += -Wextra
+#ccflags-y += -Werror
+#ccflags-y += -pedantic
+#ccflags-y += -Wshadow -Wpointer-arith -Wcast-qual -Wstrict-prototypes -Wmissing-prototypes
 
-EXTRA_CFLAGS += -Wno-unused-variable
-#EXTRA_CFLAGS += -Wno-unused-value
-EXTRA_CFLAGS += -Wno-unused-label
-#EXTRA_CFLAGS += -Wno-unused-parameter
-#EXTRA_CFLAGS += -Wno-unused-function
-EXTRA_CFLAGS += -Wno-unused
-#EXTRA_CFLAGS += -Wno-uninitialized
+ccflags-y += -Wno-unused-variable
+#ccflags-y += -Wno-unused-value
+ccflags-y += -Wno-unused-label
+#ccflags-y += -Wno-unused-parameter
+#ccflags-y += -Wno-unused-function
+ccflags-y += -Wno-unused
+#ccflags-y += -Wno-uninitialized
+ccflags-y += -Wno-missing-prototypes -Wno-empty-body -Wno-missing-declarations -Wno-enum-conversion
 
 GCC_VER_49 := $(shell echo `$(CC) -dumpversion | cut -f1-2 -d.` \>= 4.9 | bc )
 
-EXTRA_CFLAGS += -I$(src)/include
+ccflags-y += -I$(src)/include
 
 EXTRA_LDFLAGS += --strip-debug
 
@@ -107,7 +108,7 @@ CONFIG_SEC_AMSDU_MODE = non-spp
 CONFIG_RTW_ANDROID = 0
 
 ifeq ($(shell test $(CONFIG_RTW_ANDROID) -gt 0; echo $$?), 0)
-EXTRA_CFLAGS += -DCONFIG_RTW_ANDROID=$(CONFIG_RTW_ANDROID)
+ccflags-y += -DCONFIG_RTW_ANDROID=$(CONFIG_RTW_ANDROID)
 endif
 
 ########################## Debug ###########################
@@ -248,333 +249,333 @@ endif
 ########### END OF PATH  #################################
 ifeq ($(CONFIG_MP_INCLUDED), y)
 #MODULE_NAME := $(MODULE_NAME)_mp
-EXTRA_CFLAGS += -DCONFIG_MP_INCLUDED
+ccflags-y += -DCONFIG_MP_INCLUDED
 CONFIG_PHL_TEST_SUITE = y
 endif
 
 ifeq ($(CONFIG_FSM), y)
-EXTRA_CFLAGS += -DCONFIG_FSM
+ccflags-y += -DCONFIG_FSM
 endif
 
 ifeq ($(CONFIG_CMD_DISP), y)
-EXTRA_CFLAGS += -DCONFIG_CMD_DISP
+ccflags-y += -DCONFIG_CMD_DISP
 endif
 
 ifeq ($(CONFIG_PHL_TEST_SUITE), y)
-EXTRA_CFLAGS += -DCONFIG_PHL_TEST_SUITE
+ccflags-y += -DCONFIG_PHL_TEST_SUITE
 endif
 
 ifeq ($(CONFIG_CONCURRENT_MODE), y)
-EXTRA_CFLAGS += -DCONFIG_CONCURRENT_MODE
+ccflags-y += -DCONFIG_CONCURRENT_MODE
 endif
 
 ifeq ($(CONFIG_POWER_SAVING), y)
 ifneq ($(CONFIG_IPS_MODE), default)
-EXTRA_CFLAGS += -DRTW_IPS_MODE=$(CONFIG_IPS_MODE)
+ccflags-y += -DRTW_IPS_MODE=$(CONFIG_IPS_MODE)
 endif
 ifneq ($(CONFIG_LPS_MODE), default)
-EXTRA_CFLAGS += -DRTW_LPS_MODE=$(CONFIG_LPS_MODE)
+ccflags-y += -DRTW_LPS_MODE=$(CONFIG_LPS_MODE)
 endif
 ifneq ($(CONFIG_WOW_LPS_MODE), default)
-EXTRA_CFLAGS += -DRTW_WOW_LPS_MODE=$(CONFIG_WOW_LPS_MODE)
+ccflags-y += -DRTW_WOW_LPS_MODE=$(CONFIG_WOW_LPS_MODE)
 endif
-EXTRA_CFLAGS += -DCONFIG_POWER_SAVING
+ccflags-y += -DCONFIG_POWER_SAVING
 endif
 ifeq ($(CONFIG_POWER_SAVE), y)
-EXTRA_CFLAGS += -DCONFIG_POWER_SAVE
+ccflags-y += -DCONFIG_POWER_SAVE
 endif
 
 ifeq ($(CONFIG_BTC), y)
-EXTRA_CFLAGS += -DCONFIG_BTC
+ccflags-y += -DCONFIG_BTC
 endif
 
 ifeq ($(CONFIG_WAPI_SUPPORT), y)
-EXTRA_CFLAGS += -DCONFIG_WAPI_SUPPORT
+ccflags-y += -DCONFIG_WAPI_SUPPORT
 endif
 
 ifeq ($(CONFIG_WIFI_6), y)
-EXTRA_CFLAGS += -DCONFIG_WIFI_6
+ccflags-y += -DCONFIG_WIFI_6
 endif
 
 ifeq ($(CONFIG_EFUSE_CONFIG_FILE), y)
-EXTRA_CFLAGS += -DCONFIG_EFUSE_CONFIG_FILE
+ccflags-y += -DCONFIG_EFUSE_CONFIG_FILE
 
 #EFUSE_MAP_PATH
 USER_EFUSE_MAP_PATH ?=
 ifneq ($(USER_EFUSE_MAP_PATH),)
-EXTRA_CFLAGS += -DEFUSE_MAP_PATH=\"$(USER_EFUSE_MAP_PATH)\"
+ccflags-y += -DEFUSE_MAP_PATH=\"$(USER_EFUSE_MAP_PATH)\"
 else
-EXTRA_CFLAGS += -DEFUSE_MAP_PATH=\"/system/etc/wifi/wifi_efuse_$(MODULE_NAME).map\"
+ccflags-y += -DEFUSE_MAP_PATH=\"/system/etc/wifi/wifi_efuse_$(MODULE_NAME).map\"
 endif
 
 #WIFIMAC_PATH
 USER_WIFIMAC_PATH ?=
 ifneq ($(USER_WIFIMAC_PATH),)
-EXTRA_CFLAGS += -DWIFIMAC_PATH=\"$(USER_WIFIMAC_PATH)\"
+ccflags-y += -DWIFIMAC_PATH=\"$(USER_WIFIMAC_PATH)\"
 else
-EXTRA_CFLAGS += -DWIFIMAC_PATH=\"/data/wifimac.txt\"
+ccflags-y += -DWIFIMAC_PATH=\"/data/wifimac.txt\"
 endif
 
 endif
 
 ifeq ($(CONFIG_EXT_CLK), y)
-EXTRA_CFLAGS += -DCONFIG_EXT_CLK
+ccflags-y += -DCONFIG_EXT_CLK
 endif
 
 ifeq ($(CONFIG_TRAFFIC_PROTECT), y)
-EXTRA_CFLAGS += -DCONFIG_TRAFFIC_PROTECT
+ccflags-y += -DCONFIG_TRAFFIC_PROTECT
 endif
 
 ifeq ($(CONFIG_LOAD_PHY_PARA_FROM_FILE), y)
-EXTRA_CFLAGS += -DCONFIG_LOAD_PHY_PARA_FROM_FILE
-#EXTRA_CFLAGS += -DREALTEK_CONFIG_PATH_WITH_IC_NAME_FOLDER
-EXTRA_CFLAGS += -DREALTEK_CONFIG_PATH=\"/lib/firmware/\"
+ccflags-y += -DCONFIG_LOAD_PHY_PARA_FROM_FILE
+#ccflags-y += -DREALTEK_CONFIG_PATH_WITH_IC_NAME_FOLDER
+ccflags-y += -DREALTEK_CONFIG_PATH=\"/lib/firmware/\"
 endif
 
 ifeq ($(CONFIG_FILE_FWIMG), y)
-EXTRA_CFLAGS += -DCONFIG_FILE_FWIMG
+ccflags-y += -DCONFIG_FILE_FWIMG
 # default external firmware path is [CONFIG_FIRMWARE_PATH][ic_name]/[fw_name]
 # ex. Take 8852AE as example:
 #     normal firmware is [CONFIG_FIRMWARE_PATH]rtl8852ae/rtl8852afw.bin
 #     WOW firmware is [CONFIG_FIRMWARE_PATH]rtl8852ae/rtl8852afw_wowlan.bin
-EXTRA_CFLAGS += -DCONFIG_FIRMWARE_PATH=\"\"
-# EXTRA_CFLAGS += -DCONFIG_FIRMWARE_PATH=\"/lib/firmware/\"
+ccflags-y += -DCONFIG_FIRMWARE_PATH=\"\"
+# ccflags-y += -DCONFIG_FIRMWARE_PATH=\"/lib/firmware/\"
 endif
 
 ifeq ($(CONFIG_TXPWR_BY_RATE), n)
-EXTRA_CFLAGS += -DCONFIG_TXPWR_BY_RATE=0
+ccflags-y += -DCONFIG_TXPWR_BY_RATE=0
 else ifeq ($(CONFIG_TXPWR_BY_RATE), y)
-EXTRA_CFLAGS += -DCONFIG_TXPWR_BY_RATE=1
+ccflags-y += -DCONFIG_TXPWR_BY_RATE=1
 endif
 ifeq ($(CONFIG_TXPWR_BY_RATE_EN), n)
-EXTRA_CFLAGS += -DCONFIG_TXPWR_BY_RATE_EN=0
+ccflags-y += -DCONFIG_TXPWR_BY_RATE_EN=0
 else ifeq ($(CONFIG_TXPWR_BY_RATE_EN), y)
-EXTRA_CFLAGS += -DCONFIG_TXPWR_BY_RATE_EN=1
+ccflags-y += -DCONFIG_TXPWR_BY_RATE_EN=1
 else ifeq ($(CONFIG_TXPWR_BY_RATE_EN), auto)
-EXTRA_CFLAGS += -DCONFIG_TXPWR_BY_RATE_EN=2
+ccflags-y += -DCONFIG_TXPWR_BY_RATE_EN=2
 endif
 
 ifeq ($(CONFIG_TXPWR_LIMIT), n)
-EXTRA_CFLAGS += -DCONFIG_TXPWR_LIMIT=0
+ccflags-y += -DCONFIG_TXPWR_LIMIT=0
 else ifeq ($(CONFIG_TXPWR_LIMIT), y)
-EXTRA_CFLAGS += -DCONFIG_TXPWR_LIMIT=1
+ccflags-y += -DCONFIG_TXPWR_LIMIT=1
 endif
 ifeq ($(CONFIG_TXPWR_LIMIT_EN), n)
-EXTRA_CFLAGS += -DCONFIG_TXPWR_LIMIT_EN=0
+ccflags-y += -DCONFIG_TXPWR_LIMIT_EN=0
 else ifeq ($(CONFIG_TXPWR_LIMIT_EN), y)
-EXTRA_CFLAGS += -DCONFIG_TXPWR_LIMIT_EN=1
+ccflags-y += -DCONFIG_TXPWR_LIMIT_EN=1
 else ifeq ($(CONFIG_TXPWR_LIMIT_EN), auto)
-EXTRA_CFLAGS += -DCONFIG_TXPWR_LIMIT_EN=2
+ccflags-y += -DCONFIG_TXPWR_LIMIT_EN=2
 endif
 
 ifneq ($(CONFIG_RTW_CHPLAN), 0xFF)
-EXTRA_CFLAGS += -DCONFIG_RTW_CHPLAN=$(CONFIG_RTW_CHPLAN)
+ccflags-y += -DCONFIG_RTW_CHPLAN=$(CONFIG_RTW_CHPLAN)
 endif
 
 ifeq ($(CONFIG_CALIBRATE_TX_POWER_BY_REGULATORY), y)
-EXTRA_CFLAGS += -DCONFIG_CALIBRATE_TX_POWER_BY_REGULATORY
+ccflags-y += -DCONFIG_CALIBRATE_TX_POWER_BY_REGULATORY
 endif
 
 ifeq ($(CONFIG_CALIBRATE_TX_POWER_TO_MAX), y)
-EXTRA_CFLAGS += -DCONFIG_CALIBRATE_TX_POWER_TO_MAX
+ccflags-y += -DCONFIG_CALIBRATE_TX_POWER_TO_MAX
 endif
 
 ifeq ($(CONFIG_RTW_ADAPTIVITY_EN), disable)
-EXTRA_CFLAGS += -DCONFIG_RTW_ADAPTIVITY_EN=0
+ccflags-y += -DCONFIG_RTW_ADAPTIVITY_EN=0
 else ifeq ($(CONFIG_RTW_ADAPTIVITY_EN), enable)
-EXTRA_CFLAGS += -DCONFIG_RTW_ADAPTIVITY_EN=1
+ccflags-y += -DCONFIG_RTW_ADAPTIVITY_EN=1
 endif
 
 ifeq ($(CONFIG_RTW_ADAPTIVITY_MODE), normal)
-EXTRA_CFLAGS += -DCONFIG_RTW_ADAPTIVITY_MODE=0
+ccflags-y += -DCONFIG_RTW_ADAPTIVITY_MODE=0
 else ifeq ($(CONFIG_RTW_ADAPTIVITY_MODE), carrier_sense)
-EXTRA_CFLAGS += -DCONFIG_RTW_ADAPTIVITY_MODE=1
+ccflags-y += -DCONFIG_RTW_ADAPTIVITY_MODE=1
 endif
 
 ifeq ($(CONFIG_SIGNAL_SCALE_MAPPING), y)
-EXTRA_CFLAGS += -DCONFIG_SIGNAL_SCALE_MAPPING
+ccflags-y += -DCONFIG_SIGNAL_SCALE_MAPPING
 endif
 
 ifeq ($(CONFIG_80211W), y)
-EXTRA_CFLAGS += -DCONFIG_IEEE80211W
+ccflags-y += -DCONFIG_IEEE80211W
 endif
 
 ifeq ($(CONFIG_WOWLAN), y)
-EXTRA_CFLAGS += -DCONFIG_WOWLAN -DRTW_WAKEUP_EVENT=$(CONFIG_WAKEUP_TYPE)
-EXTRA_CFLAGS += -DRTW_SUSPEND_TYPE=$(CONFIG_SUSPEND_TYPE)
+ccflags-y += -DCONFIG_WOWLAN -DRTW_WAKEUP_EVENT=$(CONFIG_WAKEUP_TYPE)
+ccflags-y += -DRTW_SUSPEND_TYPE=$(CONFIG_SUSPEND_TYPE)
 ifeq ($(CONFIG_WOW_STA_MIX), y)
-EXTRA_CFLAGS += -DRTW_WOW_STA_MIX
+ccflags-y += -DRTW_WOW_STA_MIX
 endif
 ifeq ($(CONFIG_SDIO_HCI), y)
-EXTRA_CFLAGS += -DCONFIG_RTW_SDIO_PM_KEEP_POWER
+ccflags-y += -DCONFIG_RTW_SDIO_PM_KEEP_POWER
 endif
 endif
 
 ifeq ($(CONFIG_AP_WOWLAN), y)
-EXTRA_CFLAGS += -DCONFIG_AP_WOWLAN
+ccflags-y += -DCONFIG_AP_WOWLAN
 ifeq ($(CONFIG_SDIO_HCI), y)
-EXTRA_CFLAGS += -DCONFIG_RTW_SDIO_PM_KEEP_POWER
+ccflags-y += -DCONFIG_RTW_SDIO_PM_KEEP_POWER
 endif
 endif
 
 ifeq ($(CONFIG_LAYER2_ROAMING), y)
-	EXTRA_CFLAGS += -DCONFIG_LAYER2_ROAMING -DCONFIG_ROAMING_FLAG=$(CONFIG_ROAMING_FLAG)
+	ccflags-y += -DCONFIG_LAYER2_ROAMING -DCONFIG_ROAMING_FLAG=$(CONFIG_ROAMING_FLAG)
 endif
 
 ifeq ($(CONFIG_PNO_SUPPORT), y)
-EXTRA_CFLAGS += -DCONFIG_PNO_SUPPORT
+ccflags-y += -DCONFIG_PNO_SUPPORT
 ifeq ($(CONFIG_PNO_SET_DEBUG), y)
-EXTRA_CFLAGS += -DCONFIG_PNO_SET_DEBUG
+ccflags-y += -DCONFIG_PNO_SET_DEBUG
 endif
 endif
 
 ifeq ($(CONFIG_GPIO_WAKEUP), y)
-EXTRA_CFLAGS += -DCONFIG_GPIO_WAKEUP
+ccflags-y += -DCONFIG_GPIO_WAKEUP
 ifeq ($(CONFIG_ONE_PIN_GPIO), y)
-EXTRA_CFLAGS += -DCONFIG_RTW_ONE_PIN_GPIO
+ccflags-y += -DCONFIG_RTW_ONE_PIN_GPIO
 endif
 ifeq ($(CONFIG_HIGH_ACTIVE_DEV2HST), y)
-EXTRA_CFLAGS += -DHIGH_ACTIVE_DEV2HST=1
+ccflags-y += -DHIGH_ACTIVE_DEV2HST=1
 else
-EXTRA_CFLAGS += -DHIGH_ACTIVE_DEV2HST=0
+ccflags-y += -DHIGH_ACTIVE_DEV2HST=0
 endif
 endif
 
 ifeq ($(CONFIG_HIGH_ACTIVE_HST2DEV), y)
-EXTRA_CFLAGS += -DHIGH_ACTIVE_HST2DEV=1
+ccflags-y += -DHIGH_ACTIVE_HST2DEV=1
 else
-EXTRA_CFLAGS += -DHIGH_ACTIVE_HST2DEV=0
+ccflags-y += -DHIGH_ACTIVE_HST2DEV=0
 endif
 
 ifneq ($(CONFIG_WAKEUP_GPIO_IDX), default)
-EXTRA_CFLAGS += -DWAKEUP_GPIO_IDX=$(CONFIG_WAKEUP_GPIO_IDX)
+ccflags-y += -DWAKEUP_GPIO_IDX=$(CONFIG_WAKEUP_GPIO_IDX)
 endif
 
 ifeq ($(CONFIG_RTW_SDIO_PM_KEEP_POWER), y)
 ifeq ($(CONFIG_SDIO_HCI), y)
-EXTRA_CFLAGS += -DCONFIG_RTW_SDIO_PM_KEEP_POWER
+ccflags-y += -DCONFIG_RTW_SDIO_PM_KEEP_POWER
 endif
 endif
 
 ifeq ($(CONFIG_REDUCE_TX_CPU_LOADING), y)
-EXTRA_CFLAGS += -DCONFIG_REDUCE_TX_CPU_LOADING
+ccflags-y += -DCONFIG_REDUCE_TX_CPU_LOADING
 endif
 
 ifeq ($(CONFIG_BR_EXT), y)
 BR_NAME = br0
-EXTRA_CFLAGS += -DCONFIG_BR_EXT
-EXTRA_CFLAGS += '-DCONFIG_BR_EXT_BRNAME="'$(BR_NAME)'"'
+ccflags-y += -DCONFIG_BR_EXT
+ccflags-y += '-DCONFIG_BR_EXT_BRNAME="'$(BR_NAME)'"'
 endif
 
 
 ifeq ($(CONFIG_TDLS), y)
-EXTRA_CFLAGS += -DCONFIG_TDLS
+ccflags-y += -DCONFIG_TDLS
 endif
 
 ifeq ($(CONFIG_WIFI_MONITOR), y)
-EXTRA_CFLAGS += -DCONFIG_WIFI_MONITOR
+ccflags-y += -DCONFIG_WIFI_MONITOR
 endif
 
 ifeq ($(CONFIG_MCC_MODE), y)
-EXTRA_CFLAGS += -DCONFIG_MCC_MODE
+ccflags-y += -DCONFIG_MCC_MODE
 endif
 
 ifeq ($(CONFIG_RTW_NAPI), y)
-EXTRA_CFLAGS += -DCONFIG_RTW_NAPI
+ccflags-y += -DCONFIG_RTW_NAPI
 endif
 
 ifeq ($(CONFIG_RTW_GRO), y)
-EXTRA_CFLAGS += -DCONFIG_RTW_GRO
+ccflags-y += -DCONFIG_RTW_GRO
 endif
 
 ifeq ($(CONFIG_RTW_IPCAM_APPLICATION), y)
-EXTRA_CFLAGS += -DCONFIG_RTW_IPCAM_APPLICATION
+ccflags-y += -DCONFIG_RTW_IPCAM_APPLICATION
 ifeq ($(CONFIG_WIFI_MONITOR), n)
-EXTRA_CFLAGS += -DCONFIG_WIFI_MONITOR
+ccflags-y += -DCONFIG_WIFI_MONITOR
 endif
 endif
 
 ifeq ($(CONFIG_RTW_NETIF_SG), y)
-EXTRA_CFLAGS += -DCONFIG_RTW_NETIF_SG
+ccflags-y += -DCONFIG_RTW_NETIF_SG
 endif
 
 ifeq ($(CONFIG_ICMP_VOQ), y)
-EXTRA_CFLAGS += -DCONFIG_ICMP_VOQ
+ccflags-y += -DCONFIG_ICMP_VOQ
 endif
 
 ifeq ($(CONFIG_IP_R_MONITOR), y)
-EXTRA_CFLAGS += -DCONFIG_IP_R_MONITOR
+ccflags-y += -DCONFIG_IP_R_MONITOR
 endif
 
 ifeq ($(CONFIG_MP_VHT_HW_TX_MODE), y)
-EXTRA_CFLAGS += -DCONFIG_MP_VHT_HW_TX_MODE
+ccflags-y += -DCONFIG_MP_VHT_HW_TX_MODE
 ifeq ($(CONFIG_PLATFORM_I386_PC), y)
 ## For I386 X86 ToolChain use Hardware FLOATING
-EXTRA_CFLAGS += -mhard-float
+ccflags-y += -mhard-float
 else
 ## For ARM ToolChain use Hardware FLOATING
-EXTRA_CFLAGS += -mfloat-abi=hard
+ccflags-y += -mfloat-abi=hard
 endif
 endif
 
 ifeq ($(CONFIG_APPEND_VENDOR_IE_ENABLE), y)
-EXTRA_CFLAGS += -DCONFIG_APPEND_VENDOR_IE_ENABLE
+ccflags-y += -DCONFIG_APPEND_VENDOR_IE_ENABLE
 endif
 
 ifeq ($(CONFIG_RTW_DEBUG), y)
-EXTRA_CFLAGS += -DCONFIG_RTW_DEBUG
-EXTRA_CFLAGS += -DRTW_LOG_LEVEL=$(CONFIG_RTW_LOG_LEVEL)
+ccflags-y += -DCONFIG_RTW_DEBUG
+ccflags-y += -DRTW_LOG_LEVEL=$(CONFIG_RTW_LOG_LEVEL)
 endif
 
 ifeq ($(CONFIG_PROC_DEBUG), y)
-EXTRA_CFLAGS += -DCONFIG_PROC_DEBUG
+ccflags-y += -DCONFIG_PROC_DEBUG
 endif
 
 ifeq ($(CONFIG_RTW_UP_MAPPING_RULE), dscp)
-EXTRA_CFLAGS += -DCONFIG_RTW_UP_MAPPING_RULE=1
+ccflags-y += -DCONFIG_RTW_UP_MAPPING_RULE=1
 else
-EXTRA_CFLAGS += -DCONFIG_RTW_UP_MAPPING_RULE=0
+ccflags-y += -DCONFIG_RTW_UP_MAPPING_RULE=0
 endif
 
-EXTRA_CFLAGS += -DPLATFORM_LINUX
+ccflags-y += -DPLATFORM_LINUX
 
 ifeq ($(USE_TRUE_PHY), y)
-EXTRA_CFLAGS += -DUSE_TRUE_PHY
+ccflags-y += -DUSE_TRUE_PHY
 endif
 
 ifeq ($(CONFIG_HWSIM), y)
-EXTRA_CFLAGS += -DCONFIG_HWSIM
+ccflags-y += -DCONFIG_HWSIM
 
 # To use pure sw beacon
-EXTRA_CFLAGS += -DCONFIG_SWTIMER_BASED_TXBCN
-EXTRA_CFLAGS += -DCONFIG_SUPPORT_MULTI_BCN
+ccflags-y += -DCONFIG_SWTIMER_BASED_TXBCN
+ccflags-y += -DCONFIG_SUPPORT_MULTI_BCN
 endif
 
 ifeq ($(CONFIG_DRV_FAKE_AP), y)
-EXTRA_CFLAGS += -DCONFIG_DRV_FAKE_AP
+ccflags-y += -DCONFIG_DRV_FAKE_AP
 OBJS += core/rtw_fake_ap.o
 endif
 
 ifeq ($(CONFIG_DBG_AX_CAM), y)
-EXTRA_CFLAGS += -DCONFIG_DBG_AX_CAM
+ccflags-y += -DCONFIG_DBG_AX_CAM
 endif
 
 ifeq ($(CONFIG_I386_BUILD_VERIFY), y)
-EXTRA_CFLAGS += -DCONFIG_I386_BUILD_VERIFY
+ccflags-y += -DCONFIG_I386_BUILD_VERIFY
 endif
 
 ifeq ($(CONFIG_RTW_MBO), y)
-EXTRA_CFLAGS += -DCONFIG_RTW_MBO -DCONFIG_RTW_WNM -DCONFIG_RTW_BTM_ROAM
-#EXTRA_CFLAGS += -DCONFIG_RTW_80211K
-EXTRA_CFLAGS += -DCONFIG_RTW_80211R
+ccflags-y += -DCONFIG_RTW_MBO -DCONFIG_RTW_WNM -DCONFIG_RTW_BTM_ROAM
+#ccflags-y += -DCONFIG_RTW_80211K
+ccflags-y += -DCONFIG_RTW_80211R
 endif
 
 ifeq ($(CONFIG_SEC_AMSDU_MODE), non-spp)
-EXTRA_CFLAGS += -DRTW_AMSDU_MODE=0
+ccflags-y += -DRTW_AMSDU_MODE=0
 else ifeq ($(CONFIG_SEC_AMSDU_MODE), spp)
-EXTRA_CFLAGS += -DRTW_AMSDU_MODE=1
+ccflags-y += -DRTW_AMSDU_MODE=1
 else ifeq ($(CONFIG_SEC_AMSDU_MODE), disable)
-EXTRA_CFLAGS += -DRTW_AMSDU_MODE=2
+ccflags-y += -DRTW_AMSDU_MODE=2
 endif
 
 SUBARCH := $(shell uname -m | sed -e "s/i.86/i386/; s/ppc.*/powerpc/; s/armv.l/arm/; s/aarch64/arm64/; s/loong.*64/loongarch/;")
@@ -585,7 +586,7 @@ ARCH ?= $(SUBARCH)
 include $(wildcard $(DRV_PATH)/platform/*.mk)
 
 # Import platform specific compile options
-EXTRA_CFLAGS += -I$(src)/platform
+ccflags-y += -I$(src)/platform
 #_PLATFORM_FILES := platform/platform_ops.o
 OBJS += $(_PLATFORM_FILES)
 
@@ -599,23 +600,23 @@ ifneq ($(KERNELRELEASE),)
 ########### COMMON #################################
 include $(src)/common.mk
 
-EXTRA_CFLAGS += -DPHL_PLATFORM_LINUX
-EXTRA_CFLAGS += -DCONFIG_PHL_ARCH
+ccflags-y += -DPHL_PLATFORM_LINUX
+ccflags-y += -DCONFIG_PHL_ARCH
 
 ifeq ($(RTW_PHL_RX), y)
-EXTRA_CFLAGS += -DRTW_PHL_RX
+ccflags-y += -DRTW_PHL_RX
 endif
 
 ifeq ($(RTW_PHL_TX), y)
-EXTRA_CFLAGS += -DRTW_PHL_TX
+ccflags-y += -DRTW_PHL_TX
 endif
 
 ifeq ($(RTW_PHL_BCN), y)
-EXTRA_CFLAGS += -DRTW_PHL_BCN
+ccflags-y += -DRTW_PHL_BCN
 endif
 
 ifeq ($(DIRTY_FOR_WORK), y)
-EXTRA_CFLAGS += -DDIRTY_FOR_WORK
+ccflags-y += -DDIRTY_FOR_WORK
 endif
 
 include $(src)/phl/phl.mk
@@ -623,7 +624,9 @@ include $(src)/phl/phl.mk
 
 obj-$(CONFIG_RTL8852AU) := $(MODULE_NAME).o
 obj-$(CPTCFG_RTL8852AE) := $(MODULE_NAME).o
+obj-m+=$(MODULE_NAME).o
 $(MODULE_NAME)-y = $(OBJS)
+
 
 else
 
